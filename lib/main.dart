@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/utils/routing/utlils.dart';
 import 'package:provider/provider.dart';
-import 'features/main/home_page.dart';
-import 'features/main/providers/bottom_navigation.viewmodel.dart';
+import 'features/main/bottom_nav_shell.dart';
+import 'features/main/navigation/providers/bottom_navigation.viewmodel.dart';
 
 void main() {
   runApp(
@@ -22,14 +22,13 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
         initialRoute: '/',
         navigatorKey: Utils.mainAppNav,
         routes: {
           '/': (context) => const SplashPage(),
-          '/home': (context) => const HomePage(),
+          '/home': (context) => const BottomNavShell(),
         },
       ),
     );

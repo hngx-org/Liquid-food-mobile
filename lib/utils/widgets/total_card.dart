@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../utils/colors.dart';
-import '../utils/svg_icons.dart';
-
-
+import 'package:free_lunch_app/utils/colors.dart';
+import 'package:free_lunch_app/utils/svg_icons.dart';
 
 // This files contains differents total cards
 class TotalCardOne extends StatelessWidget {
@@ -146,7 +143,7 @@ class TotalCardThree extends StatelessWidget {
             'You\'ve done well this month, Cheers 🥂',
             style: TextStyle(
               color: AppColors.tPrimaryColor,
-              fontSize: width * .01 + 14,
+              fontSize: width * .01 + 10,
             ),
           ),
           SizedBox(height: height * .02),
@@ -158,20 +155,32 @@ class TotalCardThree extends StatelessWidget {
               ),
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Container(
-                    width: 20,
-                    height: 20,
-                    decoration: BoxDecoration(
-                      color: AppColors.tWhite,
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    margin: const EdgeInsets.only(bottom: 10),
-                    child: AppSvgIcons.hamburgerPrimary2,
+                  Column(
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        width: 20,
+                        height: 20,
+                        decoration: BoxDecoration(
+                            color: AppColors.tWhite,
+                            borderRadius: BorderRadius.circular(50),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.shade400,
+                                  blurRadius: 9,
+                                  offset: const Offset(0, 2),
+                                  spreadRadius: 0)
+                            ]),
+                        margin: const EdgeInsets.only(bottom: 10),
+                        child: Center(child: AppSvgIcons.hamburgerPrimary2),
+                      ),
+                    ],
                   ),
-                  SizedBox(width: width * .02),
+                  SizedBox(width: width * .025),
                   Text(
                     totalNum,
                     style: TextStyle(
@@ -179,17 +188,17 @@ class TotalCardThree extends StatelessWidget {
                       fontSize: width * .02 + 32,
                       fontWeight: FontWeight.w600,
                     ),
-                  ),  
+                  ),
                 ],
               ),
             ),
           ),
-          SizedBox(height: height * .02),
+          SizedBox(height: height * .05),
           Text(
             'Free Lunches',
             style: TextStyle(
               color: AppColors.tPrimaryColor,
-              fontSize: width * .01 + 14,
+              fontSize: width * .01 + 11,
             ),
           ),
         ],

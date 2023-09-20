@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/features/main/navigation/models/bottom_nav_item.dart';
-import 'package:free_lunch_app/features/main/navigation/navigation_repo_i.dart';
-import 'package:free_lunch_app/features/main/providers/bottom_navigation.viewmodel.dart';
+import 'package:free_lunch_app/features/main/navigation/repository/navigation_repo_i.dart';
+import 'package:free_lunch_app/features/main/navigation/providers/bottom_navigation.viewmodel.dart';
 import 'package:provider/provider.dart';
 
 class BottomNav extends StatelessWidget {
@@ -38,7 +38,9 @@ class BottomNavTile extends StatelessWidget {
               navItem.setTabSelection(item);
             },
             icon: Icon(
-              item.icon,
+              navItem.tabSelection == item.route
+                  ? item.iconSelected
+                  : item.iconUnselected,
               color: navItem.tabSelection == item.route
                   ? Colors.blue
                   : Colors.black,

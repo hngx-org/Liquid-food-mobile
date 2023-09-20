@@ -10,17 +10,20 @@ class NavigationRepository extends INavigationRepository {
   List<BottomNavItem> getDefaultNavItems() {
     return [
       BottomNavItem(
-        icon: AppIcons.home,
+        iconUnselected: AppIcons.arrowLeft,
+        iconSelected: AppIcons.home,
         route: 'home',
         isSelected: true,
       ),
       BottomNavItem(
-        icon: AppIcons.notification,
+        iconUnselected: AppIcons.edit,
+        iconSelected: AppIcons.notification,
         route: 'lunches',
         isSelected: false,
       ),
       BottomNavItem(
-        icon: AppIcons.profile,
+        iconUnselected: AppIcons.upload,
+        iconSelected: AppIcons.profile,
         route: 'profile',
         isSelected: false,
       ),

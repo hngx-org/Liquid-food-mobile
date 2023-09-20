@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utils/colors.dart';
+import 'package:free_lunch_app/utils/colors.dart';
 
 class CommentWidget extends StatefulWidget {
   final String initialCommentText;
@@ -69,4 +69,3 @@ class CommentWidgetState extends State<CommentWidget> {
     );
   }
 }
-

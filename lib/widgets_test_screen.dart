@@ -1,13 +1,11 @@
-
 import 'package:flutter/material.dart';
-
+import 'package:free_lunch_app/utils/widgets/account_info_withdraw_summary.dart';
+import 'package:free_lunch_app/utils/widgets/action_buttons.dart';
+import 'package:free_lunch_app/utils/widgets/total_card.dart';
 import 'utils/colors.dart';
 import 'utils/icons.dart';
 import 'utils/svg_icons.dart';
-import 'widgets/account_info_withdraw_summary.dart';
-import 'widgets/action_buttons.dart';
 import 'widgets/avatar.dart';
-import 'widgets/total_card.dart';
 
 class WidgetsTestScreen extends StatefulWidget {
   const WidgetsTestScreen({super.key});

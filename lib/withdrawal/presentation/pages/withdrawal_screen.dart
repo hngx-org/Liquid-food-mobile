@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:free_lunch_app/withdrawal/presentation/providers/withdraw_page_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
 
+import '../../presentation/providers/withdraw_page_provider.dart';
 import '/utils/svg_icons.dart';
 import '../../presentation/pages/withdraw_account.dart';
 import './/withdrawal/presentation/widgets/w_button.dart';

@@ -19,4 +19,6 @@ class AppColors {
   //Added colors not in the list above
   static const Color tBlack5 = Color(0xff8C8C8C);
   static const Color tBlack4 = Color(0xff737373);
+  static const Color disabledButton = Color(0xffA6A6A6);
+  static const Color contColor = Color(0xffFFFAF0);
 }

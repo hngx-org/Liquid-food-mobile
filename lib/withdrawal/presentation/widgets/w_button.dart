@@ -37,7 +37,7 @@ class WButton extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             if (leading != null) leading!,
-            if (leading != null) SizedBox(width: width * 0.005),
+            if (leading != null) SizedBox(width: width * 0.02),
             Text(
               title,
               textScaleFactor: MediaQuery.textScaleFactorOf(context),

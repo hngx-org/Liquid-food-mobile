@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/withdrawal/presentation/pages/withdraw_account.dart';
 import 'withdrawal/presentation/pages/withdrawal_screen.dart';
 
 void main() {
@@ -20,6 +21,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const WithdrawalScreen(),
+      //
+      routes: {
+        WithdrawalAccount.routeName: (ctx) => const WithdrawalAccount(),
+      },
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/utils/svg_icons.dart';
-import 'package:free_lunch_app/withdrawal/presentation/pages/withdraw_account.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
 
@@ -9,8 +8,10 @@ import '../widgets/screen_styles.dart';
 import './/utils/colors.dart';
 import './/utils/icons.dart';
 
-class WithdrawalScreen extends StatelessWidget {
-  const WithdrawalScreen({super.key});
+class WithdrawalAccount extends StatelessWidget {
+  const WithdrawalAccount({super.key});
+
+  static const routeName = '/withdraw-account';
 
   @override
   Widget build(BuildContext context) {
@@ -155,10 +156,7 @@ class WithdrawalScreen extends StatelessWidget {
               SizedBox(
                 width: width * 0.65,
                 child: WButton(
-                  onTap: () => Navigator.pushNamed(
-                    context,
-                    WithdrawalAccount.routeName,
-                  ),
+                  onTap: () {},
                   title: 'Add your account detials',
                   color: AppColors.backgroundColor,
                 ),

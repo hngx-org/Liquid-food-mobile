@@ -30,7 +30,7 @@ class WButton extends StatelessWidget {
         width: double.infinity,
         height: height * 0.06,
         decoration: BoxDecoration(
-          color: !disabled ? AppColors.buttonColor : AppColors.disabledButton,
+          color: !disabled ? AppColors.buttonColor : AppColors.tShadeColor,
           borderRadius: BorderRadius.circular(32),
         ),
         child: Row(

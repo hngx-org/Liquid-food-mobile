@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class WText extends StatelessWidget {
   final Color? color;
-  final String title;
+  final String text;
   final double? fontSize;
   final FontWeight? fontWeight;
   final TextAlign? textAlign;
@@ -12,7 +12,7 @@ class WText extends StatelessWidget {
   const WText(
       {super.key,
       this.color,
-      required this.title,
+      required this.text,
       this.fontSize,
       this.fontWeight,
       this.textAlign,
@@ -21,7 +21,7 @@ class WText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      title,
+      text,
       style: GoogleFonts.workSans(
         color: color,
         fontSize: fontSize,

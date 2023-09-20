@@ -25,12 +25,10 @@ class WithdrawalScreen extends StatelessWidget {
             AppIcons.arrowLeft,
           ),
         ),
-        title: Text(
-          'Withdrawal',
-          style: GoogleFonts.workSans(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
+        title: const WText(
+          text: 'Withdrawal',
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
         ),
         centerTitle: true,
       ),
@@ -50,13 +48,11 @@ class WithdrawalScreen extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Text(
-                      'Available lunches',
-                      style: GoogleFonts.workSans(
-                        color: AppColors.tPrimaryColor1,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                      ),
+                    const WText(
+                      text: 'Available lunches',
+                      color: AppColors.tPrimaryColor1,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
                     ),
                     SizedBox(height: height * 0.002),
                     RichText(
@@ -76,7 +72,6 @@ class WithdrawalScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(width: width * 0.01),
                   ],
                 ),
               ),
@@ -87,55 +82,45 @@ class WithdrawalScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Withdraw Summary',
-                      style: GoogleFonts.workSans(
-                        color: AppColors.tBlack5,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
+                    const WText(
+                      text: 'Withdraw Summary',
+                      color: AppColors.tBlack5,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
                     ),
                     SizedBox(height: height * 0.01),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Total lunch',
-                          style: GoogleFonts.workSans(
-                            color: AppColors.tBlack4,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                          ),
+                        WText(
+                          text: 'Total lunch',
+                          color: AppColors.tBlack4,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
                         ),
-                        Text(
-                          'x12',
-                          style: GoogleFonts.workSans(
-                            color: AppColors.tBlack,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                          ),
+                        WText(
+                          text: 'x12',
+                          color: AppColors.tBlack,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
                         ),
                       ],
                     ),
                     SizedBox(height: height * 0.008),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Worth',
-                          style: GoogleFonts.workSans(
-                            color: AppColors.tBlack4,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                          ),
+                        WText(
+                          text: 'Worth',
+                          color: AppColors.tBlack4,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
                         ),
-                        Text(
-                          '\$120 (\$10 per lunch)',
-                          style: GoogleFonts.workSans(
-                            color: AppColors.tBlack,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                          ),
+                        WText(
+                          text: '\$120 (\$10 per lunch)',
+                          color: AppColors.tBlack,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
                         ),
                       ],
                     ),
@@ -143,13 +128,11 @@ class WithdrawalScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: height * 0.03),
-              Text(
-                'Account information',
-                style: GoogleFonts.workSans(
-                  color: AppColors.tBlack5,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
+              const WText(
+                text: 'Account information',
+                color: AppColors.tBlack5,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
               ),
               SizedBox(height: height * 0.03),
               SizedBox(
@@ -180,7 +163,7 @@ class WithdrawalScreen extends StatelessWidget {
                     const Expanded(
                       child: WText(
                         softWrap: true,
-                        title:
+                        text:
                             'All withdrawals are the processed within 4 to 6 working days.',
                         color: AppColors.tAmberAccent,
                         fontSize: 12,

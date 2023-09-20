@@ -3,13 +3,13 @@ import 'package:iconly/iconly.dart';
 
 class AppIcons {
   static const IconData home = IconlyBold.home;
-  static const IconData notification= IconlyLight.notification;
+  static const IconData notification = IconlyLight.notification;
   static const IconData profile = IconlyLight.profile;
   static const IconData search = IconlyLight.search;
   static const IconData upload = IconlyLight.upload;
   static const IconData edit = IconlyLight.edit;
   static const IconData arrowLeft = IconlyLight.arrow_left;
- 
+
   // Add more icons here
 
   static Widget getIcon(String iconName, Color color) {

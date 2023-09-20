@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'withdrawal/presentation/pages/withdraw_account.dart';
 import 'withdrawal/presentation/pages/withdrawal_screen.dart';
 
 void main() {
   runApp(
-    const ProviderScope(
-      child: MyApp(),
-    ),
+    const MyApp(),
   );
 }
 

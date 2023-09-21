@@ -12,7 +12,8 @@ class BottomNav extends StatelessWidget {
     INavigationRepository navigationRepository = NavigationRepository();
     final navItems = navigationRepository.getDefaultNavItems();
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+      color: Colors.white,
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

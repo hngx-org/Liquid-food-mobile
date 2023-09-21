@@ -6,23 +6,32 @@ import 'package:flutter_svg/flutter_svg.dart';
 class AppSvgIcons {
   static Widget home =
       SvgPicture.asset('assets/svgs/home.svg', semanticsLabel: 'home');
-  static Widget homeActive =
-      SvgPicture.asset('assets/svgs/home-active.svg', semanticsLabel: 'home active');
-  static Widget hamburgerDark =
-      SvgPicture.asset('assets/svgs/hambuger-dark.svg', semanticsLabel: 'hambuger dark');
-  static Widget hamburgerLight =
-      SvgPicture.asset('assets/svgs/hambuger-light.svg', semanticsLabel: 'hambuger light');
-  static Widget hamburgerPrimary2 =
-      SvgPicture.asset('assets/svgs/hambuger-primary-2.svg', semanticsLabel: 'hambuger Primary');
-  static Widget hamburgerLightTotal =
-      SvgPicture.asset('assets/svgs/hambuger-light.svg', semanticsLabel: 'hambuger light', width: 32, height: 24);
-  static Widget hamburgerPrimary =
-      SvgPicture.asset('assets/svgs/hambuger-primary.svg', semanticsLabel: 'hambuger primary', width: 32, height: 24,);
+  static Widget homeActive = SvgPicture.asset('assets/svgs/home-active.svg',
+      semanticsLabel: 'home active');
+  static Widget hamburgerDark = SvgPicture.asset(
+      'assets/svgs/hambuger-dark.svg',
+      semanticsLabel: 'hambuger dark');
+  static Widget hamburgerLight = SvgPicture.asset(
+      'assets/svgs/hambuger-light.svg',
+      semanticsLabel: 'hambuger light');
+  static Widget hamburgerPrimary2 = SvgPicture.asset(
+      'assets/svgs/hambuger-primary-2.svg',
+      semanticsLabel: 'hambuger Primary');
+  static Widget hamburgerLightTotal = SvgPicture.asset(
+      'assets/svgs/hambuger-light.svg',
+      semanticsLabel: 'hambuger light',
+      width: 32,
+      height: 24);
+  static Widget hamburgerPrimary = SvgPicture.asset(
+    'assets/svgs/hambuger-primary.svg',
+    semanticsLabel: 'hambuger primary',
+    width: 32,
+    height: 24,
+  );
   static Widget lunchSent =
       SvgPicture.asset('assets/svgs/svg_one.svg', semanticsLabel: 'Lunch Sent');
   static Widget withdrawal =
       SvgPicture.asset('assets/svgs/svg2.svg', semanticsLabel: 'Withdrawal');
-  static Widget lunchRecieved =
-      SvgPicture.asset('assets/svgs/svg3.svg', semanticsLabel: 'Lunch Recieved');
+  static Widget lunchRecieved = SvgPicture.asset('assets/svgs/svg3.svg',
+      semanticsLabel: 'Lunch Recieved');
 }
-

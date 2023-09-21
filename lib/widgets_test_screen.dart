@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/utils/widgets/account_info_withdraw_summary.dart';
 import 'package:free_lunch_app/utils/widgets/action_buttons.dart';
+import 'package:free_lunch_app/utils/widgets/avatar.dart';
 import 'package:free_lunch_app/utils/widgets/total_card.dart';
 import 'utils/colors.dart';
 import 'utils/icons.dart';
 import 'utils/svg_icons.dart';
-import 'widgets/avatar.dart';
 
 class WidgetsTestScreen extends StatefulWidget {
   const WidgetsTestScreen({super.key});
@@ -52,6 +52,7 @@ class _WidgetsTestScreenState extends State<WidgetsTestScreen> {
               AppSvgIcons.lunchRecieved,
               const Text('Mini Action Button'),
               MiniActionBtn(
+                onTap: () {},
                 text: 'Send Lunch',
                 btnColor: AppColors.tPrimaryColor,
                 icon: AppSvgIcons.hamburgerLight,

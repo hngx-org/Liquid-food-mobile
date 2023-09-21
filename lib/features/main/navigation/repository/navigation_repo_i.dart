@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:free_lunch_app/features/main/navigation/models/bottom_nav_item.dart';
 import 'package:free_lunch_app/utils/icons.dart';
+import 'package:free_lunch_app/utils/svg_icons.dart';
 
 abstract class INavigationRepository {
   List<BottomNavItem> getDefaultNavItems();
@@ -10,20 +12,20 @@ class NavigationRepository extends INavigationRepository {
   List<BottomNavItem> getDefaultNavItems() {
     return [
       BottomNavItem(
-        iconUnselected: AppIcons.arrowLeft,
-        iconSelected: AppIcons.home,
+        iconUnselected: AppIcons.home,
+        iconSelected: AppIcons.homeActive,
         route: 'home',
         isSelected: true,
       ),
       BottomNavItem(
-        iconUnselected: AppIcons.edit,
-        iconSelected: AppIcons.notification,
+        iconUnselected: Icons.lunch_dining_outlined,
+        iconSelected: Icons.lunch_dining,
         route: 'lunches',
         isSelected: false,
       ),
       BottomNavItem(
-        iconUnselected: AppIcons.upload,
-        iconSelected: AppIcons.profile,
+        iconUnselected: AppIcons.profile,
+        iconSelected: AppIcons.profileActive,
         route: 'profile',
         isSelected: false,
       ),

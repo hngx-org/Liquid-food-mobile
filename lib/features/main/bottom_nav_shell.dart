@@ -9,21 +9,19 @@ class BottomNavShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Navigator(
-              key: Utils.mainListNav,
-              initialRoute: '/home',
-              onGenerateRoute: (settings) => Routes.generateRoute(settings),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Expanded(
+              child: Navigator(
+                key: Utils.mainListNav,
+                initialRoute: '/home',
+                onGenerateRoute: (settings) => Routes.generateRoute(settings),
+              ),
             ),
-          ),
-          const BottomNav(),
-        ],
+            const Positioned(bottom: 0, left: 0, right: 0, child: BottomNav()),
+          ],
+        ),
       ),
     );
   }

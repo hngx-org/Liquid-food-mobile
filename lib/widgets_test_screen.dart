@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'utils/colors.dart';
-import 'utils/icons.dart';
-import 'utils/svg_icons.dart';
+import 'feature/utils/colors.dart';
+import 'feature/utils/icons.dart';
+import 'feature/utils/svg_icons.dart';
 import 'widgets/account_info_withdraw_summary.dart';
 import 'widgets/action_buttons.dart';
 import 'widgets/avatar.dart';
@@ -11,11 +10,6 @@ import 'widgets/custom_badge.dart';
 import 'widgets/custom_card.dart';
 import 'widgets/select_image.dart';
 import 'widgets/total_card.dart';
-
-
-
-// This file contains a clear preview of all the reusuable widgets and how to use them
-
 
 class WidgetsTestScreen extends StatefulWidget {
   const WidgetsTestScreen({super.key});

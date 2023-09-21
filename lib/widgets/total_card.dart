@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../utils/colors.dart';
-import '../utils/svg_icons.dart';
-
-
+import '../feature/utils/colors.dart';
+import '../feature/utils/svg_icons.dart';
 
 // This files contains differents total cards
 class TotalCardOne extends StatelessWidget {
@@ -129,7 +127,9 @@ class TotalCardThree extends StatelessWidget {
       {super.key,
       required this.totalNum,
       required this.width,
-      required this.height, required this.text1, required this.text2});
+      required this.height,
+      required this.text1,
+      required this.text2});
 
   @override
   Widget build(BuildContext context) {
@@ -167,23 +167,20 @@ class TotalCardThree extends StatelessWidget {
                     width: 20,
                     height: 20,
                     decoration: BoxDecoration(
-                      color: AppColors.tWhite,
-                      borderRadius: BorderRadius.circular(50),
-                      boxShadow: const <BoxShadow>[
-                        BoxShadow(
-                          color: AppColors.boxShade,
-                          spreadRadius: 20,
-                          blurRadius: 20,
-                          offset: Offset(4, 8)
-                        ),
-                        BoxShadow(
-                          color: AppColors.boxShade,
-                          spreadRadius: 20,
-                          blurRadius: 20,
-                          offset: Offset(4, 8)
-                        ),
-                      ]
-                    ),
+                        color: AppColors.tWhite,
+                        borderRadius: BorderRadius.circular(50),
+                        boxShadow: const <BoxShadow>[
+                          BoxShadow(
+                              color: AppColors.boxShade,
+                              spreadRadius: 20,
+                              blurRadius: 20,
+                              offset: Offset(4, 8)),
+                          BoxShadow(
+                              color: AppColors.boxShade,
+                              spreadRadius: 20,
+                              blurRadius: 20,
+                              offset: Offset(4, 8)),
+                        ]),
                     // margin: const EdgeInsets.only(bottom: 10),
                     child: AppSvgIcons.hamburgerPrimary2,
                   ),
@@ -195,7 +192,7 @@ class TotalCardThree extends StatelessWidget {
                       fontSize: width * .02 + 32,
                       fontWeight: FontWeight.w600,
                     ),
-                  ),  
+                  ),
                 ],
               ),
             ),

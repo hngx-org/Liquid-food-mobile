@@ -1,24 +1,20 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
 
-import '../../data/repositories/mock_withdrawal.dart';
-import '../../presentation/view_models/withdrawal_page_view_model.dart';
-import '../../data/repositories/iwithdrawal_repo.dart';
+import '../../models/withdraw_screen_model.dart';
 
-final withdrawRepoProvider = Provider<IWithdrawalRepo>(
-  (ref) => MockWithdrawRepo(),
-);
+class WithdrawView with ChangeNotifier {
+  final String _availableAmount = '12';
+  final String _perLunch = '10';
+  final String _worth = '120';
 
-//Provider for wrapping viewModel
-final withdrawViewProvider = Provider<WithdrawalPageViewModel>(
-  (ref) {
-    var repository = ref.read(withdrawRepoProvider);
-    return WithdrawalPageViewModel(repository, ref);
-  },
-);
+  String get avAmount => _availableAmount;
+  String get avWorth => _worth;
+  String get avpLunch => _perLunch;
 
-//Future Provider to get withdrawPage data
-final withdrawProvider = FutureProvider((ref) {
-  final withdrawVM = ref.read(withdrawViewProvider);
+  Future avialableData() async {
+    final dataStore = WithdrawalModel(
+        availableAmount: avAmount, worth: avWorth, perLunch: avpLunch);
 
-  return withdrawVM.getWithdrawaData();
-});
+    return dataStore;
+  }
+}

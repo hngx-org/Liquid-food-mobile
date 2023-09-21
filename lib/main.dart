@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'widgets_test_screen.dart';
-import 'withdrawal/presentation/pages/withdraw_account.dart';
-import 'withdrawal/presentation/pages/withdrawal_screen.dart';
 
 void main() {
   runApp(

@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'utils/colors.dart';
-import 'utils/icons.dart';
-import 'utils/svg_icons.dart';
+import 'feature/utils/colors.dart';
+import 'feature/utils/icons.dart';
+import 'feature/utils/svg_icons.dart';
 import 'widgets/account_info_withdraw_summary.dart';
 import 'widgets/action_buttons.dart';
 import 'widgets/avatar.dart';

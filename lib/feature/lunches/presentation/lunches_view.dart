@@ -6,7 +6,7 @@ import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 import '../../repo/lunches_repo.dart';
 import '../../repo/mock_lunchinfo.dart';
-import '../components/custom_tilecard.dart';
+import '../../../widgets/custom_tilecard.dart';
 import 'lunches_view_model.dart';
 
 class LunchesView extends StatelessWidget {

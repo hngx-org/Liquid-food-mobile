@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils/colors.dart';
+import '../feature/utils/colors.dart';
 
 // This is the withdrawal summary widget
 class WithdrawSummary extends StatelessWidget {

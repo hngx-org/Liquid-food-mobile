@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
+import '../../../feature/utils/colors.dart';
+import '../../../feature/utils/icons.dart';
 import '../widgets/acct_info.dart';
 import '../widgets/app_layout.dart';
 import '../widgets/available_lunches.dart';
 import '../widgets/withdraw_summary.dart';
 import './/withdrawal/presentation/widgets/w_button.dart';
 import '../widgets/screen_styles.dart';
-import './/utils/colors.dart';
-import './/utils/icons.dart';
 
 class WithdrawalAccount extends StatefulWidget {
   const WithdrawalAccount({super.key});

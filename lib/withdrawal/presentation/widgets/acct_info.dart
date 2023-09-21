@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../../utils/colors.dart';
+import '../../../feature/utils/colors.dart';
 import 'screen_styles.dart';
 
 class AccountInfo extends StatelessWidget {

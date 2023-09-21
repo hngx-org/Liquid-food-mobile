@@ -84,16 +84,6 @@ class _HomePageState extends State<HomePage> {
                 },
                 isMultiLine: false,
                 onSubmitted: (value) {}),
-            ListView.builder(
-              itemBuilder: (context, i) {
-                return ListTile(
-                  leading: AvatarComponent(
-                      image: const AssetImage('assets/images/dp.png'),
-                      width: width * .15,
-                      height: height * .1),
-                  title: const Text('Tevin M'),
-                  subtitle: const Text('Product Designer'),
-                );
               }
             )
           ],

@@ -6,6 +6,7 @@ import '../utils/svg_icons.dart';
 
 
 // This files contains differents total cards
+// and  arguments to customize them and add the adequate values
 class TotalCardOne extends StatelessWidget {
   final String totalNum;
   final double width;

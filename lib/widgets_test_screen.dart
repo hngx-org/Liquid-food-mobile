@@ -12,6 +12,11 @@ import 'widgets/custom_card.dart';
 import 'widgets/select_image.dart';
 import 'widgets/total_card.dart';
 
+
+
+// This file contains a clear preview of all the reusuable widgets and how to use them
+
+
 class WidgetsTestScreen extends StatefulWidget {
   const WidgetsTestScreen({super.key});
 

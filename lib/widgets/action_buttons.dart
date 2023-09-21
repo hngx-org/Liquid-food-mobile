@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../utils/colors.dart';
 
+
+// This file contains all buttons used in the design
+// and parameters that can help to customize it to better suit the design
+
+
 class MiniActionBtn extends StatelessWidget {
   final Color? btnColor;
   final Widget? icon;

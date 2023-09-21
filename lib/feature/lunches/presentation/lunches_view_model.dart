@@ -6,12 +6,14 @@ import 'package:free_lunch_app/feature/repo/mock_lunchinfo.dart';
 class LunchesViewModel extends ChangeNotifier {
   ILunchRepository lunchRepository = MockLunchRepository();
 
-  Future<List<LunchInfo>> getLunchInfo() async {
-    var lunchInfo = await lunchRepository.getLunchInfo();
-    return lunchInfo;
+  List<LunchInfo> _lunchinfo = [];
+  List<LunchInfo> get lunchinfo => _lunchinfo;
+
+  int numberOFl = 12;
+
+  List<LunchInfo>? getLunchInfo() {
+    List<LunchInfo> lunchInfo = lunchRepository.getLunchInfo();
+    _lunchinfo = lunchInfo;
     notifyListeners();
   }
-
-  @override
-  notifyListeners();
 }

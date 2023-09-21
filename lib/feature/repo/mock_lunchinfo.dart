@@ -13,9 +13,9 @@ class MockLunchRepository extends ILunchRepository {
           when: 'Yesterday'),
       LunchInfo(
           image: 'assets/images/dp.png',
-          fullName: 'Mark Essien',
+          fullName: 'Olatunji Ruth',
           lunchReceived: 0,
-          role: 'CTO',
+          role: 'product Designer',
           when: 'Yesterday'),
       LunchInfo(
           image: 'assets/images/img.png',
@@ -25,21 +25,21 @@ class MockLunchRepository extends ILunchRepository {
           when: 'Today'),
       LunchInfo(
           image: 'assets/images/img.png',
-          fullName: 'Mark Essien',
+          fullName: 'Moammer',
           lunchReceived: 2,
-          role: 'CTO',
+          role: 'Team lead',
           when: 'Today'),
       LunchInfo(
           image: 'assets/images/christian-buehner.jpg',
-          fullName: 'Mark Essien',
+          fullName: 'Lawrence ',
           lunchReceived: 3,
-          role: 'CTO',
+          role: 'Team member',
           when: 'Yesterday'),
       LunchInfo(
           image: 'assets/images/floral.jpg',
-          fullName: 'Mark Essien',
+          fullName: 'Telvin Studios',
           lunchReceived: 1,
-          role: 'CTO',
+          role: 'Team Member',
           when: 'Yesterday'),
     ];
   }

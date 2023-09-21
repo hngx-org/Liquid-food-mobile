@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/feature/lunches/models/lunch_model.dart';
 import 'package:free_lunch_app/feature/lunches/presentation/lunches_view_model.dart';
-import 'package:free_lunch_app/feature/repo/lunches_repo.dart';
-import 'package:free_lunch_app/feature/repo/mock_lunchinfo.dart';
 import 'package:provider/provider.dart';
-
 import '../../utils/svg_icons.dart';
 import '../../utils/typography.dart';
 
@@ -15,28 +12,28 @@ class CustomTileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<LunchesViewModel>(builder: (context, lunchInfoT, child) {
+    return Consumer<LunchesViewModel>(builder: (context, lunchinfo, child) {
       return Card(
         child: ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
             leading: ClipRRect(
               borderRadius: BorderRadius.circular(15.0),
               child: SizedBox.fromSize(
-                  size: Size.fromRadius(25),
+                  size: const Size.fromRadius(25),
                   child: Image.asset(
-                    'assets/images/christian-buehner.jpg',
+                    lunchInfo.image,
                     fit: BoxFit.cover,
                   )),
             ),
             title: Text(
-              '${lunchInfoT}Mark Essien',
+              lunchInfo.fullName,
               style: AppTypography.subHeader4,
             ),
             subtitle: Text(
-              'CTO',
+              lunchInfo.role,
               style: AppTypography.subHeader3,
             ),
-            trailing: Container(
+            trailing: SizedBox(
               width: 90,
               height: 50,
               child: Column(
@@ -45,7 +42,7 @@ class CustomTileCard extends StatelessWidget {
                 children: [
                   AppSvgIcons.hamburgerDark,
                   Text(
-                    'lunches',
+                    '${lunchInfo.lunchReceived} lunches',
                     style: AppTypography.subHeader4,
                   )
                 ],

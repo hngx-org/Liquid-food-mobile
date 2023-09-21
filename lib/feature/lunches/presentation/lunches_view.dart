@@ -4,7 +4,6 @@ import 'package:free_lunch_app/feature/utils/svg_icons.dart';
 import 'package:free_lunch_app/feature/utils/typography.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
-
 import '../../repo/lunches_repo.dart';
 import '../../repo/mock_lunchinfo.dart';
 import '../components/custom_tilecard.dart';
@@ -21,7 +20,7 @@ class LunchesView extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
 
     ILunchRepository lunchRepository = MockLunchRepository();
-    final lunchInfoT = lunchRepository.getLunchInfo();
+    final lunchInfo = lunchRepository.getLunchInfo();
     LunchesViewModel lunchesViewModel = context.watch<LunchesViewModel>();
     return Scaffold(
       appBar: AppBar(
@@ -37,7 +36,6 @@ class LunchesView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Card(
-              // margin: EdgeInsets.symmetric(vertical: 12.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -55,7 +53,6 @@ class LunchesView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.end,
-                    // textBaseline: TextBaseline.alphabetic,
                     children: [
                       AppSvgIcons.hamburgerPrimary,
                       Text('${lunchesViewModel.numberOFl}',
@@ -91,9 +88,9 @@ class LunchesView extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: lunchInfoT.length,
+                  itemCount: lunchInfo.length,
                   itemBuilder: (context, index) =>
-                      CustomTileCard(lunchInfo: lunchInfoT[index])),
+                      CustomTileCard(lunchInfo: lunchInfo[index])),
             )
           ],
         ),

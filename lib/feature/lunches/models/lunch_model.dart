@@ -2,7 +2,7 @@ class LunchInfo {
   final String fullName;
   final int lunchReceived;
   final String role;
-  final String when;
+  final String category;
   final String image;
   // final
 
@@ -10,7 +10,7 @@ class LunchInfo {
       {required this.fullName,
       required this.lunchReceived,
       required this.role,
-      required this.when,
+      required this.category,
       required this.image});
 
   LunchInfo copyWith(
@@ -23,7 +23,7 @@ class LunchInfo {
       fullName: fullName ?? this.fullName,
       lunchReceived: lunchReceived ?? this.lunchReceived,
       role: role ?? this.role,
-      when: when ?? this.when,
+      category: when ?? category,
       image: image ?? this.image,
     );
   }

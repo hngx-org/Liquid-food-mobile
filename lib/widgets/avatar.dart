@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-// The avatar widget
+// The avatar widget 
+// This widgets requires the width and height you'll want to avatar to be
+// And an ImageProvider Object to display 
+// I chose Imageprovider type in order to be able to use an AssetImage widget during testing and A NetworkImage Widget during production
 class AvatarComponent extends StatelessWidget {
   final ImageProvider<Object> image;
   final double width;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/screens/new_screen/profile_page.dart';
 
 
 import 'screens/screens.dart';
@@ -14,7 +15,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AuthScreen()
+      home: ProfileImagePage()
     );
   }
 }

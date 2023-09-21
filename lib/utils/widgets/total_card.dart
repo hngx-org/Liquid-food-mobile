@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/utils/colors.dart';
-import 'package:free_lunch_app/utils/svg_icons.dart';
+import 'package:free_lunch_app/utils/res/colors.dart';
+import 'package:free_lunch_app/utils/res/svg_icons.dart';
 
 // This files contains differents total cards
 class TotalCardOne extends StatelessWidget {

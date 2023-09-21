@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/features/main/bottom_nav.dart';
+import 'package:free_lunch_app/features/main/view/bottom_nav.dart';
 import 'package:free_lunch_app/utils/routing/routes.dart';
 import 'package:free_lunch_app/utils/routing/utlils.dart';
 
@@ -9,17 +9,18 @@ class BottomNavShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Stack(
+        child: Column(
           children: [
-            Expanded(
+            Flexible(
               child: Navigator(
                 key: Utils.mainListNav,
                 initialRoute: '/home',
                 onGenerateRoute: (settings) => Routes.generateRoute(settings),
               ),
             ),
-            const Positioned(bottom: 0, left: 0, right: 0, child: BottomNav()),
+            const Align(alignment: Alignment.bottomCenter, child: BottomNav()),
           ],
         ),
       ),

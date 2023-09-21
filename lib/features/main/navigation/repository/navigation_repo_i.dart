@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/features/main/navigation/models/bottom_nav_item.dart';
-import 'package:free_lunch_app/utils/icons.dart';
+import 'package:free_lunch_app/utils/res/icons.dart';
 
 abstract class INavigationRepository {
   List<BottomNavItem> getDefaultNavItems();

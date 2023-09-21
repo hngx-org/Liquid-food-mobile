@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:free_lunch_app/features/home/models/co_worker.model.dart';
 import 'package:free_lunch_app/features/home/repository/home.repo.dart';
 import 'package:free_lunch_app/features/home/repository/irepository.home.dart';
-import 'package:free_lunch_app/features/lunches/send_lunch.dart';
-import 'package:free_lunch_app/utils/colors.dart';
-import 'package:free_lunch_app/utils/icons.dart';
-import 'package:free_lunch_app/utils/svg_icons.dart';
-import 'package:free_lunch_app/utils/typography.dart';
+import 'package:free_lunch_app/features/home/view_model/home_viewmodel.dart';
+import 'package:free_lunch_app/features/sendLunches/view/send_lunch.dart';
+import 'package:free_lunch_app/utils/res/colors.dart';
+import 'package:free_lunch_app/utils/res/icons.dart';
+import 'package:free_lunch_app/utils/routing/utlils.dart';
+import 'package:free_lunch_app/utils/res/svg_icons.dart';
+import 'package:free_lunch_app/utils/res/typography.dart';
 import 'package:free_lunch_app/utils/widgets/action_buttons.dart';
 import 'package:free_lunch_app/utils/widgets/avatar.dart';
 import 'package:free_lunch_app/utils/widgets/custom_text_field.dart';
 import 'package:free_lunch_app/utils/widgets/total_card.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,15 +23,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late TextEditingController searchController;
+  late TextEditingController searchController = TextEditingController();
   late FocusNode searchFocus;
 
   IRepositoryHome homeRepo = HomeRepository();
-  Future<List<CoWorker>>? coworkersList;
 
   @override
   void initState() {
-    coworkersList = homeRepo.defaultCoworkerItems();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<HomeRepoVM>(context, listen: false)
+          .filterCoworkers(searchController);
+    });
     searchController = TextEditingController();
     searchFocus = FocusNode();
     super.initState();
@@ -48,6 +53,7 @@ class _HomePageState extends State<HomePage> {
     final height = MediaQuery.sizeOf(context).height;
     final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
         child: Column(
@@ -95,7 +101,11 @@ class _HomePageState extends State<HomePage> {
                   return null;
                 },
                 isMultiLine: false,
-                onSubmitted: (value) {}),
+                onSubmitted: (value) {
+                  searchFocus.unfocus();
+                  Provider.of<HomeRepoVM>(context, listen: false)
+                      .filterCoworkers(searchController);
+                }),
             const SizedBox(
               height: 10,
             ),
@@ -111,7 +121,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Expanded(
               child: FutureBuilder<List<CoWorker>>(
-                  future: coworkersList,
+                  future: Provider.of<HomeRepoVM>(context).coworkersList,
                   builder: (BuildContext context,
                       AsyncSnapshot<List<CoWorker>> snapshot) {
                     if (!snapshot.hasData) {
@@ -124,13 +134,43 @@ class _HomePageState extends State<HomePage> {
                     } else if (snapshot.hasError) {
                       return const Text('Error occurred');
                     }
-                    return ListView.builder(
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: snapshot.data?.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final coWorkerItem = snapshot.data?[index];
-                          if (snapshot.data!.isNotEmpty) {
+                    if (snapshot.data!.isEmpty || snapshot.data == null) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                '🤔',
+                                style: AppTypography.header3,
+                              )),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            "You haven't invited any \nco-worker",
+                            textAlign: TextAlign.center,
+                            style: AppTypography.subHeader1,
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          ActionBtn(
+                              widthM: MediaQuery.sizeOf(context).width * .8,
+                              text: 'Invite co-worker'),
+                        ],
+                      );
+                    } else {
+                      return ListView.builder(
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: snapshot.data?.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final coWorkerItem = snapshot.data?[index];
+                            // ignore: prefer_is_empty{
                             return Card(
                               shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.all(
@@ -173,12 +213,11 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     MiniActionBtn(
                                       onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const SendLunches()),
-                                        );
+                                        Utils.mainAppNav.currentState?.push(
+                                            MaterialPageRoute(
+                                                builder: (_) => SendLunches(
+                                                    worker: coWorkerItem,
+                                                    totalLunches: '12')));
                                       },
                                       icon: AppSvgIcons.hamburgerLight,
                                       text: 'Send Lunch',
@@ -187,38 +226,8 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             );
-                          } else {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const SizedBox(
-                                  height: 30,
-                                ),
-                                Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      '🤔',
-                                      style: AppTypography.header3,
-                                    )),
-                                const SizedBox(
-                                  height: 15,
-                                ),
-                                Text(
-                                  "You haven't invited any \nco-worker",
-                                  textAlign: TextAlign.center,
-                                  style: AppTypography.subHeader1,
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                ActionBtn(
-                                    widthM:
-                                        MediaQuery.sizeOf(context).width * .8,
-                                    text: 'Invite co-worker'),
-                              ],
-                            );
-                          }
-                        });
+                          });
+                    }
                   }),
             ),
           ],

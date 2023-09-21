@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/features/home/view_model/home_viewmodel.dart';
+import 'package:free_lunch_app/features/sendLunches/viewmodel/sendlunch.viewmodel.dart';
 import 'package:free_lunch_app/utils/routing/utlils.dart';
 import 'package:provider/provider.dart';
-import 'features/main/bottom_nav_shell.dart';
+import 'features/main/view/bottom_nav_shell.dart';
 import 'features/main/navigation/providers/bottom_navigation.viewmodel.dart';
 
 void main() {
@@ -18,6 +20,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => NavItemProvider()),
+        ChangeNotifierProvider(create: (_) => HomeRepoVM()),
+        ChangeNotifierProvider(create: (_) => SendLunchVM())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

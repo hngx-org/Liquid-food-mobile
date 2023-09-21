@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utils/colors.dart';
+import '../feature/utils/colors.dart';
 // This file is for the comment widget 
 // It's a simple and self explanatory widget
 
@@ -71,4 +71,3 @@ class CommentWidgetState extends State<CommentWidget> {
     );
   }
 }
-

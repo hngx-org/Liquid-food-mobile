@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/utils/colors.dart';
-import '../../utils/colors.dart';
-import '../../utils/icons.dart';
-import '../../utils/svg_icons.dart';
-import '../../utils/typography.dart';
+import '../../../utils/res/colors.dart';
+import '../../utils/res/icons.dart';
+import '../../utils/res/svg_icons.dart';
+// import '../../utils/res/typography.dart';
 import '../../widgets/action_buttons.dart';
 import '../../widgets/avatar.dart';
 import '../../widgets/comment_widget.dart';
 import '../../widgets/custom_card.dart';
+import '../../feature/utils/typography.dart';
 
 class SendLunches extends StatelessWidget {
   final String totalLunches;

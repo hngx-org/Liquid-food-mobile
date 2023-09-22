@@ -6,13 +6,13 @@ import 'package:free_lunch_app/features/home/view_model/home_viewmodel.dart';
 import 'package:free_lunch_app/features/sendLunches/view/send_lunch.dart';
 import 'package:free_lunch_app/utils/res/colors.dart';
 import 'package:free_lunch_app/utils/res/icons.dart';
-import 'package:free_lunch_app/utils/routing/utlils.dart';
+import 'package:free_lunch_app/feature/utils/routing/utlils.dart';
 import 'package:free_lunch_app/utils/res/svg_icons.dart';
 import 'package:free_lunch_app/utils/res/typography.dart';
-import 'package:free_lunch_app/utils/widgets/action_buttons.dart';
-import 'package:free_lunch_app/utils/widgets/avatar.dart';
-import 'package:free_lunch_app/utils/widgets/custom_text_field.dart';
-import 'package:free_lunch_app/utils/widgets/total_card.dart';
+import 'package:free_lunch_app/widgets/action_buttons.dart';
+import 'package:free_lunch_app/widgets/avatar.dart';
+import 'package:free_lunch_app/widgets/custom_text_field.dart';
+import 'package:free_lunch_app/widgets/total_card.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 10,
             ),
-            TotalCardThree(
+            TotalCardTwo(
                 totalNum: '10', width: width * .942, height: height * .110),
             const SizedBox(
               height: 10,
@@ -211,17 +211,17 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                       ],
                                     ),
-                                    MiniActionBtn(
-                                      onTap: () {
-                                        Utils.mainAppNav.currentState?.push(
-                                            MaterialPageRoute(
-                                                builder: (_) => SendLunches(
-                                                    worker: coWorkerItem,
-                                                    totalLunches: '12')));
-                                      },
-                                      icon: AppSvgIcons.hamburgerLight,
-                                      text: 'Send Lunch',
-                                    )
+                                    // MiniActionBtn(
+                                    //   onTap: () {
+                                    //     Utils.mainAppNav.currentState?.push(
+                                    //         MaterialPageRoute(
+                                    //             builder: (_) => SendLunches(
+                                    //                 worker: coWorkerItem,
+                                    //                 totalLunches: '12')));
+                                    //   },
+                                    //   icon: AppSvgIcons.hamburgerLight,
+                                    //   text: 'Send Lunch',
+                                    // )
                                   ],
                                 ),
                               ),

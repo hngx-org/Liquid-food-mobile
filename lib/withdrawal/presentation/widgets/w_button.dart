@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../feature/utils/colors.dart';
 
 class WButton extends StatelessWidget {
-  final void Function()? onTap;
+  final VoidCallback onTap;
   final String title;
   final Color? color;
   final bool disabled;
@@ -14,7 +14,7 @@ class WButton extends StatelessWidget {
     super.key,
     required this.title,
     this.color,
-    this.onTap,
+    required this.onTap,
     this.disabled = false,
     this.leading,
   });

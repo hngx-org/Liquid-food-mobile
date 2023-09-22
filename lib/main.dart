@@ -7,6 +7,7 @@ import '../features/main/view/bottom_nav_shell.dart';
 import '../features/main/navigation/providers/bottom_navigation.viewmodel.dart';
 import '../feature/lunches/presentation/lunches_view_model.dart';
 import '../feature/lunches/presentation/lunches_view.dart';
+import 'package:free_lunch_app/screens/new_screen/profile_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => HomeRepoVM()),
         ChangeNotifierProvider(create: (_) => SendLunchVM()),
         ChangeNotifierProvider(create: (_) => LunchesViewModel()),
+        
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -36,6 +38,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => const SplashPage(),
           '/home': (context) => const BottomNavShell(),
           '/lunches': (context) => const LunchesView(),
+          '/profile': (context) => const ProfileImagePage(),
         },
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),

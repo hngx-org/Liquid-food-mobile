@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/feature/screens/send.request.screen.dart';
 import '../../../utils/res/colors.dart';
 import '../../utils/res/icons.dart';
 import '../../utils/res/svg_icons.dart';
@@ -171,10 +172,16 @@ class SendLunches extends StatelessWidget {
                 margin: const EdgeInsets.only(
                   top: 640,
                 ),
-                child: ActionBtn(
+                child: ActionBtn2(
                   widthM: width,
                   text: 'Send lunch',
                   icon: AppSvgIcons.hamburgerLight,
+                  onTap: () {
+                    Navigator.push(
+                      context, 
+                      MaterialPageRoute(builder: (context) => const SendRequestPage()),
+                      );
+                  },
                 ),
               ),
             ],

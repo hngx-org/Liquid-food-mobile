@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/screens/widgets/change_password_container.dart';
+import 'package:free_lunch_app/screens/widgets/widgets.dart';
 
 class ProfileImagePage extends StatefulWidget {
   const ProfileImagePage({Key? key}) : super(key: key);
@@ -11,7 +13,7 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  bool _isPasswordVisible = false;
+  final bool _isPasswordVisible = false;
 
   @override
   void dispose() {
@@ -78,7 +80,7 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
                             'John Doe',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                              fontSize: 16,
                             ),
                           ),
                           SizedBox(height: height * 0.01),
@@ -86,18 +88,18 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
                             'Software Engineer',
                             style: TextStyle(
                               fontWeight: FontWeight.normal,
-                              fontSize: 16,
+                              fontSize: 10,
                             ),
                           ),
                         ],
                       ),
                     ),
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.edit),
+                  TextButton(
                     onPressed: () {
                       // Handle edit icon press here
                     },
+                    child: const Text('Edit'),
                   ),
                 ],
               ),
@@ -115,11 +117,10 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
                       ),
                     ),
                     SizedBox(height: height * 0.01),
-                    TextFormField(
+                    AuthInputTextFormContainer(
                       controller: _fullNameController,
-                      decoration: const InputDecoration(
-                        hintText: 'Enter your full name',
-                      ),
+                      height: height,
+                      hintText: 'Enter your full name',
                     ),
                     SizedBox(height: height * 0.02),
                     const Text(
@@ -130,11 +131,10 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
                       ),
                     ),
                     SizedBox(height: height * 0.01),
-                    TextFormField(
+                    AuthInputTextFormContainer(
                       controller: _emailController,
-                      decoration: const InputDecoration(
-                        hintText: 'Enter your email address',
-                      ),
+                      height: height,
+                      hintText: 'Enter your email address',
                     ),
                     SizedBox(height: height * 0.02),
                     const Text(
@@ -145,47 +145,31 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
                       ),
                     ),
                     SizedBox(height: height * 0.01),
-                    TextFormField(
+                    ChangePasswordContainer(
                       controller: _passwordController,
-                      obscureText: !_isPasswordVisible,
-                      decoration: InputDecoration(
-                        hintText: 'Enter your password',
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _isPasswordVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _isPasswordVisible = !_isPasswordVisible;
-                            });
-                          },
-                        ),
-                      ),
+                      height: height,
+                      hintText: 'Enter current password',
+                      iconData: _isPasswordVisible
+                          ? Icons.visibility_outlined
+                          : Icons.visibility_off_outlined,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter current password';
+                        }
+                        return null;
+                      },
                     ),
                     SizedBox(height: height * 0.02),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        TextButton(
-                          onPressed: () {
-                            // Handle change password press here
-                          },
-                          child: const Text(
-                            'Change Password',
-                            style: TextStyle(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              // Handle invite co-worker press here
+                            },
+                            child: const Text('Invite Co-worker'),
                           ),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            // Handle invite co-worker press here
-                          },
-                          child: const Text('Invite Co-worker'),
                         ),
                       ],
                     ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import '../feature/utils/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../utils/colors.dart';
+// This file is for the comment widget 
+// It's a simple and self explanatory widget
 
 class CommentWidget extends StatefulWidget {
   final String initialCommentText;

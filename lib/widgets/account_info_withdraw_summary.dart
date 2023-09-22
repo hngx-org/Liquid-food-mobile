@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../utils/colors.dart';
+import '../feature/utils/colors.dart';
 
-// This is the withdrawal summary widget
+// This page contains all widgets that depleacts the withdrawal summary as shown in the Figma Design
+// I used understandable naming conventions for the parameters so that'll it'll be easy to work with the widget
+
+
 class WithdrawSummary extends StatelessWidget {
   final String totalLunch;
   final String worth;

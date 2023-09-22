@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import '../feature/utils/colors.dart';
+import '../feature/utils/typography.dart';
 
-import '../utils/colors.dart';
-import '../utils/typography.dart';
+// This file contains all buttons used in the design
+// and parameters that can help to customize it to better suit the design
+
 
 class MiniActionBtn extends StatelessWidget {
   final Color? btnColor;
@@ -116,7 +119,11 @@ class MiniOutlinedActionBtn extends StatelessWidget {
   final Widget? icon;
   final String text;
   const MiniOutlinedActionBtn(
-      {super.key, this.btnColor, this.icon, required this.text, this.textColor});
+      {super.key,
+      this.btnColor,
+      this.icon,
+      required this.text,
+      this.textColor});
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +132,9 @@ class MiniOutlinedActionBtn extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
-          border: Border.all(color: btnColor ?? AppColors.tPrimaryColor, ),
+          border: Border.all(
+            color: btnColor ?? AppColors.tPrimaryColor,
+          ),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(

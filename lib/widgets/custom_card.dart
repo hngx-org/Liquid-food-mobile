@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/utils/colors.dart';
-import 'package:free_lunch_app/utils/svg_icons.dart';
+import '../feature/utils/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../feature/utils/svg_icons.dart';
 
+// 
 class CustomCard extends StatelessWidget {
   final String cardText;
   final Widget icon;

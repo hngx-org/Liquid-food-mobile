@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:free_lunch_app/feature/utils/colors.dart';
+import '../../feature/utils/colors.dart';
 
 class AppTypography {
   static TextStyle headline4 = GoogleFonts.workSans(
@@ -16,9 +16,29 @@ class AppTypography {
     height: 1,
   );
 
-  static TextStyle subHeader3 = GoogleFonts.workSans(
+  static TextStyle subHeader1 = GoogleFonts.workSans(
+    fontSize: 23.0,
+    fontWeight: FontWeight.w500,
+    color: AppColors.black6,
+    height: 1,
+  );
+
+  static TextStyle subHeader1black = GoogleFonts.workSans(
+    fontSize: 23.0,
+    fontWeight: FontWeight.w500,
+    color: AppColors.tBlack,
+    height: 1,
+  );
+
+  static TextStyle subHeader3Size16 = GoogleFonts.workSans(
     fontSize: 16.0,
     fontWeight: FontWeight.w400,
+    color: AppColors.tBlack4,
+  );
+
+  static TextStyle subHeader3Size12 = GoogleFonts.workSans(
+    fontSize: 12.0,
+    fontWeight: FontWeight.w500,
     color: AppColors.tBlack4,
   );
 
@@ -27,6 +47,9 @@ class AppTypography {
       fontWeight: FontWeight.w700,
       color: AppColors.tPrimaryColor,
       height: 0.4);
+
+  static TextStyle header3 = GoogleFonts.workSans(
+      fontSize: 45.0, fontWeight: FontWeight.w700, height: 0.5);
 
   static TextStyle subTitle3 = GoogleFonts.workSans(
     fontSize: 10.0,
@@ -44,14 +67,14 @@ class AppTypography {
   static TextStyle bodyText2 = GoogleFonts.workSans(
     fontSize: 16.0,
     fontWeight: FontWeight.w400,
-    color: Colors.grey,
+    color: Colors.black,
     height: 1.6,
   );
 
   static TextStyle bodyText3 = GoogleFonts.workSans(
     fontSize: 12.0,
     fontWeight: FontWeight.w400,
-    color: AppColors.commentShade,
+    color: AppColors.tBlack4,
     height: 1.3,
   );
 

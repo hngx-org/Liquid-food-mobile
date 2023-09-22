@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/features/home/view/home_page.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     Widget page;
     switch (settings.name) {
       case '/home':
-        page = const Center(
-          child: Text('Home'),
-        );
+        page = const HomePage();
         break;
       case '/lunches':
         page = const Center(

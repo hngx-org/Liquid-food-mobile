@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../feature/utils/colors.dart';
 
 // This page contains all widgets that depleacts the withdrawal summary as shown in the Figma Design

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../feature/utils/colors.dart';
-
 // This is just a simple widget all you need to add is the width and height you want the Widget to be 
 // And an icons that'll be placed in the middle
 class SelectCam extends StatelessWidget {

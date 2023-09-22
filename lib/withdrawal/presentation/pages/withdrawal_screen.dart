@@ -53,10 +53,8 @@ class WithdrawalScreen extends StatelessWidget {
               SizedBox(
                 width: width * 0.65,
                 child: WButton(
-                  onTap: () => Navigator.pushNamed(
-                    context,
-                    WithdrawalAccount.routeName,
-                  ),
+                  onTap: () =>
+                      Navigator.pushNamed(context, '/withdraw-account'),
                   title: 'Add your account detials',
                   color: AppColors.backgroundColor,
                 ),

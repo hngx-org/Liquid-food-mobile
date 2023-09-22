@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-
+import 'package:free_lunch_app/feature/utils/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:iconly/iconly.dart';
 
 class AuthInputPasswordContainer extends StatefulWidget {
   const AuthInputPasswordContainer({
     Key? key,
     required this.height,
     required this.hintText,
-    required this.iconData,
+    this.iconData,
     required this.controller,
     this.validator,
   }) : super(key: key);
 
   final double height;
   final String hintText;
-  final IconData iconData;
+  final IconData? iconData;
   final TextEditingController controller;
   final String? Function(String?)? validator;
 
@@ -22,43 +24,51 @@ class AuthInputPasswordContainer extends StatefulWidget {
       _AuthInputPasswordContainerState();
 }
 
-class _AuthInputPasswordContainerState extends State<AuthInputPasswordContainer> {
+class _AuthInputPasswordContainerState
+    extends State<AuthInputPasswordContainer> {
   bool _isPasswordVisible = false;
+
+  final roundBorder = OutlineInputBorder(
+    borderRadius: BorderRadius.circular(6),
+  );
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: widget.height * 0.060,
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: const Color(0xFF0085FF)),
-      ),
-      child: TextFormField(
-        controller: widget.controller,
-        obscureText: !_isPasswordVisible,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: widget.hintText,
-          hintStyle: const TextStyle(
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
-            color: Color(0xFFA6A6A6),
-          ),
-          suffixIcon: IconButton(
-            icon: Icon(
-              _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-            ),
-            onPressed: () {
-              setState(() {
-                _isPasswordVisible = !_isPasswordVisible;
-              });
-            },
-          ),
+    return TextFormField(
+      controller: widget.controller,
+      obscureText: !_isPasswordVisible,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.all(13),
+        hintText: widget.hintText,
+        hintStyle: GoogleFonts.workSans(
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+          color: const Color(0xFFA6A6A6),
         ),
-        validator: widget.validator,
+        enabledBorder: roundBorder.copyWith(
+          borderSide: const BorderSide(
+            color: AppColors.primaryColor,
+          ),
+          borderRadius: BorderRadius.circular(6),
+        ),
+        focusedBorder: roundBorder.copyWith(
+          borderSide: const BorderSide(
+            color: AppColors.primaryColor,
+          ),
+          borderRadius: BorderRadius.circular(6),
+        ),
+        suffixIcon: GestureDetector(
+          child: Icon(
+            _isPasswordVisible ? IconlyLight.show : IconlyLight.hide,
+          ),
+          onTap: () {
+            setState(() {
+              _isPasswordVisible = !_isPasswordVisible;
+            });
+          },
+        ),
       ),
+      validator: widget.validator,
     );
   }
 }

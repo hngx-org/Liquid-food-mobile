@@ -13,6 +13,9 @@ import 'package:free_lunch_app/widgets/action_buttons.dart';
 import 'package:free_lunch_app/widgets/avatar.dart';
 import 'package:free_lunch_app/widgets/custom_text_field.dart';
 import 'package:free_lunch_app/widgets/total_card.dart';
+import 'package:free_lunch_app/withdrawal/presentation/widgets/screen_styles.dart';
+import 'package:free_lunch_app/withdrawal/presentation/widgets/w_button.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -54,43 +57,117 @@ class _HomePageState extends State<HomePage> {
     final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        backgroundColor: AppColors.backgroundColor,
+        leading: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: AvatarComponent(
+              image: const AssetImage('assets/images/dp.png'),
+              width: width * .15,
+              height: height * .1),
+        ),
+        elevation: 0,
+        title: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            WText(
+              text: 'Welcome',
+              fontSize: 10,
+              fontWeight: FontWeight.w400,
+            ),
+            WText(
+              text: 'Tevin M.',
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+            ),
+          ],
+        ),
+      ),
+      backgroundColor: AppColors.backgroundColor,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+        padding: EdgeInsets.symmetric(horizontal: width * 0.024, vertical: 4),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                AvatarComponent(
-                    image: const AssetImage('assets/images/dp.png'),
-                    width: width * .15,
-                    height: height * .1),
-                const SizedBox(
-                  width: 12,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Welcome',
-                      style: AppTypography.subTitle3,
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.start,
+            //   children: [
+            //     AvatarComponent(
+            //         image: const AssetImage('assets/images/dp.png'),
+            //         width: width * .15,
+            //         height: height * .1),
+            //     const SizedBox(
+            //       width: 12,
+            //     ),
+            //     Column(
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: [
+            //         Text(
+            //           'Welcome',
+            //           style: AppTypography.subTitle3,
+            //         ),
+            //         Text(
+            //           'Tevin M',
+            //           style: AppTypography.bodyText2,
+            //         ),
+            //       ],
+            //     )
+            //   ],
+            // ),
+            SizedBox(height: height * 0.02),
+            Container(
+              width: double.infinity,
+              height: height * 0.16,
+              padding: const EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                  color: const Color(0xffCCE7FF),
+                  borderRadius: BorderRadius.circular(12)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const WText(
+                    text: 'You’ve done well this month. Cheers 🥂',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.primaryColor,
+                  ),
+                  SizedBox(
+                    height: height * 0.01,
+                  ),
+                  Container(
+                    width: width * 0.4,
+                    height: height * 0.07,
+                    padding: const EdgeInsets.all(3),
+                    decoration: BoxDecoration(
+                        color: AppColors.backgroundColor,
+                        borderRadius: BorderRadius.circular(30)),
+                    child: Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(child: AppSvgIcons.hamburgerPrimary2),
+                          SizedBox(width: width * 0.009),
+                          const WText(
+                            text: '12',
+                            color: AppColors.tAmberAccent,
+                            fontSize: 40,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ],
+                      ),
                     ),
-                    Text(
-                      'Tevin M',
-                      style: AppTypography.bodyText2,
-                    ),
-                  ],
-                )
-              ],
+                  ),
+                  SizedBox(height: height * 0.009),
+                  const WText(
+                    text: 'Freee Lunches',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.primaryColor,
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            TotalCardTwo(
-                totalNum: '10', width: width * .942, height: height * .110),
-            const SizedBox(
-              height: 10,
-            ),
+
+            SizedBox(height: height * 0.04),
             CustomTextField(
                 textController: searchController,
                 textFocus: searchFocus,
@@ -106,9 +183,7 @@ class _HomePageState extends State<HomePage> {
                   Provider.of<HomeRepoVM>(context, listen: false)
                       .filterCoworkers(searchController);
                 }),
-            const SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: height * 0.05),
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -165,27 +240,29 @@ class _HomePageState extends State<HomePage> {
                       );
                     } else {
                       return ListView.builder(
-                          shrinkWrap: true,
-                          physics: const BouncingScrollPhysics(),
-                          itemCount: snapshot.data?.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            final coWorkerItem = snapshot.data?[index];
-                            // ignore: prefer_is_empty{
-                            return Card(
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(15),
-                                ),
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: snapshot.data?.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final coWorkerItem = snapshot.data?[index];
+                          // ignore: prefer_is_empty{
+                          return Card(
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(15),
                               ),
-                              elevation: 5,
-                              color: AppColors.searchGray,
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Row(
+                            ),
+                            elevation: 5,
+                            color: AppColors.searchGray,
+                            child: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         AvatarComponent(
                                             image: AssetImage(coWorkerItem!
@@ -197,6 +274,8 @@ class _HomePageState extends State<HomePage> {
                                           width: 10,
                                         ),
                                         Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               coWorkerItem.name.toString(),
@@ -209,24 +288,37 @@ class _HomePageState extends State<HomePage> {
                                             )
                                           ],
                                         ),
+                                        SizedBox(width: width * 0.16),
+                                        SizedBox(
+                                            width: width * 0.4,
+                                            child: WButton(
+                                              leading: AppSvgIcons
+                                                  .hamburgerLightTotal,
+                                              title: 'Send Lunch',
+                                              color: AppColors.backgroundColor,
+                                            ))
                                       ],
                                     ),
-                                    // MiniActionBtn(
-                                    //   onTap: () {
-                                    //     Utils.mainAppNav.currentState?.push(
-                                    //         MaterialPageRoute(
-                                    //             builder: (_) => SendLunches(
-                                    //                 worker: coWorkerItem,
-                                    //                 totalLunches: '12')));
-                                    //   },
-                                    //   icon: AppSvgIcons.hamburgerLight,
-                                    //   text: 'Send Lunch',
-                                    // )
-                                  ],
-                                ),
-                              ),
-                            );
-                          });
+                                  ]),
+                              //
+                              //       // MiniActionBtn(
+                              //       //   onTap: () {
+                              //       //     Utils.mainAppNav.currentState?.push(
+                              //       //         MaterialPageRoute(
+                              //       //             builder: (_) => SendLunches(
+                              //       //                 worker: coWorkerItem,
+                              //       //                 totalLunches: '12')));
+                              //       //   },
+                              //       //   icon: AppSvgIcons.hamburgerLight,
+                              //       //   text: 'Send Lunch',
+                              //       // )
+                              //     ],
+                              //   ),
+                              // ),
+                            ),
+                          );
+                        },
+                      );
                     }
                   }),
             ),

@@ -5,6 +5,7 @@ class WText extends StatelessWidget {
   final Color? color;
   final String text;
   final double? fontSize;
+  final double? height;
   final FontWeight? fontWeight;
   final TextAlign? textAlign;
   final bool softWrap;
@@ -13,6 +14,7 @@ class WText extends StatelessWidget {
       {super.key,
       this.color,
       required this.text,
+      this.height,
       this.fontSize,
       this.fontWeight,
       this.textAlign,
@@ -23,6 +25,7 @@ class WText extends StatelessWidget {
     return Text(
       text,
       style: GoogleFonts.workSans(
+        height: height,
         color: color,
         fontSize: fontSize,
         fontWeight: fontWeight,

@@ -61,7 +61,7 @@ class WithdrawalScreen extends StatelessWidget {
                   color: AppColors.backgroundColor,
                 ),
               ),
-              SizedBox(height: height * 0.15),
+              SizedBox(height: height * 0.10),
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -89,8 +89,14 @@ class WithdrawalScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: height * 0.05),
-              const WButton(
-                leading: Icon(
+              WButton(
+                onTap: () {
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(builder: (context) => const WithdrawalAccount()),
+                    );
+                },
+                leading: const Icon(
                   IconlyLight.upload,
                   color: AppColors.backgroundColor,
                 ),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../utils/colors.dart';
-import '../../utils/svg_icons.dart';
-import '../../utils/typography.dart';
+import '../../feature/utils/icons.dart';
+import '../../feature/utils/svg_icons.dart';
+import '../../feature/utils/typography.dart';
 import '../../widgets/action_buttons.dart';
 
 class SendRequestPage extends StatelessWidget {
@@ -53,13 +54,13 @@ class SendRequestPage extends StatelessWidget {
                         const SizedBox(height: 20),
                         Text(
                           'Withdrawal request\nsent',
-                          style: AppTypography.subHeader,
+                          style: AppTypography.subHeader2,
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 25),
                         Text(
                           'You should be expecting your withdrawal in a couple of days. Check your mail for more details',
-                          style: AppTypography.bodyText3Black,
+                          style: AppTypography.bodyText3Blue,
                           textAlign: TextAlign.center,
                         ),
                       ],

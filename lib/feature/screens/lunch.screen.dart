@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/utils/colors.dart';
+import '../../utils/colors.dart';
 import '../../utils/icons.dart';
 import '../../utils/svg_icons.dart';
 import '../../utils/typography.dart';
@@ -53,7 +54,7 @@ class SendLunches extends StatelessWidget {
                       children: [
                         Text(
                           'Send lunch',
-                          style: AppTypography.subHeader2Black,
+                          style: AppTypography.subHeader3,
                         ),
                       ],
                     ),
@@ -77,7 +78,7 @@ class SendLunches extends StatelessWidget {
                       Text(
                         // worker.name!,
                         'Folajomi Bello',
-                        style: AppTypography.subHeader,
+                        style: AppTypography.subHeader2,
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 3),
@@ -139,7 +140,7 @@ class SendLunches extends StatelessWidget {
                         ),
                         Text(
                           totalLunches,
-                          style: AppTypography.subHeader3w500Black,
+                          style: AppTypography.subHeader3,
                         ),
                       ],
                     ),

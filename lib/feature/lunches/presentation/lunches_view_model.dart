@@ -16,5 +16,6 @@ class LunchesViewModel extends ChangeNotifier {
     List<LunchInfo> lunchInfo = lunchRepository.getLunchInfo();
     _lunchinfo = lunchInfo;
     notifyListeners();
+    return null;
   }
 }

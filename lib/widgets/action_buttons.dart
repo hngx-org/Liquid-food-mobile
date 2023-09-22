@@ -7,35 +7,39 @@ import '../feature/utils/typography.dart';
 
 
 class MiniActionBtn extends StatelessWidget {
+  final VoidCallback onTap;
   final Color? btnColor;
   final Widget? icon;
   final String text;
   const MiniActionBtn(
-      {super.key, this.btnColor, this.icon, required this.text});
+      {super.key, required this.onTap, this.btnColor, this.icon, required this.text});
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    return FittedBox(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        decoration: BoxDecoration(
-          color: btnColor ?? AppColors.tPrimaryColor,
-          borderRadius: BorderRadius.circular(30),
-        ),
-        child: Row(
-          children: <Widget>[
-            icon ?? const SizedBox(),
-            SizedBox(width: width * .02),
-            Text(
-              text,
-              style: TextStyle(
-                color: AppColors.tWhite,
-                fontSize: width * .01 + 14,
-                fontWeight: FontWeight.normal,
+    return GestureDetector(
+      onTap: onTap,
+      child: FittedBox(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          decoration: BoxDecoration(
+            color: btnColor ?? AppColors.tPrimaryColor,
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: Row(
+            children: <Widget>[
+              icon ?? const SizedBox(),
+              SizedBox(width: width * .02),
+              Text(
+                text,
+                style: TextStyle(
+                  color: AppColors.tWhite,
+                  fontSize: width * .01 + 14,
+                  fontWeight: FontWeight.normal,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

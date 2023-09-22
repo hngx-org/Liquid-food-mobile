@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/features/home/home_page.dart';
+import 'package:free_lunch_app/features/home/view/home_page.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {

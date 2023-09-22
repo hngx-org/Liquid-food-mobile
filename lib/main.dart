@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import '/screens/new_screen/profile_page.dart';
-import 'screens/screens.dart';
+import '../features/home/view_model/home_viewmodel.dart';
+import '../features/sendLunches/viewmodel/sendlunch.viewmodel.dart';
+import '../../feature/utils/routing/utlils.dart';
+import 'package:provider/provider.dart';
+import '../features/main/view/bottom_nav_shell.dart';
+import '../features/main/navigation/providers/bottom_navigation.viewmodel.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,37 +16,41 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-       
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => NavItemProvider()),
+        ChangeNotifierProvider(create: (_) => HomeRepoVM()),
+        ChangeNotifierProvider(create: (_) => SendLunchVM())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: true,
+        ),
+        initialRoute: '/',
+        navigatorKey: Utils.mainAppNav,
+        routes: {
+          '/': (context) => const SplashPage(),
+          '/home': (context) => const BottomNavShell(),
+        },
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
- 
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  
+class SplashPage extends StatelessWidget {
+  const SplashPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ProfileImagePage()
+    Future.delayed(const Duration(seconds: 2), () {
+      Navigator.pushReplacementNamed(context, '/home');
+    });
+    return const Scaffold(
+      body: Center(
+        child: Text('Splash'),
+      ),
     );
   }
 }

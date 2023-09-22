@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'feature/utils/colors.dart';
-import 'feature/utils/icons.dart';
-import 'feature/utils/svg_icons.dart';
+import '/utils/res/colors.dart';
+// import 'feature/utils/icons.dart';
+// import '../feature/utils/svg_icons.dart';
+import 'utils/res/svg_icons.dart';
+import 'utils/res/icons.dart';
 import 'widgets/account_info_withdraw_summary.dart';
 import 'widgets/action_buttons.dart';
 import 'widgets/avatar.dart';
@@ -10,11 +12,11 @@ import 'widgets/custom_badge.dart';
 import 'widgets/custom_card.dart';
 import 'widgets/select_image.dart';
 import 'widgets/total_card.dart';
+import 'utils/res/icons.dart';
 
 
 
 // This file contains a clear preview of all the reusuable widgets and how to use them
-
 
 class WidgetsTestScreen extends StatefulWidget {
   const WidgetsTestScreen({super.key});
@@ -115,6 +117,7 @@ class _WidgetsTestScreenState extends State<WidgetsTestScreen> {
               ),
               SizedBox(height: height * .02),
               MiniActionBtn(
+                onPress: () {},
                 text: 'Send Lunch',
                 btnColor: AppColors.tPrimaryColor,
                 icon: AppSvgIcons.hamburgerLight,
@@ -215,6 +218,36 @@ class _WidgetsTestScreenState extends State<WidgetsTestScreen> {
               SizedBox(height: height * .02),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class MiniActionBtn extends StatelessWidget {
+  const MiniActionBtn({
+    Key? key,
+    required this.text,
+    required this.btnColor,
+    required this.icon,
+    this.onPress, // Define the named parameter here
+  }) : super(key: key);
+
+  final String text;
+  final Color btnColor;
+  final Widget icon;
+  final VoidCallback? onPress; // Add the named parameter here
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton.icon(
+      onPressed: onPress,
+      icon: icon,
+      label: Text(text),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: btnColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
         ),
       ),
     );

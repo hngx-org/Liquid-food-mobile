@@ -37,8 +37,9 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
               Stack(
                 children: [
                   Container(
+                    width: width,
                     height: height * 0.3,
-                    width: double.infinity,
+                    // width: double.infinity,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: NetworkImage(
@@ -46,16 +47,29 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                  ),
-                  Positioned(
-                    top: height * 0.1,
-                    right: width * 0.05,
-                    child: IconButton(
-                      icon: const Icon(Icons.camera_alt),
-                      onPressed: () {
-                        // Handle camera icon press here
-                      },
-                    ),
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            top: height * 0.1,
+                            right: width * 0.05,
+                            child: Container(
+                              width: width * 0.1,
+                              height: height * 0.05,
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.white.withOpacity(0.8),
+                              ),
+                              child: IconButton(
+                                icon: const Icon(Icons.camera_alt),
+                                onPressed: () {
+                                  // Handle camera icon press here
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                   ),
                 ],
               ),

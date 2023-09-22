@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:free_lunch_app/pages/addAccountPage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../presentation/providers/withdraw_page_provider.dart';
 import '/utils/svg_icons.dart';
-import '../../presentation/pages/withdraw_account.dart';
 import './/withdrawal/presentation/widgets/w_button.dart';
 import '../widgets/screen_styles.dart';
 import './/utils/colors.dart';
@@ -19,22 +18,8 @@ class WithdrawalScreen extends ConsumerWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
-    var withdrawDataAsync = ref.watch(withdrawProvider);
 
-    return withdrawDataAsync.when(
-      loading: () => Container(
-        height: height,
-        width: width,
-        color: AppColors.backgroundColor,
-        child: const Center(
-            child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation(
-            AppColors.primaryColor,
-          ),
-        )),
-      ),
-      error: (error, stackTrace) => const Text('error'),
-      data: (withdrawData) {
+
         return Scaffold(
           appBar: AppBar(
             leading: IconButton(
@@ -67,7 +52,7 @@ class WithdrawalScreen extends ConsumerWidget {
                     child: Column(
                       children: [
                         WText(
-                          text: withdrawData.availableLunch,
+                          text: "Available lunch",
                           color: AppColors.tPrimaryColor1,
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
@@ -77,7 +62,7 @@ class WithdrawalScreen extends ConsumerWidget {
                           text: TextSpan(
                             children: [
                               TextSpan(
-                                text: withdrawData.availableAmount,
+                                text: '12',
                                 style: GoogleFonts.workSans(
                                   color: AppColors.tPrimaryColor1,
                                   fontSize: 48,
@@ -117,7 +102,7 @@ class WithdrawalScreen extends ConsumerWidget {
                               fontWeight: FontWeight.w400,
                             ),
                             WText(
-                              text: 'x${withdrawData.availableAmount}',
+                              text: 'x12',
                               color: AppColors.tBlack,
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
@@ -136,7 +121,7 @@ class WithdrawalScreen extends ConsumerWidget {
                             ),
                             WText(
                               text:
-                                  '\$${withdrawData.worth} (\$${withdrawData.perLunch} per lunch)',
+                                  '\$120 (\$10 per lunch)',
                               color: AppColors.tBlack,
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
@@ -159,9 +144,9 @@ class WithdrawalScreen extends ConsumerWidget {
                     child: WButton(
                       onTap: () => Navigator.pushNamed(
                         context,
-                        WithdrawalAccount.routeName,
+                        AddAccountPage.routeName,
                       ),
-                      title: 'Add your account detials',
+                      title: 'Add your account details',
                       color: AppColors.backgroundColor,
                     ),
                   ),
@@ -207,7 +192,7 @@ class WithdrawalScreen extends ConsumerWidget {
             ),
           ),
         );
-      },
-    );
+
+
   }
 }

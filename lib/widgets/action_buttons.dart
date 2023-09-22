@@ -87,8 +87,9 @@ class ActionBtn extends StatelessWidget {
   final Widget? icon;
   final String text;
   final double? widthM;
+
   const ActionBtn(
-      {super.key, this.btnColor, this.icon, required this.text, this.widthM});
+      {super.key, this.btnColor, this.icon, required this.text, this.widthM,});
 
   @override
   Widget build(BuildContext context) {
@@ -112,6 +113,46 @@ class ActionBtn extends StatelessWidget {
             style: AppTypography.button2Text,
           ),
         ],
+      ),
+    );
+  }
+}
+
+class ActionBtn2 extends StatelessWidget {
+  final Color? btnColor;
+  final Widget? icon;
+  final String text;
+  final double? widthM;
+  final VoidCallback onTap;
+
+  const ActionBtn2(
+      {super.key, this.btnColor, this.icon, required this.text, this.widthM, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 56,
+        width: widthM,
+        constraints: BoxConstraints(minWidth: width * .5),
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        decoration: BoxDecoration(
+          color: btnColor ?? AppColors.tPrimaryColor,
+          borderRadius: BorderRadius.circular(32),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            icon ?? const SizedBox(),
+            SizedBox(width: width * .02),
+            Text(
+              text,
+              style: AppTypography.button2Text,
+            ),
+          ],
+        ),
       ),
     );
   }

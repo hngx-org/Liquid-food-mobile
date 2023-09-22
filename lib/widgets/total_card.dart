@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/utils/colors.dart';
-import 'package:free_lunch_app/utils/svg_icons.dart';
+import '../feature/utils/colors.dart';
+import '../feature/utils/svg_icons.dart';
+import '../feature/utils/icons.dart';
+import '../feature/utils/typography.dart';
+
 
 // This files contains differents total cards
+// and  arguments to customize them and add the adequate values
 class TotalCardOne extends StatelessWidget {
   final String totalNum;
   final double width;
@@ -118,13 +122,17 @@ class TotalCardTwo extends StatelessWidget {
 
 class TotalCardThree extends StatelessWidget {
   final String totalNum;
+  final String text1;
+  final String text2;
   final double width;
   final double height;
   const TotalCardThree(
       {super.key,
       required this.totalNum,
       required this.width,
-      required this.height});
+      required this.height,
+      required this.text1,
+      required this.text2});
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +148,7 @@ class TotalCardThree extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Text(
-            'You\'ve done well this month, Cheers 🥂',
+            text1,
             style: TextStyle(
               color: AppColors.tPrimaryColor,
               fontSize: width * .01 + 10,
@@ -155,30 +163,29 @@ class TotalCardThree extends StatelessWidget {
               ),
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                  Column(
-                    children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        width: 20,
-                        height: 20,
-                        decoration: BoxDecoration(
-                            color: AppColors.tWhite,
-                            borderRadius: BorderRadius.circular(50),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.shade400,
-                                  blurRadius: 9,
-                                  offset: const Offset(0, 2),
-                                  spreadRadius: 0)
-                            ]),
-                        margin: const EdgeInsets.only(bottom: 10),
-                        child: Center(child: AppSvgIcons.hamburgerPrimary2),
-                      ),
-                    ],
+                  Container(
+                    width: 20,
+                    height: 20,
+                    decoration: BoxDecoration(
+                        color: AppColors.tWhite,
+                        borderRadius: BorderRadius.circular(50),
+                        boxShadow: const <BoxShadow>[
+                          BoxShadow(
+                              color: AppColors.boxShade,
+                              spreadRadius: 20,
+                              blurRadius: 20,
+                              offset: Offset(4, 8)),
+                          BoxShadow(
+                              color: AppColors.boxShade,
+                              spreadRadius: 20,
+                              blurRadius: 20,
+                              offset: Offset(4, 8)),
+                        ]),
+                    // margin: const EdgeInsets.only(bottom: 10),
+                    child: AppSvgIcons.hamburgerPrimary2,
                   ),
                   SizedBox(width: width * .025),
                   Text(
@@ -195,7 +202,7 @@ class TotalCardThree extends StatelessWidget {
           ),
           SizedBox(height: height * .05),
           Text(
-            'Free Lunches',
+            text2,
             style: TextStyle(
               color: AppColors.tPrimaryColor,
               fontSize: width * .01 + 11,

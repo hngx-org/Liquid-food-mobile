@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/utils/colors.dart';
+import '../feature/utils/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
+// This file is for the comment widget 
+// It's a simple and self explanatory widget
 
 class CommentWidget extends StatefulWidget {
   final String initialCommentText;
@@ -32,12 +35,14 @@ class CommentWidgetState extends State<CommentWidget> {
         });
       },
       child: Container(
-        width: 342,
+        width: double.infinity,
         height: 126,
-        margin: const EdgeInsets.only(top: 10),
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+        padding: const EdgeInsets.symmetric(
+          vertical: 10,
+          horizontal: 15,
+        ),
         decoration: BoxDecoration(
-          color: AppColors.backgroundColor,
+          color: AppColors.commentBackground,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
             color: AppColors.tShadeColor,
@@ -46,12 +51,11 @@ class CommentWidgetState extends State<CommentWidget> {
         ),
         child: isEditing
             ? TextField(
+              onTapOutside: (event) => FocusScope.of(context).requestFocus(FocusNode()),
                 style: const TextStyle(
                   color: Colors.black,
                 ),
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                ),
+                decoration: const InputDecoration(border: InputBorder.none),
                 maxLines: null,
                 onChanged: (value) {
                   setState(() {
@@ -61,8 +65,10 @@ class CommentWidgetState extends State<CommentWidget> {
               )
             : Text(
                 commentText,
-                style: const TextStyle(
-                  color: Colors.black,
+                style: GoogleFonts.workSans(
+                  color: AppColors.tBlack,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
       ),

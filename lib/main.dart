@@ -1,52 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/utils/routing/utlils.dart';
-import 'package:provider/provider.dart';
-import 'features/main/bottom_nav_shell.dart';
-import 'features/main/navigation/providers/bottom_navigation.viewmodel.dart';
+import '/screens/new_screen/profile_page.dart';
+import 'screens/screens.dart';
 
 void main() {
-  runApp(
-    const MyApp(),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => NavItemProvider()),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          useMaterial3: true,
-        ),
-        initialRoute: '/',
-        navigatorKey: Utils.mainAppNav,
-        routes: {
-          '/': (context) => const SplashPage(),
-          '/home': (context) => const BottomNavShell(),
-        },
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+       
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
       ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class SplashPage extends StatelessWidget {
-  const SplashPage({super.key});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+ 
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, '/home');
-    });
-    return const Scaffold(
-      body: Center(
-        child: Text('Splash'),
-      ),
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: ProfileImagePage()
     );
   }
 }

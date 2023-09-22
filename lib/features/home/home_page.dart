@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/utils/icons.dart';
-import 'package:free_lunch_app/utils/typography.dart';
-import 'package:free_lunch_app/utils/widgets/avatar.dart';
-import 'package:free_lunch_app/utils/widgets/custom_text_field.dart';
-import 'package:free_lunch_app/utils/widgets/total_card.dart';
+import '../../utils/icons.dart';
+import '../../utils/typography.dart';
+import '../../widgets/avatar.dart';
+import '../../widgets/custom_text_field.dart';
+import '../../widgets/total_card.dart';
+
+
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -68,7 +71,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: height * .05,
             ),
-            TotalCardThree(
+            TotalCardTwo(
                 totalNum: '10', width: width * .942, height: height * .110),
             SizedBox(
               height: height * .012,

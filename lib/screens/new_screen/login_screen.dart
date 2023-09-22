@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/feature/utils/colors.dart';
-import 'package:free_lunch_app/feature/utils/svg_icons.dart';
 import 'package:free_lunch_app/screens/widgets/widgets.dart';
 import 'package:free_lunch_app/withdrawal/presentation/widgets/w_button.dart';
 import '../../withdrawal/presentation/widgets/screen_styles.dart';
@@ -34,16 +33,37 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: width * 0.04),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: height * 0.03),
+                SizedBox(height: height * 0.1),
                 Stack(
+                  clipBehavior: Clip.none,
                   children: [
-                    Image.asset('assets/images/img.png'),
+                    Align(
+                      child: Image.asset(
+                        'assets/images/burger-i.png',
+                        width: width * 0.3,
+                      ),
+                    ),
+                    Positioned(
+                      bottom: height * 0.07,
+                      left: width * 0.47,
+                      child: Image.asset(
+                        'assets/images/certificate_fill-1.png',
+                        width: width * 0.2,
+                      ),
+                    ),
+                    Positioned(
+                      left: width * 0.2,
+                      top: height * 0.06,
+                      child: Image.asset(
+                        'assets/images/certificate_fill.png',
+                        width: width * 0.18,
+                      ),
+                    ),
                   ],
                 ),
-                SizedBox(height: height * 0.029),
+                SizedBox(height: height * 0.04),
                 const WText(
                   softWrap: true,
                   text: 'Login',
@@ -81,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: height,
                   hintText: 'Enter your password',
                 ),
-                SizedBox(height: height * 0.2),
+                SizedBox(height: height * 0.18),
                 WButton(
                   onTap: () => Navigator.pushNamed(context, '/home'),
                   title: 'Login',

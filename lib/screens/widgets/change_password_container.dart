@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
-
-class AuthInputPasswordContainer extends StatefulWidget {
-  const AuthInputPasswordContainer({
+class ChangePasswordContainer extends StatefulWidget {
+  const ChangePasswordContainer({
     Key? key,
     required this.height,
     required this.hintText,
@@ -16,14 +14,15 @@ class AuthInputPasswordContainer extends StatefulWidget {
   final IconData iconData;
   final TextEditingController controller;
   final String? Function(String?)? validator;
+  
 
   @override
-  _AuthInputPasswordContainerState createState() =>
-      _AuthInputPasswordContainerState();
+  _ChangePasswordContainerState createState() =>
+      _ChangePasswordContainerState();
 }
 
-class _AuthInputPasswordContainerState extends State<AuthInputPasswordContainer> {
-  bool _isPasswordVisible = false;
+class _ChangePasswordContainerState extends State<ChangePasswordContainer> {
+  final bool _isPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -46,15 +45,17 @@ class _AuthInputPasswordContainerState extends State<AuthInputPasswordContainer>
             fontWeight: FontWeight.w400,
             color: Color(0xFFA6A6A6),
           ),
-          suffixIcon: IconButton(
-            icon: Icon(
-              _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+             suffixIcon: TextButton(
+            // onPressed: widget.onPressed,
+            onPressed: () {},
+            child: Text(
+              'Change Password',
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-            onPressed: () {
-              setState(() {
-                _isPasswordVisible = !_isPasswordVisible;
-              });
-            },
           ),
         ),
         validator: widget.validator,

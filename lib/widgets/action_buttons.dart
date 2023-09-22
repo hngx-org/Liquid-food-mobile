@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../feature/utils/colors.dart';
-
+import '../feature/utils/typography.dart';
 
 // This file contains all buttons used in the design
 // and parameters that can help to customize it to better suit the design
@@ -90,12 +90,13 @@ class ActionBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Container(
+      height: 56,
       width: widthM,
       constraints: BoxConstraints(minWidth: width * .5),
       padding: const EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
         color: btnColor ?? AppColors.tPrimaryColor,
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(32),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -104,11 +105,7 @@ class ActionBtn extends StatelessWidget {
           SizedBox(width: width * .02),
           Text(
             text,
-            style: TextStyle(
-              color: AppColors.tWhite,
-              fontSize: width * .01 + 14,
-              fontWeight: FontWeight.w600,
-            ),
+            style: AppTypography.button2Text,
           ),
         ],
       ),

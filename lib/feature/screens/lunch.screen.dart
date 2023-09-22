@@ -111,17 +111,17 @@ class SendLunches extends StatelessWidget {
                           cardText: '1',
                           icon: AppSvgIcons.hamburgerDark,
                         ),
-                        const SizedBox(width: 15),
+                        const SizedBox(width: 10),
                         CustomCard(
                           cardText: '2',
                           icon: AppSvgIcons.hamburgerDark,
                         ),
-                        const SizedBox(width: 15),
+                        const SizedBox(width: 10),
                         CustomCard(
                           cardText: '3',
                           icon: AppSvgIcons.hamburgerDark,
                         ),
-                        const SizedBox(width: 15),
+                        const SizedBox(width: 10),
                         CustomCard(
                           cardText: '4',
                           icon: AppSvgIcons.hamburgerDark,

@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SendRequestPage(),
-      // home: SendLunches(totalLunches: '12',),
+      // home: SendRequestPage(),
+      home: SendLunches(totalLunches: '12',),
     );
   }
 }

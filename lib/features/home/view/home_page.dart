@@ -3,7 +3,8 @@ import 'package:free_lunch_app/features/home/models/co_worker.model.dart';
 import 'package:free_lunch_app/features/home/repository/home.repo.dart';
 import 'package:free_lunch_app/features/home/repository/irepository.home.dart';
 import 'package:free_lunch_app/features/home/view_model/home_viewmodel.dart';
-import 'package:free_lunch_app/features/sendLunches/view/send_lunch.dart';
+// import 'package:free_lunch_app/features/sendLunches/view/send_lunch.dart';
+import '../../../feature/screens/lunch.screen.dart';
 import 'package:free_lunch_app/utils/res/colors.dart';
 import 'package:free_lunch_app/utils/res/icons.dart';
 import 'package:free_lunch_app/feature/utils/routing/utlils.dart';
@@ -216,8 +217,8 @@ class _HomePageState extends State<HomePage> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => SendLunches(
-                                            worker: coWorkerItem,
+                                          builder: (context) => const SendLunches(
+        
                                             totalLunches: '12',
                                           ),
                                         ),

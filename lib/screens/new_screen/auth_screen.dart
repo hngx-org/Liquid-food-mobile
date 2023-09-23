@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/feature/utils/colors.dart';
-import 'package:free_lunch_app/screens/widgets/widgets.dart';
-import 'package:free_lunch_app/withdrawal/presentation/widgets/w_button.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../widgets/avatar.dart';
+import '../../utils/res/colors.dart';
 import '../../withdrawal/presentation/widgets/screen_styles.dart';
+import '../../withdrawal/presentation/widgets/w_button.dart';
+import '../widgets/widgets.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -50,55 +50,23 @@ class _AuthScreenState extends State<AuthScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (!isLogin) SizedBox(height: height * 0.1),
                 SizedBox(height: height * 0.03),
-                // if (!isLogin)
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     Image.asset(
-                //       'assets/images/burger.png',
-                //       width: 200,
-                //     )
-                //   ],
-                // ),
-                if (isLogin)
-                  Text(
-                    'Create an',
-                    style: GoogleFonts.workSans(
-                      height: 0.15,
-                      fontSize: 45,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.primaryColor,
-                    ),
-                  ),
-                if (isLogin)
-                  const WText(
-                    text: 'account',
+                Text(
+                  'Create an',
+                  style: GoogleFonts.workSans(
+                    height: 0.15,
                     fontSize: 45,
                     fontWeight: FontWeight.w700,
                     color: AppColors.primaryColor,
                   ),
-
-                if (!isLogin)
-                  Center(
-                    child: AvatarComponent(
-                        image: const AssetImage('assets/images/dp.png'),
-                        width: width * .2,
-                        height: height * .11),
-                  ),
-                if (!isLogin) SizedBox(height: height * 0.029),
-                WText(
-                  softWrap: true,
-                  height: 1,
-                  textAlign: TextAlign.center,
-                  text: isLogin ? '' : 'Samuel invites you to join HNGx',
-                  fontSize: 32,
+                ),
+                const WText(
+                  text: 'account',
+                  fontSize: 45,
                   fontWeight: FontWeight.w700,
                   color: AppColors.primaryColor,
                 ),
-                if (!isLogin) SizedBox(height: height * 0.029),
-                // if (isLogin)
+                SizedBox(height: height * 0.029),
                 Row(
                   children: [
                     Container(
@@ -130,69 +98,53 @@ class _AuthScreenState extends State<AuthScreen> {
                     ),
                   ],
                 ),
-                // if (isLogin)
                 SizedBox(height: height * 0.016),
-                // if (isLogin)
-                WText(
-                  text: isLogin ? 'Full name' : 'Full name',
+                const WText(
+                  text: 'Full name',
                   fontWeight: FontWeight.w500,
                   fontSize: 12,
                 ),
-                if (isLogin) SizedBox(height: height * 0.008),
-
+                SizedBox(height: height * 0.008),
                 AuthInputTextFormContainer(
                   controller: _fullNameController,
                   height: height,
                   hintText: 'Enter your full name',
                 ),
-                if (isLogin) SizedBox(height: height * 0.016),
-                if (isLogin)
-                  WText(
-                    text: isLogin ? 'Organization email' : 'Email address',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12,
-                  ),
-                if (isLogin)
-                  SizedBox(
-                    height: height * 0.008,
-                  ),
-                if (isLogin)
-                  AuthInputTextFormContainer(
-                    controller: _emailController,
-                    height: height,
-                    hintText: 'Enter your email address',
-                  ),
-                if (isLogin)
-                  SizedBox(
-                    height: height * 0.016,
-                  ),
-                if (isLogin)
-                  const WText(
-                    text: 'Organization name',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12,
-                  ),
-                if (isLogin)
-                  SizedBox(
-                    height: height * 0.008,
-                  ),
-                if (isLogin)
-                  AuthInputTextFormContainer(
-                    controller: _organizationNameController,
-                    height: height,
-                    hintText: 'Enter your organization name',
-                  ),
-                SizedBox(
-                  height: height * 0.016,
-                ),
+                SizedBox(height: height * 0.016),
                 const WText(
-                  text: 'Password',
+                  text: 'Organization email',
                   fontWeight: FontWeight.w500,
                   fontSize: 12,
                 ),
                 SizedBox(
                   height: height * 0.008,
                 ),
+                AuthInputTextFormContainer(
+                  controller: _emailController,
+                  height: height,
+                  hintText: 'Enter your email address',
+                ),
+                SizedBox(height: height * 0.016),
+                const WText(
+                  text: 'Organization name',
+                  fontWeight: FontWeight.w500,
+                  fontSize: 12,
+                ),
+                SizedBox(
+                  height: height * 0.008,
+                ),
+                AuthInputTextFormContainer(
+                  controller: _organizationNameController,
+                  height: height,
+                  hintText: 'Enter your organization name',
+                ),
+                SizedBox(height: height * 0.016),
+                const WText(
+                  text: 'Password',
+                  fontWeight: FontWeight.w500,
+                  fontSize: 12,
+                ),
+                SizedBox(height: height * 0.008),
                 AuthInputPasswordContainer(
                   controller: _passwordController,
                   height: height,
@@ -209,17 +161,13 @@ class _AuthScreenState extends State<AuthScreen> {
                     },
                   ),
                 ),
-                // if (isLogin)
                 SizedBox(height: height * 0.016),
-                // if (isLogin)
                 const WText(
                   text: 'Confirm Password',
                   fontWeight: FontWeight.w500,
                   fontSize: 12,
                 ),
-                // if (isLogin)
                 SizedBox(height: height * 0.008),
-                // if (isLogin)
                 AuthInputPasswordContainer(
                   controller: _confirmPasswordController,
                   height: height,
@@ -238,38 +186,11 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
                 SizedBox(height: height * 0.058),
                 WButton(
-                  onTap: () => setState(() {
-                    isLogin = !isLogin;
-                  }),
-                  title: isLogin ? 'Create Account' : 'Create Account',
+                  onTap: () =>
+                      Navigator.pushReplacementNamed(context, '/invite-screen'),
+                  title: 'Create Account',
                   color: AppColors.backgroundColor,
                 ),
-                // GestureDetector(
-                //   onTap: () => setState(() {
-                //     isLogin = !isLogin;
-                //   }),
-                //   child: Container(
-                //     alignment: Alignment.center,
-                //     padding: const EdgeInsets.only(
-                //       top: 16,
-                //       left: 24,
-                //       bottom: 16,
-                //       right: 24,
-                //     ),
-                //     height: height * 0.080,
-                //     width: double.infinity,
-                //     decoration: BoxDecoration(
-                //         borderRadius: BorderRadius.circular(32),
-                //         color: const Color(0xFF0085FF)),
-                //     child: Text(
-                //       isLogin ? 'Create Account' : 'Login',
-                //       style: const TextStyle(
-                //           fontWeight: FontWeight.w500,
-                //           fontSize: 16,
-                //           color: Colors.white),
-                //     ),
-                //   ),
-                // ),
                 SizedBox(height: height * 0.020),
                 if (isLogin)
                   GestureDetector(

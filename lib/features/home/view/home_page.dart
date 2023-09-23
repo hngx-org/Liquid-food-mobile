@@ -56,37 +56,42 @@ class _HomePageState extends State<HomePage> {
     final height = MediaQuery.sizeOf(context).height;
     final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: AvatarComponent(
-              image: const AssetImage('assets/images/dp.png'),
-              width: width * .15,
-              height: height * .1),
-        ),
-        elevation: 0,
-        title: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        automaticallyImplyLeading: false,
+        title: Row(
           children: [
-            WText(
-              text: 'Welcome',
-              fontSize: 10,
-              fontWeight: FontWeight.w400,
+            Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 10, right: 8),
+              child: AvatarComponent(
+                  image: const AssetImage('assets/images/dp.png'),
+                  width: width * .13,
+                  height: height * .055),
             ),
-            WText(
-              text: 'Tevin M.',
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-            ),
+            const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                WText(
+                  text: 'Welcome',
+                  fontSize: 10,
+                  fontWeight: FontWeight.w400,
+                ),
+                WText(
+                  text: 'Samuel I.',
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),
+              ],
+            )
           ],
         ),
+        elevation: 0,
+        backgroundColor: AppColors.backgroundColor,
       ),
       backgroundColor: AppColors.backgroundColor,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: width * 0.024, vertical: 4),
+        padding: EdgeInsets.symmetric(horizontal: width * 0.03),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Row(
             //   mainAxisAlignment: MainAxisAlignment.start,
@@ -119,13 +124,14 @@ class _HomePageState extends State<HomePage> {
               height: height * 0.16,
               padding: const EdgeInsets.all(10.0),
               decoration: BoxDecoration(
+                  border: Border.all(color: AppColors.primaryColor),
                   color: const Color(0xffCCE7FF),
                   borderRadius: BorderRadius.circular(12)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const WText(
-                    text: 'You’ve done well this month. Cheers 🥂',
+                    text: 'You’ve',
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
                     color: AppColors.primaryColor,
@@ -144,10 +150,22 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Center(child: AppSvgIcons.hamburgerPrimary2),
-                          SizedBox(width: width * 0.009),
+                          Container(
+                              padding: const EdgeInsets.all(3),
+                              decoration: const BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                        blurRadius: 0.3,
+                                        spreadRadius: 0.2,
+                                        offset: Offset(0.2, 0.2),
+                                        color: AppColors.tBlack4),
+                                  ],
+                                  color: AppColors.backgroundColor,
+                                  shape: BoxShape.circle),
+                              child: AppSvgIcons.hamburgerPrimary2),
+                          SizedBox(width: width * 0.02),
                           const WText(
-                            text: '12',
+                            text: '500',
                             color: AppColors.tAmberAccent,
                             fontSize: 40,
                             fontWeight: FontWeight.w600,

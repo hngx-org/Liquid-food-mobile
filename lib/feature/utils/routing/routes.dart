@@ -12,7 +12,7 @@ class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     Widget page;
     switch (settings.name) {
-      case 'home':
+      case '/home':
         page = const HomePage();
         break;
       case '/lunches':

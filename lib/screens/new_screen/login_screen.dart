@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:free_lunch_app/feature/utils/colors.dart';
 import 'package:free_lunch_app/screens/widgets/widgets.dart';
 import 'package:free_lunch_app/withdrawal/presentation/widgets/w_button.dart';
+import 'package:iconly/iconly.dart';
 import '../../withdrawal/presentation/widgets/screen_styles.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -15,6 +16,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
 
   final TextEditingController _passwordController = TextEditingController();
+
+  bool obscure = true;
 
   @override
   void dispose() {
@@ -85,9 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: height,
                   hintText: 'Enter your email address',
                 ),
-                SizedBox(
-                  height: height * 0.016,
-                ),
+                SizedBox(height: height * 0.03),
                 const WText(
                   text: 'Password',
                   fontWeight: FontWeight.w500,
@@ -99,7 +100,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 AuthInputPasswordContainer(
                   controller: _passwordController,
                   height: height,
+                  obscureText: obscure,
                   hintText: 'Enter your password',
+                  suffixIcon: GestureDetector(
+                    child: Icon(
+                      obscure ? IconlyLight.hide : IconlyLight.show,
+                    ),
+                    onTap: () {
+                      setState(() {
+                        obscure = !obscure;
+                      });
+                    },
+                  ),
                 ),
                 SizedBox(height: height * 0.18),
                 WButton(

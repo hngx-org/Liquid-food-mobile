@@ -1,6 +1,14 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/screens/widgets/change_password_container.dart';
-import 'package:free_lunch_app/screens/widgets/widgets.dart';
+import 'package:iconly/iconly.dart';
+
+import '../../feature/utils/colors.dart';
+import '../../widgets/avatar.dart';
+import '../../withdrawal/presentation/widgets/screen_styles.dart';
+import '../../withdrawal/presentation/widgets/w_button.dart';
+import '../widgets/auth_input_password_container.dart';
+import '../widgets/auth_input_textform_container.dart';
 
 class ProfileImagePage extends StatefulWidget {
   const ProfileImagePage({Key? key}) : super(key: key);
@@ -13,7 +21,6 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final bool _isPasswordVisible = false;
 
   @override
   void dispose() {
@@ -29,171 +36,169 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      backgroundColor: AppColors.backgroundColor,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            clipBehavior: Clip.none,
             children: [
-              Stack(
-                children: [
-                  Container(
-                    width: width,
-                    height: height * 0.3,
-                    // width: double.infinity,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(
-                            'https://images.unsplash.com/photo-1634179120307-9f7f2c8c4c4b'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            top: height * 0.1,
-                            right: width * 0.05,
-                            child: Container(
-                              width: width * 0.1,
-                              height: height * 0.05,
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                color: Colors.white.withOpacity(0.8),
-                              ),
-                              child: IconButton(
-                                icon: const Icon(Icons.camera_alt),
-                                onPressed: () {
-                                  // Handle camera icon press here
-                                },
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                  ),
-                ],
-              ),
-              SizedBox(height: height * 0.02),
-              Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: CircleAvatar(
-                      radius: 50,
-                      backgroundImage: NetworkImage(
-                          'https://images.unsplash.com/photo-1634179120307-9f7f2c8c4c4b'),
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'John Doe',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          SizedBox(height: height * 0.01),
-                          const Text(
-                            'Software Engineer',
-                            style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      // Handle edit icon press here
-                    },
-                    child: const Text('Edit'),
-                  ),
-                ],
-              ),
-              SizedBox(height: height * 0.02),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Full Name',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    SizedBox(height: height * 0.01),
-                    AuthInputTextFormContainer(
-                      controller: _fullNameController,
-                      height: height,
-                      hintText: 'Enter your full name',
-                    ),
-                    SizedBox(height: height * 0.02),
-                    const Text(
-                      'Email Address',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    SizedBox(height: height * 0.01),
-                    AuthInputTextFormContainer(
-                      controller: _emailController,
-                      height: height,
-                      hintText: 'Enter your email address',
-                    ),
-                    SizedBox(height: height * 0.02),
-                    const Text(
-                      'Password',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    SizedBox(height: height * 0.01),
-                    ChangePasswordContainer(
-                      controller: _passwordController,
-                      height: height,
-                      hintText: 'Enter current password',
-                      iconData: _isPasswordVisible
-                          ? Icons.visibility_outlined
-                          : Icons.visibility_off_outlined,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter current password';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: height * 0.02),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              // Handle invite co-worker press here
-                            },
-                            child: const Text('Invite Co-worker'),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+              SizedBox(
+                width: double.infinity,
+                height: height * 0.25,
+                child: Image.asset(
+                  'assets/images/hngx.png',
+                  fit: BoxFit.fill,
                 ),
               ),
-              SizedBox(height: height * 0.02),
+              Positioned(
+                top: height * 0.17,
+                right: width * 0.06,
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    width: width * 0.13,
+                    height: height * 0.05,
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: Colors.white,
+                    ),
+                    child: const Icon(IconlyLight.camera),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: height * 0.229,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: width * 0.034),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Center(
+                            child: AvatarComponent(
+                                image: const AssetImage('assets/images/dp.png'),
+                                width: width * .22,
+                                height: height * .11),
+                          ),
+                          SizedBox(width: width * 0.03),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const WText(
+                                text: 'Samuel Iboji',
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16,
+                                height: 1.5,
+                              ),
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.verified,
+                                    size: 15,
+                                    color: AppColors.tAmberAccent,
+                                  ),
+                                  SizedBox(width: width * 0.01),
+                                  const WText(
+                                    text: 'HNG Admin',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 10,
+                                    color: AppColors.tBlack5,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(width: width * 0.16),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: AppColors.primaryColor,
+                              ),
+                            ),
+                            child: const WText(
+                              text: 'Edit image',
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.primaryColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: height * 0.38),
             ],
           ),
-        ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: width * 0.034),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const WText(
+                  text: 'Full name',
+                  fontWeight: FontWeight.w500,
+                  fontSize: 12,
+                  color: AppColors.tShadeColor,
+                ),
+                SizedBox(height: height * 0.008),
+                AuthInputTextFormContainer(
+                  controller: _emailController,
+                  height: height,
+                  hintText: 'Samuel Iboji',
+                ),
+                SizedBox(height: height * 0.02),
+                const WText(
+                  text: 'Email address',
+                  fontWeight: FontWeight.w500,
+                  fontSize: 12,
+                  color: AppColors.tShadeColor,
+                ),
+                SizedBox(height: height * 0.008),
+                AuthInputTextFormContainer(
+                  controller: _emailController,
+                  height: height,
+                  hintText: 'Uche.samuel21@gmail.com',
+                ),
+                SizedBox(height: height * 0.02),
+                const WText(
+                  text: 'Password',
+                  fontWeight: FontWeight.w500,
+                  fontSize: 12,
+                  color: AppColors.tShadeColor,
+                ),
+                SizedBox(height: height * 0.008),
+                AuthInputPasswordContainer(
+                  height: height,
+                  hintText: '**************',
+                  controller: _passwordController,
+                  suffixIcon: Padding(
+                    padding: const EdgeInsets.all(13),
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: const WText(
+                        text: 'Change password',
+                        color: AppColors.primaryColor,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: height * 0.09),
+                const WButton(
+                  title: 'Invite co-worker',
+                  color: AppColors.backgroundColor,
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

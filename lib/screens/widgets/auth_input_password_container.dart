@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/feature/utils/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iconly/iconly.dart';
 
 class AuthInputPasswordContainer extends StatefulWidget {
   const AuthInputPasswordContainer({
     Key? key,
     required this.height,
     required this.hintText,
-    this.iconData,
+    this.suffixIcon,
     required this.controller,
     this.validator,
+    this.obscureText = true,
   }) : super(key: key);
 
   final double height;
   final String hintText;
-  final IconData? iconData;
+  final Widget? suffixIcon;
   final TextEditingController controller;
   final String? Function(String?)? validator;
+  final bool? obscureText;
 
   @override
   _AuthInputPasswordContainerState createState() =>
@@ -26,8 +27,6 @@ class AuthInputPasswordContainer extends StatefulWidget {
 
 class _AuthInputPasswordContainerState
     extends State<AuthInputPasswordContainer> {
-  bool _isPasswordVisible = false;
-
   final roundBorder = OutlineInputBorder(
     borderRadius: BorderRadius.circular(6),
   );
@@ -36,7 +35,7 @@ class _AuthInputPasswordContainerState
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
-      obscureText: !_isPasswordVisible,
+      obscureText: widget.obscureText!,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.all(13),
         hintText: widget.hintText,
@@ -57,16 +56,7 @@ class _AuthInputPasswordContainerState
           ),
           borderRadius: BorderRadius.circular(6),
         ),
-        suffixIcon: GestureDetector(
-          child: Icon(
-            _isPasswordVisible ? IconlyLight.show : IconlyLight.hide,
-          ),
-          onTap: () {
-            setState(() {
-              _isPasswordVisible = !_isPasswordVisible;
-            });
-          },
-        ),
+        suffixIcon: widget.suffixIcon,
       ),
       validator: widget.validator,
     );

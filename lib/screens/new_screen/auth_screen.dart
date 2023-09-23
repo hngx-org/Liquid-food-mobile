@@ -24,6 +24,9 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
   bool isLogin = true;
+
+  bool _isPasswordVisible = true;
+
   @override
   void dispose() {
     super.dispose();
@@ -193,7 +196,18 @@ class _AuthScreenState extends State<AuthScreen> {
                 AuthInputPasswordContainer(
                   controller: _passwordController,
                   height: height,
+                  obscureText: _isPasswordVisible,
                   hintText: 'Enter your password',
+                  suffixIcon: GestureDetector(
+                    child: Icon(
+                      _isPasswordVisible ? IconlyLight.hide : IconlyLight.show,
+                    ),
+                    onTap: () {
+                      setState(() {
+                        _isPasswordVisible = !_isPasswordVisible;
+                      });
+                    },
+                  ),
                 ),
                 // if (isLogin)
                 SizedBox(height: height * 0.016),
@@ -209,7 +223,18 @@ class _AuthScreenState extends State<AuthScreen> {
                 AuthInputPasswordContainer(
                   controller: _confirmPasswordController,
                   height: height,
+                  obscureText: _isPasswordVisible,
                   hintText: 'Enter your confirm password',
+                  suffixIcon: GestureDetector(
+                    child: Icon(
+                      _isPasswordVisible ? IconlyLight.hide : IconlyLight.show,
+                    ),
+                    onTap: () {
+                      setState(() {
+                        _isPasswordVisible = !_isPasswordVisible;
+                      });
+                    },
+                  ),
                 ),
                 SizedBox(height: height * 0.058),
                 WButton(

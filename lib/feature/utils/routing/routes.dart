@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/features/home/view/home_page.dart';
-import 'package:free_lunch_app/screens/new_screen/login_screen.dart';
 
+import 'package:free_lunch_app/screens/new_screen/profile_page.dart';
+import '../../../features/home/view/home_page.dart';
+import '../../../screens/new_screen/login_screen.dart';
 import '../../../withdrawal/presentation/pages/withdraw_account.dart';
 import '../../../withdrawal/presentation/pages/withdrawal_screen.dart';
 import '../../lunches/presentation/lunches_view.dart';
@@ -17,9 +18,7 @@ class Routes {
         page = const LunchesView();
         break;
       case '/profile':
-        page = const Center(
-          child: Text('Profile'),
-        );
+        page = const ProfileImagePage();
       case '/log-in':
         page = const LoginScreen();
       case '/withdrawal-screen':

@@ -3,19 +3,14 @@ import 'package:free_lunch_app/features/home/models/co_worker.model.dart';
 import 'package:free_lunch_app/features/home/repository/home.repo.dart';
 import 'package:free_lunch_app/features/home/repository/irepository.home.dart';
 import 'package:free_lunch_app/features/home/view_model/home_viewmodel.dart';
-import 'package:free_lunch_app/features/sendLunches/view/send_lunch.dart';
 import 'package:free_lunch_app/utils/res/colors.dart';
 import 'package:free_lunch_app/utils/res/icons.dart';
-import 'package:free_lunch_app/feature/utils/routing/utlils.dart';
 import 'package:free_lunch_app/utils/res/svg_icons.dart';
-import 'package:free_lunch_app/utils/res/typography.dart';
-import 'package:free_lunch_app/widgets/action_buttons.dart';
 import 'package:free_lunch_app/widgets/avatar.dart';
 import 'package:free_lunch_app/widgets/custom_text_field.dart';
-import 'package:free_lunch_app/widgets/total_card.dart';
 import 'package:free_lunch_app/withdrawal/presentation/widgets/screen_styles.dart';
 import 'package:free_lunch_app/withdrawal/presentation/widgets/w_button.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -131,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const WText(
-                    text: 'You’ve',
+                    text: 'You’ve done well this month. Cheers 🥂',
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
                     color: AppColors.primaryColor,
@@ -212,7 +207,7 @@ class _HomePageState extends State<HomePage> {
               color: AppColors.tBlack,
               fontWeight: FontWeight.w500,
             ),
-            SizedBox(height: height * 0.04),
+            SizedBox(height: height * 0.01),
             Expanded(
               child: FutureBuilder<List<CoWorker>>(
                   future: Provider.of<HomeRepoVM>(context).coworkersList,
@@ -223,6 +218,7 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           SizedBox(height: height * 0.04),
                           const Text('Loading'),
+                          SizedBox(height: height * 0.05),
                           const Center(
                               child: CircularProgressIndicator(
                             color: AppColors.primaryColor,
@@ -270,75 +266,83 @@ class _HomePageState extends State<HomePage> {
                           final coWorkerItem = snapshot.data?[index];
                           // ignore: prefer_is_empty{
                           return Card(
+                            margin: const EdgeInsets.all(10),
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(15),
                               ),
                             ),
-                            elevation: 5,
+                            elevation: 0,
                             color: AppColors.searchGray,
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        AvatarComponent(
-                                            image: AssetImage(coWorkerItem!
-                                                .profilePath
-                                                .toString()),
-                                            width: 40,
-                                            height: 40),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              coWorkerItem.name.toString(),
-                                              style: AppTypography.bodyText3,
-                                            ),
-                                            Text(
-                                              coWorkerItem.designation
-                                                  .toString(),
-                                              style: AppTypography.subTitle3,
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(width: width * 0.16),
-                                        SizedBox(
-                                            width: width * 0.4,
-                                            child: WButton(
-                                              leading: AppSvgIcons
-                                                  .hamburgerLightTotal,
-                                              title: 'Send Lunch',
-                                              color: AppColors.backgroundColor,
-                                            ))
-                                      ],
-                                    ),
-                                  ]),
-                              //
-                              //       // MiniActionBtn(
-                              //       //   onTap: () {
-                              //       //     Utils.mainAppNav.currentState?.push(
-                              //       //         MaterialPageRoute(
-                              //       //             builder: (_) => SendLunches(
-                              //       //                 worker: coWorkerItem,
-                              //       //                 totalLunches: '12')));
-                              //       //   },
-                              //       //   icon: AppSvgIcons.hamburgerLight,
-                              //       //   text: 'Send Lunch',
-                              //       // )
-                              //     ],
-                              //   ),
-                              // ),
+                            child: ListTile(
+                              minVerticalPadding: 5,
+                              horizontalTitleGap: 8,
+                              contentPadding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              leading: AvatarComponent(
+                                  image: AssetImage(
+                                      coWorkerItem!.profilePath.toString()),
+                                  width: 45,
+                                  height: 45),
+                              title: WText(
+                                text: coWorkerItem.name.toString(),
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              subtitle: WText(
+                                text: coWorkerItem.designation.toString(),
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400,
+                                color: const Color(0xff737373),
+                              ),
+                              trailing: SizedBox(
+                                width: width * 0.38,
+                                height: height * 0.05,
+                                child: WButton(
+                                  leading: AppSvgIcons.hamburgerLightTotal,
+                                  title: 'Send Lunch',
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.backgroundColor,
+                                ),
+                              ),
                             ),
+                            // Padding(
+                            //   padding: const EdgeInsets.all(12.0),
+                            //   child: Row(
+                            //       mainAxisAlignment:
+                            //           MainAxisAlignment.spaceBetween,
+                            //       children: [
+                            //         Row(
+                            //           mainAxisAlignment:
+                            //               MainAxisAlignment.spaceBetween,
+                            //           children: [
+
+                            //             const SizedBox(
+                            //               width: 10,
+                            //             ),
+
+                            //             SizedBox(width: width * 0.16),
+
+                            //           ],
+                            //         ),
+                            //       ]),
+                            //   //
+                            //   //       // MiniActionBtn(
+                            //   //       //   onTap: () {
+                            //   //       //     Utils.mainAppNav.currentState?.push(
+                            //   //       //         MaterialPageRoute(
+                            //   //       //             builder: (_) => SendLunches(
+                            //   //       //                 worker: coWorkerItem,
+                            //   //       //                 totalLunches: '12')));
+                            //   //       //   },
+                            //   //       //   icon: AppSvgIcons.hamburgerLight,
+                            //   //       //   text: 'Send Lunch',
+                            //   //       // )
+                            //   //     ],
+                            //   //   ),
+                            //   // ),
+                            // ),
                           );
                         },
                       );

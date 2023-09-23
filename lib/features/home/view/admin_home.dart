@@ -6,8 +6,6 @@ import 'package:provider/provider.dart';
 
 import '../../../feature/utils/icons.dart';
 import '../../../utils/res/svg_icons.dart';
-import '../../../utils/res/typography.dart';
-import '../../../widgets/action_buttons.dart';
 import '../../../widgets/avatar.dart';
 import '../../../widgets/custom_text_field.dart';
 import '../repository/home.repo.dart';

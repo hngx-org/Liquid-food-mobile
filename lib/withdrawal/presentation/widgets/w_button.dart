@@ -9,12 +9,16 @@ class WButton extends StatelessWidget {
   final Color? color;
   final bool disabled;
   final Widget? leading;
+  final double? fontSize;
+  final FontWeight? fontWeight;
 
   const WButton({
     super.key,
     required this.title,
     this.color,
     this.onTap,
+    this.fontSize,
+    this.fontWeight,
     this.disabled = false,
     this.leading,
   });
@@ -44,8 +48,8 @@ class WButton extends StatelessWidget {
               textScaleFactor: MediaQuery.textScaleFactorOf(context),
               style: GoogleFonts.workSans(
                 color: color,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
+                fontSize: fontSize,
+                fontWeight: fontWeight,
               ),
             ),
           ],

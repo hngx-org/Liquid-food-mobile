@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/feature/lunches/presentation/lunches_view_model.dart';
 import 'package:free_lunch_app/screens/new_screen/auth_screen.dart';
+import 'package:free_lunch_app/screens/new_screen/invited_account_screen.dart';
 import 'package:free_lunch_app/screens/new_screen/login_screen.dart';
 import 'package:free_lunch_app/screens/new_screen/profile_page.dart';
 import 'package:free_lunch_app/withdrawal/presentation/pages/withdraw_account.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
           '/profile': (_) => const ProfileImagePage(),
           '/withdraw-account': (_) => const WithdrawalAccount(),
           '/log-in': (_) => const LoginScreen(),
+          '/invite-screen': (_) => const InvitedAccountScreen(),
         },
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/features/home/view/admin_home.dart';
 
-import 'package:free_lunch_app/screens/new_screen/profile_page.dart';
+import '../../../features/home/view/admin_home.dart';
 import '../../../features/home/view/home_page.dart';
 import '../../../screens/new_screen/login_screen.dart';
+import '../../../screens/screens.dart';
 import '../../../withdrawal/presentation/pages/withdraw_account.dart';
 import '../../../withdrawal/presentation/pages/withdrawal_screen.dart';
 import '../../lunches/presentation/lunches_view.dart';
@@ -26,6 +26,9 @@ class Routes {
         break;
       case '/withdrawal-screen':
         page = const WithdrawalScreen();
+        break;
+      case '/invite-screen':
+        page = const InvitedAccountScreen();
         break;
       case '/withdraw-account':
         page = const WithdrawalAccount();

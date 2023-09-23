@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/features/home/models/co_worker.model.dart';
 import 'package:free_lunch_app/features/home/repository/home.repo.dart';
 import 'package:free_lunch_app/features/home/repository/irepository.home.dart';
 import 'package:free_lunch_app/features/home/view_model/home_viewmodel.dart';
+import 'package:free_lunch_app/features/login/viewmodels/user.viewmodel.dart';
 import 'package:free_lunch_app/features/sendLunches/view/send_lunch.dart';
 import 'package:free_lunch_app/utils/res/colors.dart';
 import 'package:free_lunch_app/utils/res/icons.dart';
@@ -32,7 +34,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<HomeRepoVM>(context, listen: false)
-          .filterCoworkers(searchController);
+          .filterCoworkers(context, searchController);
+      Provider.of<HomeRepoVM>(context, listen: false).fetchCredit(context);
     });
     searchController = TextEditingController();
     searchFocus = FocusNode();
@@ -50,6 +53,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final userProfile = Provider.of<UserViewModel>(context);
     final height = MediaQuery.sizeOf(context).height;
     final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
@@ -76,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                       style: AppTypography.subTitle3,
                     ),
                     Text(
-                      'Tevin M',
+                      userProfile.fullName.toString(),
                       style: AppTypography.bodyText2,
                     ),
                   ],
@@ -87,7 +91,9 @@ class _HomePageState extends State<HomePage> {
               height: 10,
             ),
             TotalCardThree(
-                totalNum: '10', width: width * .942, height: height * .110),
+                totalNum: context.read<HomeRepoVM>().lunchCredit.toString(),
+                width: width * .942,
+                height: height * .110),
             const SizedBox(
               height: 10,
             ),
@@ -104,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                 onSubmitted: (value) {
                   searchFocus.unfocus();
                   Provider.of<HomeRepoVM>(context, listen: false)
-                      .filterCoworkers(searchController);
+                      .filterCoworkers(context, searchController);
                 }),
             const SizedBox(
               height: 10,
@@ -125,6 +131,13 @@ class _HomePageState extends State<HomePage> {
                   builder: (BuildContext context,
                       AsyncSnapshot<List<CoWorker>> snapshot) {
                     if (!snapshot.hasData) {
+                      Provider.of<HomeRepoVM>(context)
+                          .coworkersList
+                          ?.then((value) {
+                        if (kDebugMode) {
+                          print(value.length);
+                        }
+                      });
                       return const Column(
                         children: [
                           Text('Loading'),
@@ -187,10 +200,9 @@ class _HomePageState extends State<HomePage> {
                                   children: [
                                     Row(
                                       children: [
-                                        AvatarComponent(
-                                            image: AssetImage(coWorkerItem!
-                                                .profilePath
-                                                .toString()),
+                                        const AvatarComponent(
+                                            image: AssetImage(
+                                                'assets/images/dp.png'),
                                             width: 40,
                                             height: 40),
                                         const SizedBox(
@@ -199,11 +211,11 @@ class _HomePageState extends State<HomePage> {
                                         Column(
                                           children: [
                                             Text(
-                                              coWorkerItem.name.toString(),
+                                              coWorkerItem!.fullName.toString(),
                                               style: AppTypography.bodyText3,
                                             ),
                                             Text(
-                                              coWorkerItem.designation
+                                              coWorkerItem.organizationName
                                                   .toString(),
                                               style: AppTypography.subTitle3,
                                             )

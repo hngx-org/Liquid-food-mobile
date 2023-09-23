@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/features/create_account/create_account.dart';
 import 'package:free_lunch_app/features/home/view_model/home_viewmodel.dart';
+import 'package:free_lunch_app/features/login/view/login.dart';
+import 'package:free_lunch_app/features/login/viewmodels/login.viewmodel.dart';
+import 'package:free_lunch_app/features/login/viewmodels/user.viewmodel.dart';
 import 'package:free_lunch_app/features/sendLunches/viewmodel/sendlunch.viewmodel.dart';
 import 'package:free_lunch_app/utils/routing/utlils.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +25,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => NavItemProvider()),
         ChangeNotifierProvider(create: (_) => HomeRepoVM()),
-        ChangeNotifierProvider(create: (_) => SendLunchVM())
+        ChangeNotifierProvider(create: (_) => SendLunchVM()),
+        ChangeNotifierProvider(create: (_) => LoginViewModel()),
+        ChangeNotifierProvider(create: (_) => UserViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -32,6 +38,8 @@ class MyApp extends StatelessWidget {
         navigatorKey: Utils.mainAppNav,
         routes: {
           '/': (context) => const SplashPage(),
+          '/signup': (context) => const CreateAccount(),
+          '/login': (context) => const AuthLoginScreen(),
           '/home': (context) => const BottomNavShell(),
         },
       ),
@@ -44,8 +52,13 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.read<UserViewModel>();
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, '/home');
+      if (user.accessToken == null || user.accessToken!.isNotEmpty) {
+        Navigator.pushReplacementNamed(context, '/login');
+      } else {
+        Utils.mainAppNav.currentState?.pushReplacementNamed('/home');
+      }
     });
     return const Scaffold(
       body: Center(

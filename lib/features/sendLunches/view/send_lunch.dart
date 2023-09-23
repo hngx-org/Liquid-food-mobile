@@ -45,15 +45,15 @@ class SendLunches extends StatelessWidget {
               Column(
                 children: [
                   AvatarComponent(
-                      image: AssetImage(worker.profilePath!),
-                      width: MediaQuery.sizeOf(context).width * .4,
-                      height: MediaQuery.sizeOf(context).height * .25),
+                      image: const AssetImage('assets/images/dp.png'),
+                      width: MediaQuery.sizeOf(context).width * .25,
+                      height: MediaQuery.sizeOf(context).height * .15),
                   Text(
-                    worker.name!,
+                    worker.fullName!,
                     style: AppTypography.subHeader1black,
                   ),
                   Text(
-                    worker.designation!,
+                    worker.organizationName!,
                     style: AppTypography.bodyText3,
                   ),
                 ],

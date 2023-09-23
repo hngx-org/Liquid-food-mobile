@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/feature/utils/colors.dart';
-import 'package:free_lunch_app/screens/widgets/widgets.dart';
+import 'package:free_lunch_app/feature/auth/widgets/widgets.dart';
 import 'package:free_lunch_app/withdrawal/presentation/widgets/w_button.dart';
 import 'package:iconly/iconly.dart';
-import '../../withdrawal/presentation/widgets/screen_styles.dart';
+import 'package:provider/provider.dart';
+import '../../../withdrawal/presentation/widgets/screen_styles.dart';
+import '../model/login.model.dart';
+import '../viewmodels/login.viewmodel.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -115,7 +118,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: height * 0.18),
                 WButton(
-                  onTap: () => Navigator.pushNamed(context, '/home'),
+                  onTap: () async {
+                    final userLogin =
+                        Provider.of<LoginViewModel>(context, listen: false);
+                    final user = LoginModel(
+                      email: _emailController.text.trim().toString(),
+                      password: _passwordController.text.toString(),
+                    );
+                    if (context.mounted) {
+                      await userLogin.login(context, user);
+                    }
+                  },
                   title: 'Login',
                   color: AppColors.backgroundColor,
                 ),

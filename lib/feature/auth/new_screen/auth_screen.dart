@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../utils/res/colors.dart';
-import '../../withdrawal/presentation/widgets/screen_styles.dart';
-import '../../withdrawal/presentation/widgets/w_button.dart';
+import '../../../utils/res/colors.dart';
+import '../../../withdrawal/presentation/widgets/screen_styles.dart';
+import '../../../withdrawal/presentation/widgets/w_button.dart';
 import '../widgets/widgets.dart';
 
 class AuthScreen extends StatefulWidget {

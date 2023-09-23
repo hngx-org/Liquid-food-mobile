@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../feature/utils/colors.dart';
-import '../../widgets/avatar.dart';
-import '../../withdrawal/presentation/widgets/screen_styles.dart';
-import '../../withdrawal/presentation/widgets/w_button.dart';
+import '../../utils/colors.dart';
+import '../../../widgets/avatar.dart';
+import '../../../withdrawal/presentation/widgets/screen_styles.dart';
+import '../../../withdrawal/presentation/widgets/w_button.dart';
 import '../widgets/auth_input_password_container.dart';
 import '../widgets/auth_input_textform_container.dart';
 

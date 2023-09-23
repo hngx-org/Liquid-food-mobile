@@ -7,7 +7,7 @@ import '../widgets/available_lunches.dart';
 import '../widgets/withdraw_summary.dart';
 import './/withdrawal/presentation/widgets/w_button.dart';
 import '../widgets/screen_styles.dart';
-
+import 'withdraw_account.dart';
 class WithdrawalScreen extends StatelessWidget {
   const WithdrawalScreen({super.key});
 

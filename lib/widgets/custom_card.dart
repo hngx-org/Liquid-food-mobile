@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/utils/res/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../feature/utils/colors.dart';
+import '../feature/utils/svg_icons.dart';
 
+// 
 class CustomCard extends StatelessWidget {
-  final bool? selected;
   final String cardText;
   final Widget icon;
   final double? iconWidth;
@@ -12,8 +14,7 @@ class CustomCard extends StatelessWidget {
       required this.cardText,
       required this.icon,
       this.iconWidth,
-      this.iconHeight,
-      this.selected});
+      this.iconHeight});
 
   @override
   Widget build(BuildContext context) {
@@ -21,27 +22,30 @@ class CustomCard extends StatelessWidget {
     return FittedBox(
       child: Container(
         decoration: BoxDecoration(
-          border: selected! ? Border.all(color: AppColors.primaryColor) : null,
-          color: selected!
-              ? AppColors.primaryColor.withOpacity(0.2)
-              : AppColors.tGray.withOpacity(.5),
-          borderRadius: BorderRadius.circular(10),
+          color: AppColors.tGray.withOpacity(.5),
+          borderRadius: BorderRadius.circular(4),
         ),
-        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        padding: const EdgeInsets.symmetric(
+          vertical: 6,
+          horizontal: 16,
+        ),
+        width: 59,
+        height: 33,
         child: Row(
           children: <Widget>[
             Text(
               cardText,
-              style: TextStyle(
+              style: GoogleFonts.workSans(
                 color: AppColors.tBlack,
-                fontSize: width * .01 + 16,
+                fontWeight: FontWeight.w500,
+                fontSize: 18,
               ),
             ),
-            SizedBox(width: width * .01),
+            const SizedBox(width: 3),
             SizedBox(
-              width: iconWidth ?? 18,
-              height: iconWidth ?? 18,
-              child: icon,
+              width: iconWidth ?? 12,
+              height: iconWidth ?? 12,
+              child: AppSvgIcons.hamburgerDarkBold,
             ),
           ],
         ),

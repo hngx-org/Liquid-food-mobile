@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
 class AppIcons {
-  static const IconData homeActive = IconlyBold.home;
-  static const IconData home = IconlyLight.home;
+  static const IconData home = IconlyBold.home;
   static const IconData notification = IconlyLight.notification;
   static const IconData profile = IconlyLight.profile;
-  static const IconData profileActive = IconlyBold.profile;
   static const IconData search = IconlyLight.search;
   static const IconData upload = IconlyLight.upload;
   static const IconData edit = IconlyLight.edit;
@@ -16,16 +14,12 @@ class AppIcons {
 
   static Widget getIcon(String iconName, Color color) {
     switch (iconName) {
-      case 'homeActive':
-        return Icon(homeActive, color: color);
       case 'home':
         return Icon(home, color: color);
       case 'hamburger':
         return Icon(notification, color: color);
       case 'profile':
         return Icon(profile, color: color);
-      case 'profileActive':
-        return Icon(profileActive, color: color);
       case 'search':
         return Icon(search, color: color);
       case 'upload':

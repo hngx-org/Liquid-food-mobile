@@ -157,6 +157,45 @@ class ActionBtn2 extends StatelessWidget {
   }
 }
 
+class ActionBtn3 extends StatelessWidget {
+  final Color? btnColor;
+  final Widget? icon;
+  final String text;
+  final double? widthM;
+  final VoidCallback onTap;
+
+  const ActionBtn3(
+      {super.key, this.btnColor, this.icon, required this.text, this.widthM, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 56,
+        width: widthM,
+        constraints: BoxConstraints(minWidth: width * .5),
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        decoration: BoxDecoration(
+          color: btnColor ?? AppColors.tPrimaryColor,
+          borderRadius: BorderRadius.circular(32),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            icon ?? const SizedBox(),
+            SizedBox(width: width * .02),
+            Text(
+              text,
+              style: AppTypography.button2Text,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 class MiniOutlinedActionBtn extends StatelessWidget {
   final Color? btnColor;
   final Color? textColor;

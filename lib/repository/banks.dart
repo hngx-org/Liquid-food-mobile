@@ -1,7 +1,7 @@
 List<String> banks = [
   "Access bank",
   "First bank of Nigeria",
-  "Achase bank",
+  "Chase bank",
   "Union bank",
   'Fidelity bank',
   'Opay MFB',

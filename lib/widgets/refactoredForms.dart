@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import '../styles/text_style.dart';
 
 class RefactoredForm extends StatefulWidget {
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String label;
   final String hintText;
   final FocusNode focusNode;
@@ -21,7 +21,7 @@ class RefactoredForm extends StatefulWidget {
 
 
   RefactoredForm(
-      {required this.controller,
+      { this.controller,
         required this.label,
         required this.hintText,
         required this.focusNode,

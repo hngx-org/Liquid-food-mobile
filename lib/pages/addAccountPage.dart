@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import '../api.dart';
 import '../repository/banks.dart';
 import '../repository/model/accountDataModel.dart';
-import '../repository/model/bankListModel.dart';
 import '../styles/text_style.dart';
 import '../widgets/refactoredForms.dart';
 
@@ -12,7 +10,6 @@ import '../widgets/refactoredForms.dart';
 
 class AddAccountPage extends StatefulWidget {
   const AddAccountPage({Key? key}) : super(key: key);
-
   static const routeName = '/add-account-page';
 
   @override
@@ -31,11 +28,7 @@ class _AddAccountPageState extends State<AddAccountPage> {
 
   // AccountData? _formData;
 
-  String? _selectedBank;
-
-  List<BankListModel> banks = [];
-
-  final ApiService apiService = ApiService();
+String? _selectedBank;
   @override
   void initState() {
     super.initState();
@@ -43,16 +36,7 @@ class _AddAccountPageState extends State<AddAccountPage> {
     _accountNameFocusNode = FocusNode();
     _bankFocusNode = FocusNode();
 
-    _selectedBank = null;
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      apiService.fetchBanks().then((bankList) {
-        setState(() {
-          banks = bankList;
-          _selectedBank = banks.isNotEmpty ? banks[0].bankName : null;
-        });
-      });
-    });
+    _selectedBank = banks[0];
   }
 
   @override
@@ -127,6 +111,7 @@ class _AddAccountPageState extends State<AddAccountPage> {
         const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 30),
         child: ListView(
           children: [
+
             RefactoredForm(
               controller: _accountNumberController,
               label: "Account Number",
@@ -160,22 +145,21 @@ class _AddAccountPageState extends State<AddAccountPage> {
               hintText: "Select your bank",
               focusNode: _bankFocusNode,
               isNumeric: false,
-              isDropdown: true, // Indicate it's a dropdown
+              isDropdown: true,
               dropdownValue: _selectedBank,
-
               onChanged: (String? value) {
                 setState(() {
                   _selectedBank = value;
                 });
               },
-              dropdownItems: banks.map((BankListModel bank) {
-
+              dropdownItems: banks.map((String bank) {
                 return DropdownMenuItem<String>(
-                  value: bank.bankName,
-                  child: Text(bank.bankName),
+                  value: bank, // Make sure each value is unique
+                  child: Text(bank),
                 );
               }).toList(),
             ),
+
 
             Spacer(),
             Container(
@@ -202,6 +186,7 @@ class _AddAccountPageState extends State<AddAccountPage> {
           ],
         ),
       ),
+
     );
   }
 }

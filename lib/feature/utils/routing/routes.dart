@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/features/home/view/admin_home.dart';
 
 import 'package:free_lunch_app/screens/new_screen/profile_page.dart';
 import '../../../features/home/view/home_page.dart';
@@ -11,7 +12,7 @@ class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     Widget page;
     switch (settings.name) {
-      case '/home':
+      case '/admin-home':
         page = const HomePage();
         break;
       case '/lunches':
@@ -19,12 +20,18 @@ class Routes {
         break;
       case '/profile':
         page = const ProfileImagePage();
+        break;
       case '/log-in':
         page = const LoginScreen();
+        break;
       case '/withdrawal-screen':
         page = const WithdrawalScreen();
+        break;
       case '/withdraw-account':
         page = const WithdrawalAccount();
+        break;
+      case '/home':
+        page = const AdminHome();
         break;
       default:
         page = const Center(

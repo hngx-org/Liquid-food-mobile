@@ -46,7 +46,7 @@ class _AuthInputPasswordContainerState
         ),
         enabledBorder: roundBorder.copyWith(
           borderSide: const BorderSide(
-            color: AppColors.primaryColor,
+            color: Color(0xffBFBFBF),
           ),
           borderRadius: BorderRadius.circular(6),
         ),

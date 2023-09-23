@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/screens/widgets/widgets.dart';
 
-
 class InvitedAccountScreen extends StatefulWidget {
   const InvitedAccountScreen({super.key});
 
@@ -125,7 +124,6 @@ class _InvitedAccountScreenState extends State<InvitedAccountScreen> {
                   controller: _passwordController,
                   height: height,
                   hintText: 'Enter your password',
-                  iconData: Icons.visibility_off_outlined,
                 ),
                 SizedBox(
                   height: height * 0.016,
@@ -141,7 +139,6 @@ class _InvitedAccountScreenState extends State<InvitedAccountScreen> {
                   controller: _confirmPasswordController,
                   height: height,
                   hintText: 'Enter your confirm password',
-                  iconData: Icons.visibility_off_outlined,
                 ),
                 SizedBox(
                   height: height * 0.058,

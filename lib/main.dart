@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/feature/lunches/presentation/lunches_view_model.dart';
+import 'package:free_lunch_app/screens/new_screen/auth_screen.dart';
+import 'package:free_lunch_app/screens/new_screen/login_screen.dart';
+import 'package:free_lunch_app/screens/new_screen/profile_page.dart';
+import 'package:free_lunch_app/withdrawal/presentation/pages/withdraw_account.dart';
+import 'package:free_lunch_app/withdrawal/presentation/pages/withdrawal_screen.dart';
 import '../features/home/view_model/home_viewmodel.dart';
 import '../features/sendLunches/viewmodel/sendlunch.viewmodel.dart';
 import '../../feature/utils/routing/utlils.dart';
@@ -25,7 +31,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => HomeRepoVM()),
         ChangeNotifierProvider(create: (_) => SendLunchVM()),
         ChangeNotifierProvider(create: (_) => LunchesViewModel()),
-        
+        ChangeNotifierProvider(create: (_) => LunchesViewModel())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -35,10 +41,13 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         navigatorKey: Utils.mainAppNav,
         routes: {
-          '/': (context) => const SplashPage(),
+          '/': (context) => const AuthScreen(),
           '/home': (context) => const BottomNavShell(),
           '/lunches': (context) => const LunchesView(),
           '/profile': (context) => const ProfileImagePageMain(),
+          '/withdrawal-screen': (_) => const WithdrawalScreen(),
+          '/withdraw-account': (_) => const WithdrawalAccount(),
+          '/log-in': (_) => const LoginScreen(),
         },
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),

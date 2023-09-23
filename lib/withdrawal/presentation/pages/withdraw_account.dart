@@ -14,8 +14,6 @@ import 'withdrawal_screen.dart';
 class WithdrawalAccount extends StatefulWidget {
   const WithdrawalAccount({super.key});
 
-  static const routeName = '/withdraw-account';
-
   @override
   State<WithdrawalAccount> createState() => _WithdrawalAccountState();
 }

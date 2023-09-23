@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/utils/res/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
@@ -72,8 +73,8 @@ class CustomTextField extends StatelessWidget {
               contentPadding: const EdgeInsets.all(10),
               isCollapsed: true,
               hintText: hintText,
-              hintStyle:
-                  const TextStyle(fontSize: 12, color: Color(0xff8C8C8C)),
+              hintStyle: GoogleFonts.workSans(
+                  fontSize: 12, color: const Color(0xff8C8C8C)),
               fillColor: Colors.grey[100],
               filled: true,
               focusedBorder: OutlineInputBorder(

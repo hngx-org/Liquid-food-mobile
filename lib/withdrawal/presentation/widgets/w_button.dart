@@ -13,8 +13,8 @@ class WButton extends StatelessWidget {
   const WButton({
     super.key,
     required this.title,
-    this.color,
     required this.onTap,
+    this.color,
     this.disabled = false,
     this.leading,
   });

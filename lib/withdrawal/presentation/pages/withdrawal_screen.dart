@@ -3,7 +3,6 @@ import 'package:iconly/iconly.dart';
 
 import '../../../feature/utils/colors.dart';
 import '../../../feature/utils/icons.dart';
-import '../../presentation/pages/withdraw_account.dart';
 import '../widgets/available_lunches.dart';
 import '../widgets/withdraw_summary.dart';
 import './/withdrawal/presentation/widgets/w_button.dart';
@@ -53,10 +52,8 @@ class WithdrawalScreen extends StatelessWidget {
               SizedBox(
                 width: width * 0.65,
                 child: WButton(
-                  onTap: () => Navigator.pushNamed(
-                    context,
-                    WithdrawalAccount.routeName,
-                  ),
+                  onTap: () =>
+                      Navigator.pushNamed(context, '/withdraw-account'),
                   title: 'Add your account detials',
                   color: AppColors.backgroundColor,
                 ),

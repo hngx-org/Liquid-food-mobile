@@ -14,6 +14,9 @@ import 'package:free_lunch_app/widgets/action_buttons.dart';
 import 'package:free_lunch_app/widgets/avatar.dart';
 import 'package:free_lunch_app/widgets/custom_text_field.dart';
 import 'package:free_lunch_app/widgets/total_card.dart';
+import 'package:free_lunch_app/withdrawal/presentation/widgets/screen_styles.dart';
+import 'package:free_lunch_app/withdrawal/presentation/widgets/w_button.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -54,49 +57,145 @@ class _HomePageState extends State<HomePage> {
     final height = MediaQuery.sizeOf(context).height;
     final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
-        child: Column(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Row(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+            Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 10, right: 8),
+              child: AvatarComponent(
+                  image: const AssetImage('assets/images/dp.png'),
+                  width: width * .13,
+                  height: height * .055),
+            ),
+            const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AvatarComponent(
-                    image: const AssetImage('assets/images/dp.png'),
-                    width: width * .15,
-                    height: height * .1),
-                const SizedBox(
-                  width: 12,
+                WText(
+                  text: 'Welcome',
+                  fontSize: 10,
+                  fontWeight: FontWeight.w400,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Welcome',
-                      style: AppTypography.subTitle3,
-                    ),
-                    Text(
-                      'Tevin M',
-                      style: AppTypography.bodyText2,
-                    ),
-                  ],
-                )
+                WText(
+                  text: 'Samuel I.',
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),
               ],
+            )
+          ],
+        ),
+        elevation: 0,
+        backgroundColor: AppColors.backgroundColor,
+      ),
+      backgroundColor: AppColors.backgroundColor,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: width * 0.03),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.start,
+            //   children: [
+            //     AvatarComponent(
+            //         image: const AssetImage('assets/images/dp.png'),
+            //         width: width * .15,
+            //         height: height * .1),
+            //     const SizedBox(
+            //       width: 12,
+            //     ),
+            //     Column(
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: [
+            //         Text(
+            //           'Welcome',
+            //           style: AppTypography.subTitle3,
+            //         ),
+            //         Text(
+            //           'Tevin M',
+            //           style: AppTypography.bodyText2,
+            //         ),
+            //       ],
+            //     )
+            //   ],
+            // ),
+            SizedBox(height: height * 0.02),
+            Container(
+              width: double.infinity,
+              height: height * 0.16,
+              padding: const EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                  border: Border.all(color: AppColors.primaryColor),
+                  color: const Color(0xffCCE7FF),
+                  borderRadius: BorderRadius.circular(12)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const WText(
+                    text: 'You’ve',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.primaryColor,
+                  ),
+                  SizedBox(
+                    height: height * 0.01,
+                  ),
+                  Container(
+                    width: width * 0.4,
+                    height: height * 0.07,
+                    padding: const EdgeInsets.all(3),
+                    decoration: BoxDecoration(
+                        color: AppColors.backgroundColor,
+                        borderRadius: BorderRadius.circular(30)),
+                    child: Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                              padding: const EdgeInsets.all(3),
+                              decoration: const BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                        blurRadius: 0.3,
+                                        spreadRadius: 0.2,
+                                        offset: Offset(0.2, 0.2),
+                                        color: AppColors.tBlack4),
+                                  ],
+                                  color: AppColors.backgroundColor,
+                                  shape: BoxShape.circle),
+                              child: AppSvgIcons.hamburgerPrimary2),
+                          SizedBox(width: width * 0.02),
+                          const WText(
+                            text: '500',
+                            color: AppColors.tAmberAccent,
+                            fontSize: 40,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: height * 0.009),
+                  const WText(
+                    text: 'Freee Lunches',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.primaryColor,
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            TotalCardTwo(
-                totalNum: '10', width: width * .942, height: height * .110),
-            const SizedBox(
-              height: 10,
-            ),
+
+            SizedBox(height: height * 0.04),
             CustomTextField(
                 textController: searchController,
                 textFocus: searchFocus,
                 isPassword: false,
-                leadingIcon: const Icon(AppIcons.search),
+                leadingIcon: const Icon(
+                  AppIcons.search,
+                  size: 18,
+                  color: AppColors.tBlack4,
+                ),
                 hintText: 'Search for co-workers',
                 validator: (value) {
                   return null;
@@ -107,29 +206,28 @@ class _HomePageState extends State<HomePage> {
                   Provider.of<HomeRepoVM>(context, listen: false)
                       .filterCoworkers(searchController);
                 }),
-            const SizedBox(
-              height: 10,
+            SizedBox(height: height * 0.04),
+            const WText(
+              text: 'Co-workers',
+              fontSize: 16,
+              color: AppColors.tBlack,
+              fontWeight: FontWeight.w500,
             ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Co-workers',
-                style: AppTypography.subHeader2,
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
+            SizedBox(height: height * 0.04),
             Expanded(
               child: FutureBuilder<List<CoWorker>>(
                   future: Provider.of<HomeRepoVM>(context).coworkersList,
                   builder: (BuildContext context,
                       AsyncSnapshot<List<CoWorker>> snapshot) {
                     if (!snapshot.hasData) {
-                      return const Column(
+                      return Column(
                         children: [
-                          Text('Loading'),
-                          Center(child: CircularProgressIndicator())
+                          SizedBox(height: height * 0.04),
+                          const Text('Loading'),
+                          const Center(
+                              child: CircularProgressIndicator(
+                            color: AppColors.primaryColor,
+                          ))
                         ],
                       );
                     } else if (snapshot.hasError) {
@@ -139,54 +237,57 @@ class _HomePageState extends State<HomePage> {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const SizedBox(
-                            height: 30,
+                          SizedBox(height: height * 0.04),
+                          const Center(
+                            child: WText(
+                              text: '🤔',
+                              fontSize: 40,
+                            ),
                           ),
-                          Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                '🤔',
-                                style: AppTypography.header3,
-                              )),
-                          const SizedBox(
-                            height: 15,
+                          SizedBox(height: height * 0.035),
+                          const Center(
+                            child: WText(
+                              text: 'You haven\'t invited\nany co-worker',
+                              textAlign: TextAlign.center,
+                              fontSize: 23,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.tShadeColor,
+                            ),
                           ),
-                          Text(
-                            "You haven't invited any \nco-worker",
-                            textAlign: TextAlign.center,
-                            style: AppTypography.subHeader1,
+                          SizedBox(height: height * 0.045),
+                          WButton(
+                            onTap: () {},
+                            title: 'Invite co-worker',
+                            color: AppColors.backgroundColor,
                           ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          ActionBtn(
-                              widthM: MediaQuery.sizeOf(context).width * .8,
-                              text: 'Invite co-worker'),
                         ],
                       );
                     } else {
                       return ListView.builder(
-                          shrinkWrap: true,
-                          physics: const BouncingScrollPhysics(),
-                          itemCount: snapshot.data?.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            final coWorkerItem = snapshot.data?[index];
-                            // ignore: prefer_is_empty{
-                            return Card(
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(15),
-                                ),
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: snapshot.data?.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final coWorkerItem = snapshot.data?[index];
+                          // ignore: prefer_is_empty{
+                          return Card(
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(15),
                               ),
-                              elevation: 5,
-                              color: AppColors.searchGray,
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Row(
+                            ),
+                            elevation: 5,
+                            color: AppColors.searchGray,
+                            
+                            child: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         AvatarComponent(
                                             image: AssetImage(coWorkerItem!
@@ -198,6 +299,8 @@ class _HomePageState extends State<HomePage> {
                                           width: 10,
                                         ),
                                         Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               coWorkerItem.name.toString(),
@@ -210,23 +313,43 @@ class _HomePageState extends State<HomePage> {
                                             )
                                           ],
                                         ),
+                                        SizedBox(width: width * 0.16),
+                                        SizedBox(
+                                            width: width * 0.4,
+                                            child: WButton(
+                                              onTap: () => {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const SendLunches(
+                                                        totalLunches:'12',
+                                                    ),
+                                                  ),
+                                                )
+                                              },
+                                              leading: AppSvgIcons
+                                                  .hamburgerLightTotal,
+                                              title: 'Send Lunch',
+                                              color: AppColors.backgroundColor,
+                                            ))
                                       ],
                                     ),
-                                   MiniActionBtn(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => const SendLunches(
+                                  //  MiniActionBtn(
+                                  //   onTap: () {
+                                  //     Navigator.push(
+                                  //       context,
+                                  //       MaterialPageRoute(
+                                  //         builder: (context) => const SendLunches(
         
-                                            totalLunches: '12',
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    icon: AppSvgIcons.hamburgerLight,
-                                    text: 'Send Lunch',
-                                  )
+                                  //           totalLunches: '12',
+                                  //         ),
+                                  //       ),
+                                  //     );
+                                  //   },
+                                  //   icon: AppSvgIcons.hamburgerLight,
+                                  //   text: 'Send Lunch',
+                                  // )
                                   ],
                                 ),
                               ),

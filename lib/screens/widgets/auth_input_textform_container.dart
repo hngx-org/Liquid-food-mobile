@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-
+import '../../feature/utils/colors.dart';
 
 class AuthInputTextFormContainer extends StatelessWidget {
-  const AuthInputTextFormContainer({
+  AuthInputTextFormContainer({
     super.key,
     required this.height,
     required this.hintText,
@@ -16,28 +17,36 @@ class AuthInputTextFormContainer extends StatelessWidget {
   final bool? isObsure;
   final TextEditingController controller;
 
+  final roundBorder = OutlineInputBorder(
+    borderRadius: BorderRadius.circular(6),
+  );
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: height * 0.060,
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        decoration: BoxDecoration(
+    return TextFormField(
+      controller: controller,
+      keyboardType: TextInputType.emailAddress,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.all(13),
+        enabledBorder: roundBorder.copyWith(
+          borderSide: const BorderSide(
+            color: Color(0xffBFBFBF),
+          ),
           borderRadius: BorderRadius.circular(6),
-          border: Border.all(color: const Color(0xFF0085FF)),
         ),
-        child: TextFormField(
-         
-          controller: controller,
-          keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: hintText,
-              hintStyle: const TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Color(0xFFA6A6A6),
-              )),
-        ));
+        focusedBorder: roundBorder.copyWith(
+          borderSide: const BorderSide(
+            color: AppColors.primaryColor,
+          ),
+          borderRadius: BorderRadius.circular(6),
+        ),
+        hintText: hintText,
+        hintStyle: GoogleFonts.workSans(
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+          color: const Color(0xFFA6A6A6),
+        ),
+      ),
+    );
   }
 }

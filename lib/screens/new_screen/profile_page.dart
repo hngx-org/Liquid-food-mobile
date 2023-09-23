@@ -305,7 +305,7 @@ class _ProfileImagePageMainState extends State<ProfileImagePageMain> {
                 bottom: 0,
                 child: SizedBox(
                   width: width,
-                  height: height * .73,
+                  height: height * .63,
                   child: Column(
                     children: <Widget>[
                       Row(

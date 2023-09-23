@@ -35,11 +35,16 @@ class AccountInfo extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const WidgetSpan(
-                    child: Icon(
-                      IconlyLight.edit,
-                      size: 18,
-                      color: AppColors.primaryColor,
+                  WidgetSpan(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/add-account');
+                      },
+                      child: Icon(
+                        IconlyLight.edit,
+                        size: 18,
+                        color: AppColors.primaryColor,
+                      ),
                     ),
                   )
                 ],

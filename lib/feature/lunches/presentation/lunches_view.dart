@@ -9,7 +9,7 @@ import '../../repo/lunches_repo.dart';
 import '../../repo/mock_lunchinfo.dart';
 import '../../../widgets/custom_tilecard.dart';
 import 'lunches_view_model.dart';
-import  '../../../withdrawal/presentation/pages/withdrawal_screen.dart';
+import '../../../withdrawal/presentation/pages/withdrawal_screen.dart';
 
 class LunchesView extends StatelessWidget {
   const LunchesView({
@@ -38,6 +38,7 @@ class LunchesView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Card(
+              color: AppColors.searchGray,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,

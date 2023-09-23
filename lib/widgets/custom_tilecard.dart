@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/feature/utils/colors.dart';
 import '../feature/lunches/models/lunch_model.dart';
 import '../feature/lunches/presentation/lunches_view_model.dart';
 import 'package:provider/provider.dart';
 import '../feature/utils/svg_icons.dart';
 import '../feature/utils/typography.dart';
-
 
 class CustomTileCard extends StatelessWidget {
   const CustomTileCard({super.key, required this.lunchInfo});
@@ -15,6 +15,7 @@ class CustomTileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<LunchesViewModel>(builder: (context, lunchinfo, child) {
       return Card(
+        color: AppColors.searchGray,
         child: ListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
             leading: ClipRRect(

@@ -55,11 +55,16 @@ class _WithdrawalAccountState extends State<WithdrawalAccount> {
                 SizedBox(height: height * 0.015),
                 GestureDetector(
                   onTap: () {},
-                  child: const WText(
-                    text: 'Not your account information?',
-                    color: AppColors.primaryColor,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/add-account');
+                    },
+                    child: const WText(
+                      text: 'Not your account information?',
+                      color: AppColors.primaryColor,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
                 SizedBox(height: height * 0.04),
@@ -90,11 +95,12 @@ class _WithdrawalAccountState extends State<WithdrawalAccount> {
                   ),
                 ),
                 SizedBox(height: height * 0.05),
-                 WButton(
+                WButton(
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const WithdrawalScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => const WithdrawalScreen()),
                     );
                   },
                   leading: const Icon(

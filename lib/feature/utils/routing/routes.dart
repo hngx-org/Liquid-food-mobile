@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/add_account/pages/addAccountPage.dart';
 import 'package:free_lunch_app/features/home/view/admin_home.dart';
 import 'package:free_lunch_app/screens/new_screen/change_password_screen.dart';
 
@@ -40,6 +41,9 @@ class Routes {
         break;
       case '/change-password':
         page = const ChangePasswordScreen();
+        break;
+      case '/add-account':
+        page = const AddAccountView();
         break;
       default:
         page = const Center(

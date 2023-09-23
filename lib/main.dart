@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => const AuthScreen(),
           '/home': (context) => const BottomNavShell(),
           '/lunches': (context) => const LunchesView(),
-          '/profile': (context) => const ProfileImagePageMain(),
+          '/profile': (context) => const ProfileImagePage(),
           '/withdrawal-screen': (_) => const WithdrawalScreen(),
           '/withdraw-account': (_) => const WithdrawalAccount(),
           '/log-in': (_) => const LoginScreen(),

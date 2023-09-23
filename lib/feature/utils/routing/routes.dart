@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:free_lunch_app/features/home/view/admin_home.dart';
 
 import 'package:free_lunch_app/screens/new_screen/profile_page.dart';
+import 'package:free_lunch_app/screens/screens.dart';
 import '../../../features/home/view/home_page.dart';
 import '../../../screens/new_screen/login_screen.dart';
 import '../../../withdrawal/presentation/pages/withdraw_account.dart';
@@ -12,6 +13,9 @@ class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     Widget page;
     switch (settings.name) {
+      case '/':
+        page = const AuthScreen();
+        break;
       case '/home':
         page = const HomePage();
         break;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/features/home/view/admin_home.dart';
+import 'package:free_lunch_app/screens/new_screen/change_password_screen.dart';
 
 import 'package:free_lunch_app/screens/new_screen/profile_page.dart';
 import 'package:free_lunch_app/screens/screens.dart';
@@ -34,9 +35,11 @@ class Routes {
       case '/withdraw-account':
         page = const WithdrawalAccount();
         break;
-
       case '/admin-home':
         page = const AdminHome();
+        break;
+      case '/change-password':
+        page = const ChangePasswordScreen();
         break;
       default:
         page = const Center(

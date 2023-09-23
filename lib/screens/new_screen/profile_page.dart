@@ -188,7 +188,10 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
                     padding: const EdgeInsets.all(13),
                     child: GestureDetector(
                       onTap: () {},
-                      child: const WText(
+                      child: WTextButton(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/change-password');
+                        },
                         text: 'Change password',
                         color: AppColors.primaryColor,
                         fontSize: 12,

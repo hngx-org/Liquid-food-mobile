@@ -12,8 +12,7 @@ class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     Widget page;
     switch (settings.name) {
-      //Will change this after test
-      case '/admin-home':
+      case 'home':
         page = const HomePage();
         break;
       case '/lunches':
@@ -31,8 +30,8 @@ class Routes {
       case '/withdraw-account':
         page = const WithdrawalAccount();
         break;
-      //Will Change this after is testing
-      case '/home':
+
+      case '/admin-home':
         page = const AdminHome();
         break;
       default:

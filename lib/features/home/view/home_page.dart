@@ -172,7 +172,11 @@ class _HomePageState extends State<HomePage> {
                 textController: searchController,
                 textFocus: searchFocus,
                 isPassword: false,
-                leadingIcon: const Icon(AppIcons.search),
+                leadingIcon: const Icon(
+                  AppIcons.search,
+                  size: 18,
+                  color: AppColors.tBlack4,
+                ),
                 hintText: 'Search for co-workers',
                 validator: (value) {
                   return null;
@@ -183,27 +187,28 @@ class _HomePageState extends State<HomePage> {
                   Provider.of<HomeRepoVM>(context, listen: false)
                       .filterCoworkers(searchController);
                 }),
-            SizedBox(height: height * 0.05),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Co-workers',
-                style: AppTypography.subHeader2,
-              ),
+            SizedBox(height: height * 0.04),
+            const WText(
+              text: 'Co-workers',
+              fontSize: 16,
+              color: AppColors.tBlack,
+              fontWeight: FontWeight.w500,
             ),
-            const SizedBox(
-              height: 15,
-            ),
+            SizedBox(height: height * 0.04),
             Expanded(
               child: FutureBuilder<List<CoWorker>>(
                   future: Provider.of<HomeRepoVM>(context).coworkersList,
                   builder: (BuildContext context,
                       AsyncSnapshot<List<CoWorker>> snapshot) {
                     if (!snapshot.hasData) {
-                      return const Column(
+                      return Column(
                         children: [
-                          Text('Loading'),
-                          Center(child: CircularProgressIndicator())
+                          SizedBox(height: height * 0.04),
+                          const Text('Loading'),
+                          const Center(
+                              child: CircularProgressIndicator(
+                            color: AppColors.primaryColor,
+                          ))
                         ],
                       );
                     } else if (snapshot.hasError) {
@@ -213,29 +218,29 @@ class _HomePageState extends State<HomePage> {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const SizedBox(
-                            height: 30,
+                          SizedBox(height: height * 0.04),
+                          const Center(
+                            child: WText(
+                              text: '🤔',
+                              fontSize: 40,
+                            ),
                           ),
-                          Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                '🤔',
-                                style: AppTypography.header3,
-                              )),
-                          const SizedBox(
-                            height: 15,
+                          SizedBox(height: height * 0.035),
+                          const Center(
+                            child: WText(
+                              text: 'You haven\'t invited\nany co-worker',
+                              textAlign: TextAlign.center,
+                              fontSize: 23,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.tShadeColor,
+                            ),
                           ),
-                          Text(
-                            "You haven't invited any \nco-worker",
-                            textAlign: TextAlign.center,
-                            style: AppTypography.subHeader1,
+                          SizedBox(height: height * 0.045),
+                          WButton(
+                            onTap: () {},
+                            title: 'Invite co-worker',
+                            color: AppColors.backgroundColor,
                           ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          ActionBtn(
-                              widthM: MediaQuery.sizeOf(context).width * .8,
-                              text: 'Invite co-worker'),
                         ],
                       );
                     } else {

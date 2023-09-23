@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/feature/utils/colors.dart';
 import 'package:free_lunch_app/withdrawal/presentation/widgets/screen_styles.dart';
+import 'package:free_lunch_app/withdrawal/presentation/widgets/w_button.dart';
 import 'package:provider/provider.dart';
 
 import '../../../feature/utils/icons.dart';
 import '../../../utils/res/svg_icons.dart';
 import '../../../utils/res/typography.dart';
+import '../../../widgets/action_buttons.dart';
 import '../../../widgets/avatar.dart';
 import '../../../widgets/custom_text_field.dart';
 import '../repository/home.repo.dart';
@@ -104,6 +106,7 @@ class _AdminHomeState extends State<AdminHome> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: width * 0.04),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: height * 0.02),
             Container(
@@ -192,15 +195,34 @@ class _AdminHomeState extends State<AdminHome> {
                       .filterCoworkers(searchController);
                 }),
             SizedBox(height: height * 0.04),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Co-workers',
-                style: AppTypography.subHeader2,
+            const WText(
+              text: 'Co-workers',
+              fontSize: 16,
+              color: AppColors.tBlack,
+              fontWeight: FontWeight.w500,
+            ),
+            SizedBox(height: height * 0.04),
+            const Center(
+              child: WText(
+                text: '🤔',
+                fontSize: 40,
               ),
             ),
-            const SizedBox(
-              height: 15,
+            SizedBox(height: height * 0.035),
+            const Center(
+              child: WText(
+                text: 'You haven\'t invited\nany co-worker',
+                textAlign: TextAlign.center,
+                fontSize: 23,
+                fontWeight: FontWeight.w500,
+                color: AppColors.tShadeColor,
+              ),
+            ),
+            SizedBox(height: height * 0.045),
+            WButton(
+              onTap: () {},
+              title: 'Invite co-worker',
+              color: AppColors.backgroundColor,
             ),
           ],
         ),

@@ -14,7 +14,7 @@ class Routes {
         page = const LunchesView();
         break;
       case '/profile':
-        page = const ProfileImagePage();
+        page = const ProfileImagePageMain();
         break;
       default:
         page = const Center(

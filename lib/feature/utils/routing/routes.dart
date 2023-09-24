@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/features/home/view/admin_home.dart';
+import 'package:free_lunch_app/screens/new_screen/auth_screen_api.dart';
 import 'package:free_lunch_app/screens/new_screen/change_password_screen.dart';
 
 import 'package:free_lunch_app/screens/new_screen/profile_page.dart';
@@ -15,7 +16,8 @@ class Routes {
     Widget page;
     switch (settings.name) {
       case '/':
-        page = const AuthScreen();
+        // page = const AuthScreen();
+        page = const AuthScreenAPI();
         break;
       case '/home':
         page = const HomePage();

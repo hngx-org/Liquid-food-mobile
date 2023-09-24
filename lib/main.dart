@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/feature/lunches/presentation/lunches_view_model.dart';
 import 'package:free_lunch_app/screens/new_screen/auth_screen.dart';
+import 'package:free_lunch_app/screens/new_screen/auth_screen_api.dart';
 import 'package:free_lunch_app/screens/new_screen/change_password_screen.dart';
 import 'package:free_lunch_app/screens/new_screen/login_screen.dart';
 import 'package:free_lunch_app/screens/new_screen/profile_page.dart';
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         navigatorKey: Utils.mainAppNav,
         routes: {
-          '/': (context) => const AuthScreen(),
+          // '/': (context) => const AuthScreen(),
+          '/': (context) => const AuthScreenAPI(),
           '/home': (context) => const BottomNavShell(),
           '/lunches': (context) => const LunchesView(),
           '/profile': (context) => const ProfileImagePage(),

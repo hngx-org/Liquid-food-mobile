@@ -91,7 +91,7 @@ class _AddAccountViewState extends State<AddAccountView> {
                     //     context, '/withdraw-account');
                   }
                   ;
-                  Navigator.pushReplacementNamed(context, '/withdraw-account');
+                  Navigator.pushNamed(context, '/withdraw-account');
                 },
                 title: 'Save',
                 color: AppColors.backgroundColor,

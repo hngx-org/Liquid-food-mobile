@@ -77,7 +77,7 @@ class AuthInputTextFormContainer extends StatelessWidget {
             return "Text field can't be empty";
           }
           if (text.length < 4) {
-            return "input should be 4 characters long or more";
+            return "Input should be 4 characters long or more";
           }
         });
   }

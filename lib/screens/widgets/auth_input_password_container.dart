@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/feature/utils/colors.dart';
+// import 'package:free_lunch_app/feature/utils/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../utils/utils/colors.dart';
 
 class AuthInputPasswordContainer extends StatefulWidget {
   const AuthInputPasswordContainer({

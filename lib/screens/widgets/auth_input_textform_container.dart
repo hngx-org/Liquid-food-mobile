@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../feature/utils/colors.dart';
-
+// import '../../feature/utils/colors.dart';
+import '../../utils/utils/colors.dart';
 class AuthInputTextFormContainer extends StatelessWidget {
   AuthInputTextFormContainer({
     super.key,

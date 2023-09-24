@@ -2,7 +2,7 @@
 // this file is a copy of auth_screen.dart but implemented differently
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:free_lunch_app/feature/utils/colors.dart';
+// import 'package:free_lunch_app/feature/utils/colors.dart';
 import 'package:free_lunch_app/screens/widgets/widgets.dart';
 import 'package:free_lunch_app/withdrawal/presentation/widgets/w_button.dart';
 // import 'package:google_fonts/google_fonts.dart';
@@ -12,6 +12,7 @@ import '../../withdrawal/presentation/widgets/screen_styles.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
+import '../../utils/utils/colors.dart';
 
 enum UserRole {
   admin,

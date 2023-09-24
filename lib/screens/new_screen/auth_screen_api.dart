@@ -5,11 +5,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:free_lunch_app/feature/utils/colors.dart';
 import 'package:free_lunch_app/screens/widgets/widgets.dart';
 import 'package:free_lunch_app/withdrawal/presentation/widgets/w_button.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
-
-import '../../widgets/avatar.dart';
+// import '../../widgets/avatar.dart';
 import '../../withdrawal/presentation/widgets/screen_styles.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 
 enum UserRole {
   admin,
@@ -35,11 +37,15 @@ class _AuthScreenAPIState extends State<AuthScreenAPI> {
   final _otpTokenController = TextEditingController();
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
+  final GlobalKey<State> _key = GlobalKey<State>();
+
   bool _isPasswordVisible = false;
-  final bool _isConfirmPasswordVisible = false;
+  // final bool _isConfirmPasswordVisible = false;
   bool isLogin = true;
 
   UserRole userRole = UserRole.admin;
+  var logger = Logger();
+
 
   @override
   void dispose() {
@@ -328,17 +334,115 @@ class _AuthScreenAPIState extends State<AuthScreenAPI> {
                   ),
                 SizedBox(height: height * 0.040),
                 // ... other UI elements
+                // initial Look of the button without the API
+                // WButton(
+                //   onTap: () => setState(() {
+                //     if (userRole == UserRole.admin) {
+                //       isLogin = !isLogin;
+                //     } else {
+                //       isLogin = true;
+                //     }
+                //   }),
+                //   title: isLogin ? 'Create Account' : 'Back to Login',
+                //   color: AppColors.backgroundColor,
+                // ),
+
+                // Testing the button with the API
                 WButton(
-                  onTap: () => setState(() {
-                    if (userRole == UserRole.admin) {
-                      isLogin = !isLogin;
-                    } else {
-                      isLogin = true;
-                    }
-                  }),
-                  title: isLogin ? 'Create Account' : 'Back to Login',
-                  color: AppColors.backgroundColor,
-                ),
+  onTap: () {
+    setState(() async {
+    if (isLogin) {
+      // Call the staff API to save user data
+      final response = await http.post(
+        Uri.parse('https://liquid-food-backend-production.up.railway.app/api/auth/admin/signup'),
+        headers: {'Content-Type': 'application/json'},
+         body: jsonEncode({
+          'email': _emailController.text,
+          'password': _passwordController.text,
+          'fullName': _fullNameController.text,
+          'phoneNumber': _phoneNumberController.text,
+          'organizationName': _organizationNameController.text,
+        }),   
+      );
+      // Handle the response from the staff API
+      if (response.statusCode == 201) {
+        // User data saved successfully
+
+        final responseData = jsonDecode(response.body)['data'];
+        // Do something with the responseData
+        logger.i('Response data: $responseData');
+
+        // _emailController.clear();
+        // _passwordController.clear();
+        // _fullNameController.clear();
+        // _phoneNumberController.clear();
+        // _organizationNameController.clear();
+         setState(() {
+          _emailController.clear();
+          _passwordController.clear();
+          _fullNameController.clear();
+          _phoneNumberController.clear();
+          _organizationNameController.clear();
+        });
+
+          showDialog(
+    context: _key.currentContext!,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Success'),
+        content: Text(responseData['message']),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      );
+    },
+  );
+      } else {
+        // Error saving user data
+        final errorMessage = jsonDecode(response.body)['message'];
+        logger.e('Error message: $errorMessage');
+
+        // Do something with the errorMessage
+      }
+    } if (!isLogin) {
+      // Call the admin API to save user data
+      final response = await http.post(
+        Uri.parse('https://liquid-food-backend-production.up.railway.app/api/auth/staff/signup'),
+        headers: {'Content-Type': 'application/json'},  
+         body: jsonEncode({
+          'email': _emailController.text,
+          'password': _passwordController.text,
+          'otpToken': _otpTokenController.text,
+          'firstName': _firstNameController.text,
+          'lastName': _lastNameController.text,
+          'phoneNumber': _phoneNumberController.text,
+        }),
+      );
+      // Handle the response from the admin API
+      if (response.statusCode == 201) {
+        // User data saved successfully
+        final responseData = jsonDecode(response.body)['data'];
+        // Do something with the responseData
+        logger.i('Response data: $responseData');
+      } else {
+        // Error saving user data
+        final errorMessage = jsonDecode(response.body)['message'];
+        // Do something with the errorMessage
+        logger.e('Error message: $errorMessage');
+      }
+    }
+    });
+  },
+  title: isLogin ? 'Create Account' : 'Back to Login',
+  color: AppColors.backgroundColor,
+  
+),
+
                 SizedBox(height: height * 0.020),
                 if (isLogin)
                   GestureDetector(

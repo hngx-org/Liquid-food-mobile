@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/features/home/user_profile/user_profile_repo.dart';
 import 'package:free_lunch_app/features/login/model/login.model.dart';
 import 'package:free_lunch_app/features/login/model/user.login_model.dart';
 import 'package:free_lunch_app/utils/appurls.dart';
@@ -12,6 +13,8 @@ abstract class ILoginRepo {
 }
 
 class LoginRepository extends ILoginRepo {
+  IUserProfileRepo userProfileRepo = UserProfileRepo();
+
   @override
   Future<UserModel> login(login, context) async {
     final url = AppUrl.loginUrl;
@@ -28,7 +31,9 @@ class LoginRepository extends ILoginRepo {
       }
       if (response.statusCode == 200 || response.statusCode == 201) {
         final responseData = jsonDecode(response.body);
-
+        if (context.mounted) {
+          await userProfileRepo.fetchUserProfile(context);
+        }
         UserModel user = UserModel.fromJson(responseData);
 
         if (context.mounted) {

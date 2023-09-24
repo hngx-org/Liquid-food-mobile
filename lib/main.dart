@@ -10,6 +10,7 @@ import 'package:free_lunch_app/utils/routing/utlils.dart';
 import 'package:free_lunch_app/withdrawal/presentation/pages/withdraw_account.dart';
 import 'package:free_lunch_app/withdrawal/presentation/pages/withdrawal_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../features/main/view/bottom_nav_shell.dart';
 import '../features/main/navigation/providers/bottom_navigation.viewmodel.dart';
 
@@ -59,8 +60,14 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = context.read<UserViewModel>();
-    Future.delayed(const Duration(seconds: 2), () {
-      if (user.accessToken == null || user.accessToken!.isNotEmpty) {
+    Future.delayed(const Duration(seconds: 2), () async {
+      SharedPreferences sp = await SharedPreferences.getInstance();
+      sp.clear();
+      if (user.accessToken == null || user.accessToken!.isEmpty) {
+        sp.clear();
+        if (!context.mounted) {
+          return;
+        }
         Navigator.pushReplacementNamed(context, '/login');
       } else {
         Utils.mainAppNav.currentState?.pushReplacementNamed('/home');

@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/features/home/repository/irepository.home.dart';
-import 'package:free_lunch_app/features/home/user_balance/user_balance.repo.dart';
 import 'package:free_lunch_app/features/home/user_profile/user_profile_repo.dart';
 import 'package:free_lunch_app/features/login/viewmodels/user.viewmodel.dart';
 import 'package:free_lunch_app/utils/appurls.dart';
@@ -11,11 +10,12 @@ import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
 class HomeRepository extends IRepositoryHome {
-  IUserBalanceRepo userBalanceRepo = UserBalanceRepo();
   IUserProfileRepo userProfileRepo = UserProfileRepo();
+
   @override
   Future<List<dynamic>> fetchCoworkerItems(
       BuildContext context, searchController) async {
+    await userProfileRepo.fetchUserProfile(context);
     String url = AppUrl.userAll;
     if (searchController.text.toString().isNotEmpty) {
       url =

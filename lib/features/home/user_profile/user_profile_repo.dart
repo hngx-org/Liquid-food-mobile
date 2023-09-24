@@ -16,7 +16,7 @@ abstract class IUserProfileRepo {
 class UserProfileRepo extends IUserProfileRepo {
   @override
   Future<void> fetchUserProfile(BuildContext context) async {
-    String url = AppUrl.lunchBalance;
+    String url = AppUrl.userProfile;
     final userData = context.read<UserViewModel>();
     final accessToken = userData.accessToken.toString();
     Map<String, String> headers = {
@@ -29,26 +29,49 @@ class UserProfileRepo extends IUserProfileRepo {
       }
       http.Response response = await http.get(Uri.parse(url), headers: headers);
       if (kDebugMode) {
-        print('${response.statusCode} $userData ${jsonDecode(response.body)}');
+        // print('${response.statusCode} $userData ${jsonDecode(response.body)}');
+      }
+
+      final responseData = await jsonDecode(response.body);
+      if (responseData != null) {
+        if (kDebugMode) {
+          print("Profile APi:$responseData" +
+              responseData['data']['lunchCreditBalance']);
+        }
+        if (context.mounted) {
+          Provider.of<UserViewModel>(context).saveUserDetails(
+              accessToken: '',
+              refreshToken: '',
+              email: responseData['data']['email'].toString(),
+              userId: responseData['data']['id'].toString(),
+              fullName:
+                  '${responseData['data']['firstName']} ${responseData['data']['lastName']}',
+              profilePath: responseData['data']['profilePic'].toString(),
+              orgName: responseData['data']['organizations']['name'].toString(),
+              balance: responseData['data']['lunchCreditBalance'].toString());
+        }
       }
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final responseData = jsonDecode(response.body);
-        UserProfileModel userProfile = UserProfileModel.fromJson(responseData);
-        if (!context.mounted) {
-          return;
+        final responseData = await jsonDecode(response.body);
+        if (kDebugMode) {
+          print("Profile APi:$responseData" +
+              responseData['data']['lunchCreditBalance']);
         }
-        context.read<UserViewModel>().saveUserDetails(
-            accessToken: '',
-            refreshToken: '',
-            email: userProfile.data!.email.toString(),
-            userId: userProfile.data!.id.toString(),
-            fullName:
-                '${userProfile.data!.firstName.toString()} ${userProfile.data!.lastName.toString()}',
-            profilePath: userProfile.data!.profilePicture.toString(),
-            orgName: userProfile.data!.organizationName.toString());
+        if (context.mounted) {
+          Provider.of<UserViewModel>(context).saveUserDetails(
+              accessToken: '',
+              refreshToken: '',
+              email: responseData['data']['email'].toString(),
+              userId: responseData['data']['id'].toString(),
+              fullName:
+                  '${responseData['data']['firstName']} ${responseData['data']['lastName']}',
+              profilePath: responseData['data']['profilePic'].toString(),
+              orgName: responseData['data']['organizations']['name'].toString(),
+              balance: responseData['data']['lunchCreditBalance'].toString());
+        }
       } else if (response.statusCode == 400) {
         final responseData = jsonDecode(response.body);
-        UserProfileModel userProfile = UserProfileModel.fromJson(responseData);
+        UserProfile userProfile = UserProfile.fromJson(responseData);
         if (context.mounted) {
           Utils.snackBarMessage(userProfile.message.toString(), context);
         }

@@ -53,6 +53,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final userProfile = Provider.of<UserViewModel>(context);
+    print("profile ${userProfile.fullName.toString()} ${userProfile.balance}");
     final height = MediaQuery.sizeOf(context).height;
     final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
@@ -92,7 +93,7 @@ class _HomePageState extends State<HomePage> {
             TotalCardThree(
                 text1: 'You’ve done well this month. Cheers 🥂',
                 text2: 'Free Lunches',
-                totalNum: context.read<HomeRepoVM>().lunchCredit.toString(),
+                totalNum: userProfile.balance.toString(),
                 width: width * .942,
                 height: height * .110),
             const SizedBox(

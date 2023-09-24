@@ -29,9 +29,11 @@ class LoginViewModel with ChangeNotifier {
             userId: value.data!.id.toString(),
             profilePath: '',
             orgName: '',
-            fullName: '');
+            fullName: '',
+            balance: '');
         Utils.mainAppNav.currentState?.pushReplacementNamed('/home');
       } else {
+        setLoading(false);
         return;
       }
     });

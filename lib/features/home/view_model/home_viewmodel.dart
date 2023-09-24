@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/features/home/repository/home.repo.dart';
 import 'package:free_lunch_app/features/home/repository/irepository.home.dart';
-import 'package:free_lunch_app/features/home/user_balance/user_balance.repo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeRepoVM with ChangeNotifier {
   IRepositoryHome repositoryHome = HomeRepository();
-  IUserBalanceRepo userBalanceRepo = UserBalanceRepo();
   Future<List<dynamic>>? _coworkersList;
   Future<List<dynamic>>? get coworkersList => _coworkersList;
 

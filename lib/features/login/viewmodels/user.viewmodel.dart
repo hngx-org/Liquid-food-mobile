@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -10,6 +12,7 @@ class UserViewModel extends ChangeNotifier {
   String? _fullName;
   String? _profilePath;
   String? _orgName;
+  String? _balance;
 
   UserViewModel() {
     _loadUserDetails();
@@ -24,6 +27,7 @@ class UserViewModel extends ChangeNotifier {
     _fullName = _prefs.getString('full_name') ?? '';
     _profilePath = _prefs.getString('profile_path') ?? '';
     _orgName = _prefs.getString('org_name');
+    _balance = _prefs.getString('balance');
     notifyListeners();
   }
 
@@ -34,6 +38,7 @@ class UserViewModel extends ChangeNotifier {
   String? get fullName => _fullName;
   String? get orgName => _orgName;
   String? get profilePath => _profilePath;
+  String? get balance => _balance;
 
   Future<void> saveUserDetails(
       {required String accessToken,
@@ -42,7 +47,8 @@ class UserViewModel extends ChangeNotifier {
       required String userId,
       required String fullName,
       required String profilePath,
-      required String orgName}) async {
+      required String orgName,
+      required String balance}) async {
     _accessToken = accessToken;
     _refreshToken = refreshToken;
     _email = email;
@@ -50,6 +56,7 @@ class UserViewModel extends ChangeNotifier {
     _fullName = fullName;
     _orgName = orgName;
     _profilePath = profilePath;
+    _balance = balance;
 
     await _prefs.setString('access_token', accessToken);
     await _prefs.setString('refresh_token', refreshToken);
@@ -58,7 +65,7 @@ class UserViewModel extends ChangeNotifier {
     await _prefs.setString('full_name', fullName);
     await _prefs.setString('org_name', orgName);
     await _prefs.setString('profile_path', profilePath);
-
+    await _prefs.setString('balance', balance);
     notifyListeners();
   }
 }

@@ -48,11 +48,11 @@ class SendLunches extends StatelessWidget {
                       width: MediaQuery.sizeOf(context).width * .25,
                       height: MediaQuery.sizeOf(context).height * .15),
                   Text(
-                    '${worker.firstName.toString()} ${worker.lastName.toString()}',
+                    '${worker['firstName'].toString()} ${worker['lastName'].toString()}',
                     style: AppTypography.subHeader1black,
                   ),
                   Text(
-                    worker.organizationName.toString(),
+                    worker['organizations']['name'].toString(),
                     style: AppTypography.bodyText3,
                   ),
                 ],

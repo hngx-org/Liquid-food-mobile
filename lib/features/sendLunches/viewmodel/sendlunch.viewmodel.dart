@@ -8,6 +8,9 @@ class SendLunchVM with ChangeNotifier {
 
   bool _selectedCount = false;
   bool get selectedCount => _selectedCount;
+
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
   int _lunchCount = 0;
   int get lunchCount => _lunchCount;
 
@@ -17,8 +20,14 @@ class SendLunchVM with ChangeNotifier {
     notifyListeners();
   }
 
+  void setLoading(bool selected) {
+    _isLoading = selected;
+    notifyListeners();
+  }
+
   Future<void> sendLunch(
       BuildContext context, SendLunchItem sendLunchItem) async {
-    sendLunchRepo.sendLunches(sendLunchItem).then((value) => {});
+    setLoading(true);
+    sendLunchRepo.sendLunches(context, sendLunchItem);
   }
 }

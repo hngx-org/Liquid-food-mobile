@@ -9,7 +9,7 @@ class CommentWidget extends StatefulWidget {
 
   const CommentWidget({
     Key? key,
-    required this.initialCommentText,
+    required this.initialCommentText, required TextEditingController commentController,
   }) : super(key: key);
 
   @override

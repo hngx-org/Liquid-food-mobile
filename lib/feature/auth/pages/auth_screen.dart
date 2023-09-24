@@ -216,7 +216,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       height: height,
                       keyboardType: TextInputType.visiblePassword,
                       validator: _validators.forConfirmPassword,
-                      isObsure: _isPasswordVisible,
+                      isObsure: true,
                       hintText: 'Enter your confirm password',
                     ),
                     SizedBox(height: height * 0.05),

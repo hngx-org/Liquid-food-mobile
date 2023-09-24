@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/feature/auth/viewmodels/create_acct_viewmodel.dart';
 import 'package:free_lunch_app/feature/lunches/presentation/lunches_view_model.dart';
 import 'package:free_lunch_app/feature/auth/viewmodels/login.viewmodel.dart';
-import 'package:free_lunch_app/feature/auth/new_screen/auth_screen.dart';
-import 'package:free_lunch_app/feature/auth/new_screen/invited_account_screen.dart';
-import 'package:free_lunch_app/feature/auth/new_screen/login_screen.dart';
-import 'package:free_lunch_app/feature/auth/new_screen/profile_page.dart';
+import 'package:free_lunch_app/feature/auth/pages/auth_screen.dart';
+import 'package:free_lunch_app/feature/auth/pages/invited_account_screen.dart';
+import 'package:free_lunch_app/feature/auth/pages/login_screen.dart';
+import 'package:free_lunch_app/feature/auth/pages/profile_page.dart';
 import 'package:free_lunch_app/withdrawal/presentation/pages/withdraw_account.dart';
 import 'package:free_lunch_app/withdrawal/presentation/pages/withdrawal_screen.dart';
 import '../features/home/view_model/home_viewmodel.dart';
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => HomeRepoVM()),
         ChangeNotifierProvider(create: (_) => SendLunchVM()),
         ChangeNotifierProvider(create: (_) => LunchesViewModel()),
-        ChangeNotifierProvider(create: (_) => LoginViewModel())
+        ChangeNotifierProvider(create: (_) => LoginViewModel()),
+        ChangeNotifierProvider(create: (_) => CreatAcctViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

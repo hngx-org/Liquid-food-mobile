@@ -19,20 +19,18 @@ class AuthService {
   //     base64.encode(utf8.encode('$_username:$_password'));
 
   static Future<AuthResult> registerUser(AdminUser user) async {
-    // const String url = '/api/auth/admin/signup';
+    final url = AppUrl.adminSignupUrl;
 
     Map<String, String> headers = {
-      "accept": "application/json",
+      // "accept": "application/json",
       "Content-Type": "application/json",
       // HttpHeaders.authorizationHeader: _authToken,
     };
 
-    // Uri uri = Uri.https(_baseUrl, url);
-    final url = AppUrl.adminSignupUrl;
-
+    Uri uri = Uri.parse(url);
     try {
       var response = await http
-          .post(Uri.parse(url), headers: headers, body: user.toJson())
+          .post(uri, headers: headers, body: user.toJson())
           .timeout(const Duration(seconds: 10));
 
       if (response.statusCode.toString().startsWith("400")) {

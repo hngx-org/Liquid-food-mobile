@@ -19,25 +19,15 @@ class AdminUser {
     required this.organizationName,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      "email": email,
-      "password": password,
-      "fullName": fullName,
-      "phoneNumber": phoneNumber,
-      "organizationName": organizationName,
-    };
-  }
+  Map<String, dynamic> toMap() => {
+        "email": email,
+        "password": password,
+        "fullName": fullName,
+        "phoneNumber": phoneNumber,
+        "organizationName": organizationName,
+      };
 
-  // Map<String, dynamic> toJson() => {
-  //       "email": email,
-  //       "password": password,
-  //       "fullName": fullName,
-  //       "phoneNumber": phoneNumber,
-  //       "organizationName": organizationName,
-  //     };
-
-  String toJson() => json.encode(toMap());
+  String toJson() => jsonEncode(toMap());
 
   AdminUser copyWith({
     String? email,

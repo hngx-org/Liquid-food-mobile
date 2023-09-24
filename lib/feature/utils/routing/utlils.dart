@@ -72,7 +72,7 @@ class TextFieldValidator {
         if (value!.isEmpty) {
           return 'required';
         } else if (value != password) {
-          return 'password dismatched';
+          return 'password mismatched';
         } else {
           return null;
         }

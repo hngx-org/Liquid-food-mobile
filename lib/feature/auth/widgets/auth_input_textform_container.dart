@@ -63,6 +63,12 @@ class AuthInputTextFormContainer extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(6),
         ),
+        focusedErrorBorder: roundBorder.copyWith(
+          borderSide: const BorderSide(
+            color: Colors.red,
+          ),
+          borderRadius: BorderRadius.circular(6),
+        ),
         hintText: hintText,
         hintStyle: GoogleFonts.workSans(
           fontSize: 12,

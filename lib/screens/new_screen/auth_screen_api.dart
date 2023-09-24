@@ -478,7 +478,7 @@ class _AuthScreenAPIState extends State<AuthScreenAPI> {
                 if (userRole == UserRole.admin)
                   const Center(
                     child: WText(
-                      text: 'Toggle the button to switch to normal user',
+                      text: 'Proceed to login after creating account',
                       fontWeight: FontWeight.w500,
                       fontSize: 12,
                     ),

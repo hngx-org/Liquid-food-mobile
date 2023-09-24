@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:free_lunch_app/feature/utils/colors.dart';
 import 'package:free_lunch_app/feature/utils/svg_icons.dart';
 import 'package:free_lunch_app/feature/utils/typography.dart';
+import 'package:free_lunch_app/withdrawal/presentation/pages/withdraw_account.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 import '../../repo/lunches_repo.dart';
 import '../../repo/mock_lunchinfo.dart';
 import '../../../widgets/custom_tilecard.dart';
 import 'lunches_view_model.dart';
+import '../../../withdrawal/presentation/pages/withdrawal_screen.dart';
 
 class LunchesView extends StatelessWidget {
   const LunchesView({
@@ -36,6 +38,7 @@ class LunchesView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Card(
+              color: AppColors.searchGray,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -96,7 +99,7 @@ class LunchesView extends StatelessWidget {
         ),
       ),
       floatingActionButton: ElevatedButton(
-        onPressed: () {},
+        onPressed: () => Navigator.pushNamed(context, '/withdrawal-screen'),
         style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.tPrimaryColor,
             shape: RoundedRectangleBorder(

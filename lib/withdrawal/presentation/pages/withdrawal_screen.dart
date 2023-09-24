@@ -53,9 +53,10 @@ class WithdrawalScreen extends StatelessWidget {
               SizedBox(
                 width: width * 0.65,
                 child: WButton(
+                  // onTap: () {},
                   onTap: () => Navigator.pushNamed(
                     context,
-                    WithdrawalAccount.routeName,
+                    '/add-account',
                   ),
                   title: 'Add your account detials',
                   color: AppColors.backgroundColor,
@@ -89,7 +90,8 @@ class WithdrawalScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: height * 0.05),
-              const WButton(
+              WButton(
+                onTap: () {},
                 leading: Icon(
                   IconlyLight.upload,
                   color: AppColors.backgroundColor,

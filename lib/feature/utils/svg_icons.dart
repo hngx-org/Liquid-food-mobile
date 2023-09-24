@@ -10,6 +10,8 @@ class AppSvgIcons {
       SvgPicture.asset('assets/svgs/home-active.svg', semanticsLabel: 'home active');
   static Widget hamburgerDark =
       SvgPicture.asset('assets/svgs/hambuger-dark.svg', semanticsLabel: 'hambuger dark');
+  static Widget hamburgerDarkBold =
+      SvgPicture.asset('assets/svgs/burger.svg', semanticsLabel: 'hambuger dark bold');
   static Widget hamburgerLight =
       SvgPicture.asset('assets/svgs/hambuger-light.svg', semanticsLabel: 'hambuger light');
   static Widget hamburgerPrimary2 =
@@ -26,5 +28,7 @@ class AppSvgIcons {
       SvgPicture.asset('assets/svgs/svg3.svg', semanticsLabel: 'Lunch Recieved');
   static Widget loginSvg =
       SvgPicture.asset('assets/svgs/svg4.svg', semanticsLabel: 'Login');
+  static Widget profileBanner =
+      SvgPicture.asset('assets/svgs/banner.svg', semanticsLabel: 'Profile Banner');
 }
 

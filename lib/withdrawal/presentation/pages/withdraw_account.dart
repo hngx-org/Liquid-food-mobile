@@ -9,11 +9,10 @@ import '../widgets/available_lunches.dart';
 import '../widgets/withdraw_summary.dart';
 import './/withdrawal/presentation/widgets/w_button.dart';
 import '../widgets/screen_styles.dart';
+import 'withdrawal_screen.dart';
 
 class WithdrawalAccount extends StatefulWidget {
   const WithdrawalAccount({super.key});
-
-  static const routeName = '/withdraw-account';
 
   @override
   State<WithdrawalAccount> createState() => _WithdrawalAccountState();
@@ -56,11 +55,16 @@ class _WithdrawalAccountState extends State<WithdrawalAccount> {
                 SizedBox(height: height * 0.015),
                 GestureDetector(
                   onTap: () {},
-                  child: const WText(
-                    text: 'Not your account information?',
-                    color: AppColors.primaryColor,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/add-account');
+                    },
+                    child: const WText(
+                      text: 'Not your account information?',
+                      color: AppColors.primaryColor,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
                 SizedBox(height: height * 0.04),
@@ -90,9 +94,16 @@ class _WithdrawalAccountState extends State<WithdrawalAccount> {
                     ],
                   ),
                 ),
-                SizedBox(height: height * 0.07),
-                const WButton(
-                  leading: Icon(
+                SizedBox(height: height * 0.05),
+                WButton(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const WithdrawalScreen()),
+                    );
+                  },
+                  leading: const Icon(
                     IconlyLight.upload,
                     color: AppColors.backgroundColor,
                   ),

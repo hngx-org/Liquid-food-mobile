@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-
 import '../feature/utils/colors.dart';
 import '../feature/utils/svg_icons.dart';
+import '../feature/utils/icons.dart';
+import '../feature/utils/typography.dart';
+
 
 // This files contains differents total cards
+// and  arguments to customize them and add the adequate values
 class TotalCardOne extends StatelessWidget {
   final String totalNum;
   final double width;
@@ -148,7 +151,7 @@ class TotalCardThree extends StatelessWidget {
             text1,
             style: TextStyle(
               color: AppColors.tPrimaryColor,
-              fontSize: width * .01 + 14,
+              fontSize: width * .01 + 10,
             ),
           ),
           SizedBox(height: height * .02),
@@ -184,7 +187,7 @@ class TotalCardThree extends StatelessWidget {
                     // margin: const EdgeInsets.only(bottom: 10),
                     child: AppSvgIcons.hamburgerPrimary2,
                   ),
-                  SizedBox(width: width * .02),
+                  SizedBox(width: width * .025),
                   Text(
                     totalNum,
                     style: TextStyle(
@@ -197,12 +200,12 @@ class TotalCardThree extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: height * .02),
+          SizedBox(height: height * .05),
           Text(
             text2,
             style: TextStyle(
               color: AppColors.tPrimaryColor,
-              fontSize: width * .01 + 14,
+              fontSize: width * .01 + 11,
             ),
           ),
         ],

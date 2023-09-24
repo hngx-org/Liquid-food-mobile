@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import '../feature/utils/colors.dart';
-import '../feature/utils/svg_icons.dart';
-import '../feature/utils/icons.dart';
-import '../feature/utils/typography.dart';
-
+import '../utils/utils/colors.dart';
+import '../utils/utils/svg_icons.dart';
 
 // This files contains differents total cards
 // and  arguments to customize them and add the adequate values

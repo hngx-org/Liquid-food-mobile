@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/features/home/models/co_worker.model.dart';
 import 'package:free_lunch_app/features/home/repository/home.repo.dart';
 import 'package:free_lunch_app/features/home/repository/irepository.home.dart';
 import 'package:free_lunch_app/features/home/view_model/home_viewmodel.dart';
@@ -11,10 +10,10 @@ import 'package:free_lunch_app/utils/res/icons.dart';
 import 'package:free_lunch_app/utils/routing/utlils.dart';
 import 'package:free_lunch_app/utils/res/svg_icons.dart';
 import 'package:free_lunch_app/utils/res/typography.dart';
-import 'package:free_lunch_app/utils/widgets/action_buttons.dart';
-import 'package:free_lunch_app/utils/widgets/avatar.dart';
-import 'package:free_lunch_app/utils/widgets/custom_text_field.dart';
-import 'package:free_lunch_app/utils/widgets/total_card.dart';
+import 'package:free_lunch_app/widgets/action_buttons.dart';
+import 'package:free_lunch_app/widgets/avatar.dart';
+import 'package:free_lunch_app/widgets/custom_text_field.dart';
+import 'package:free_lunch_app/widgets/total_card.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -91,6 +90,8 @@ class _HomePageState extends State<HomePage> {
               height: 10,
             ),
             TotalCardThree(
+                text1: 'You’ve done well this month. Cheers 🥂',
+                text2: 'Free Lunches',
                 totalNum: context.read<HomeRepoVM>().lunchCredit.toString(),
                 width: width * .942,
                 height: height * .110),
@@ -126,10 +127,10 @@ class _HomePageState extends State<HomePage> {
               height: 15,
             ),
             Expanded(
-              child: FutureBuilder<List<CoWorker>>(
+              child: FutureBuilder<List<dynamic>>(
                   future: Provider.of<HomeRepoVM>(context).coworkersList,
                   builder: (BuildContext context,
-                      AsyncSnapshot<List<CoWorker>> snapshot) {
+                      AsyncSnapshot<List<dynamic>> snapshot) {
                     if (!snapshot.hasData) {
                       Provider.of<HomeRepoVM>(context)
                           .coworkersList
@@ -172,6 +173,7 @@ class _HomePageState extends State<HomePage> {
                             height: 20,
                           ),
                           ActionBtn(
+                              onTap: () {},
                               widthM: MediaQuery.sizeOf(context).width * .8,
                               text: 'Invite co-worker'),
                         ],
@@ -211,11 +213,12 @@ class _HomePageState extends State<HomePage> {
                                         Column(
                                           children: [
                                             Text(
-                                              coWorkerItem!.fullName.toString(),
+                                              '${coWorkerItem!['firstName'].toString()} ${coWorkerItem['lastName'].toString()}',
                                               style: AppTypography.bodyText3,
                                             ),
                                             Text(
-                                              coWorkerItem.organizationName
+                                              coWorkerItem['organizations']
+                                                      ['name']
                                                   .toString(),
                                               style: AppTypography.subTitle3,
                                             )
@@ -229,7 +232,10 @@ class _HomePageState extends State<HomePage> {
                                             MaterialPageRoute(
                                                 builder: (_) => SendLunches(
                                                     worker: coWorkerItem,
-                                                    totalLunches: '12')));
+                                                    totalLunches: context
+                                                        .read<HomeRepoVM>()
+                                                        .lunchCredit
+                                                        .toString())));
                                       },
                                       icon: AppSvgIcons.hamburgerLight,
                                       text: 'Send Lunch',

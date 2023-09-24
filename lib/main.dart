@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/feature/lunches/presentation/lunches_view_model.dart';
 import 'package:free_lunch_app/features/create_account/create_account.dart';
 import 'package:free_lunch_app/features/home/view_model/home_viewmodel.dart';
 import 'package:free_lunch_app/features/login/view/login.dart';
@@ -6,6 +7,8 @@ import 'package:free_lunch_app/features/login/viewmodels/login.viewmodel.dart';
 import 'package:free_lunch_app/features/login/viewmodels/user.viewmodel.dart';
 import 'package:free_lunch_app/features/sendLunches/viewmodel/sendlunch.viewmodel.dart';
 import 'package:free_lunch_app/utils/routing/utlils.dart';
+import 'package:free_lunch_app/withdrawal/presentation/pages/withdraw_account.dart';
+import 'package:free_lunch_app/withdrawal/presentation/pages/withdrawal_screen.dart';
 import 'package:provider/provider.dart';
 import '../features/main/view/bottom_nav_shell.dart';
 import '../features/main/navigation/providers/bottom_navigation.viewmodel.dart';
@@ -27,6 +30,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => SendLunchVM()),
         ChangeNotifierProvider(create: (_) => LoginViewModel()),
         ChangeNotifierProvider(create: (_) => UserViewModel()),
+        ChangeNotifierProvider(create: (_) => LunchesViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -40,6 +44,8 @@ class MyApp extends StatelessWidget {
           '/signup': (context) => const CreateAccount(),
           '/login': (context) => const AuthLoginScreen(),
           '/home': (context) => const BottomNavShell(),
+          '/withdrawal': (context) => const WithdrawalScreen(),
+          '/withdrawalAccount': (context) => const WithdrawalAccount(),
         },
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),

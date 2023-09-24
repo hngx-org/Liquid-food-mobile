@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../feature/utils/colors.dart';
-import '../feature/utils/svg_icons.dart';
+import '../utils/utils/colors.dart';
+import '../utils/utils/svg_icons.dart';
 
-// 
+//
 class CustomCard extends StatelessWidget {
   final String cardText;
   final Widget icon;
   final double? iconWidth;
   final double? iconHeight;
+  final bool selected;
   const CustomCard(
       {super.key,
       required this.cardText,
       required this.icon,
       this.iconWidth,
-      this.iconHeight});
+      this.iconHeight,
+      required this.selected});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,9 @@ class CustomCard extends StatelessWidget {
     return FittedBox(
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.tGray.withOpacity(.5),
+          color: selected
+              ? AppColors.primaryColor.withOpacity(.3)
+              : AppColors.tGray.withOpacity(.5),
           borderRadius: BorderRadius.circular(4),
         ),
         padding: const EdgeInsets.symmetric(

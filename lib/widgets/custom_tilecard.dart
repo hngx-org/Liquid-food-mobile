@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import '../feature/lunches/models/lunch_model.dart';
 import '../feature/lunches/presentation/lunches_view_model.dart';
 import 'package:provider/provider.dart';
-import '../feature/utils/svg_icons.dart';
-import '../feature/utils/typography.dart';
-
+import '../utils/utils/svg_icons.dart';
+import '../utils/utils/typography.dart';
 
 class CustomTileCard extends StatelessWidget {
   const CustomTileCard({super.key, required this.lunchInfo});

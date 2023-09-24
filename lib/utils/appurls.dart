@@ -18,7 +18,7 @@ class AppUrl {
   static String get orgInvite => '${baseUrl}api/organization/invite';
   static String get orgLunch => '${baseUrl}api/organization/lunch';
   static String get userBank => '${baseUrl}api/user/bank';
-  static String get searchUser => '${baseUrl}api/user/search/';
+  static String get searchUser => '${baseUrl}api/user/all-users';
   static String get userProfile => '${baseUrl}api/user/profile';
   static String get userBankDetails => '${baseUrl}api/user/bank-details';
   static String get userAll => '${baseUrl}api/user/all';

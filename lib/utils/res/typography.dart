@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/utils/res/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../feature/utils/colors.dart';
 
 class AppTypography {
   static TextStyle headline4 = GoogleFonts.workSans(

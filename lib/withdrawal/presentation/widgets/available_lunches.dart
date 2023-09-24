@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../feature/utils/colors.dart';
-import '../../../feature/utils/svg_icons.dart';
+import '../../../utils/utils/colors.dart';
+import '../../../utils/utils/svg_icons.dart';
 import '../../models/withdraw_screen_model.dart';
 import '../../repositories/mock_repo.dart';
 import 'screen_styles.dart';

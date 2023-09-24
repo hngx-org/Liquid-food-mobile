@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/feature/lunches/presentation/lunches_view.dart';
 import 'package:free_lunch_app/features/home/view/home_page.dart';
 
 class Routes {
@@ -9,9 +10,7 @@ class Routes {
         page = const HomePage();
         break;
       case '/lunches':
-        page = const Center(
-          child: Text('lunches'),
-        );
+        page = const LunchesView();
         break;
       case '/profile':
         page = const Center(

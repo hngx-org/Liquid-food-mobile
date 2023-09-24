@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
           '/change-password': (_) => const ChangePasswordScreen(),
           '/log-in': (_) => const LoginScreen(),
           // '/': (context) => const SplashPage(),
-          '/signup': (context) => const CreateAccount(),
+          // '/signup': (context) => const CreateAccount(),
           '/login': (context) => const AuthLoginScreen(),
           // '/home': (context) => const BottomNavShell(),
           '/withdrawal': (context) => const WithdrawalScreen(),

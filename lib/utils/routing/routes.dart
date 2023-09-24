@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/features/home/view/admin_home.dart';
+import 'package:free_lunch_app/features/login/view/login.dart';
 import 'package:free_lunch_app/screens/new_screen/auth_screen_api.dart';
 import 'package:free_lunch_app/screens/new_screen/change_password_screen.dart';
 
@@ -30,7 +31,8 @@ class Routes {
         page = const ProfileImagePage();
         break;
       case '/log-in':
-        page = const LoginScreen();
+        // page = const LoginScreen();
+        page = const AuthLoginScreen();
         break;
       case '/withdrawal-screen':
         page = const WithdrawalScreen();

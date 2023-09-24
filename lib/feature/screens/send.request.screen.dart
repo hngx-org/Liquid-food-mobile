@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../utils/res/colors.dart';
-import '../../feature/utils/icons.dart';
-import '../../feature/utils/svg_icons.dart';
-import '../../feature/utils/typography.dart';
+import 'package:free_lunch_app/utils/res/colors.dart';
+import 'package:free_lunch_app/utils/routing/utlils.dart';
+import '../../utils/utils/svg_icons.dart';
+import '../../utils/utils/typography.dart';
 import '../../widgets/action_buttons.dart';
 
 class SendRequestPage extends StatelessWidget {
@@ -29,7 +30,7 @@ class SendRequestPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   boxShadow:  const [
                     BoxShadow(
-                      color: AppColors.commentShade,
+                      color: AppColors.black6,
                       blurRadius: 16,
                       offset: Offset(0, 4),
                     ),
@@ -73,12 +74,16 @@ class SendRequestPage extends StatelessWidget {
                   top: 740,
                 ),
                 width: double.infinity,
-                child:  ActionBtn2(
+                child: ActionBtn2(
+                  onTap: () {
+                    Utils.mainAppNav.currentState
+                        ?.pushReplacementNamed('/home');
+                  },
                   widthM: double.infinity,
                   text: 'Return Home',
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
+                  // onTap: () {
+                  //   Navigator.pop(context);
+                  // },
                 ),
               ),
             ],

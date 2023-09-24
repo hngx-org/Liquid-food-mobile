@@ -9,13 +9,15 @@ import 'package:free_lunch_app/withdrawal/presentation/pages/withdraw_account.da
 import 'package:free_lunch_app/withdrawal/presentation/pages/withdrawal_screen.dart';
 import '../features/home/view_model/home_viewmodel.dart';
 import '../features/sendLunches/viewmodel/sendlunch.viewmodel.dart';
-import '../../feature/utils/routing/utlils.dart';
+import 'package:free_lunch_app/features/create_account/create_account.dart';
+import 'package:free_lunch_app/features/login/view/login.dart';
+import 'package:free_lunch_app/features/login/viewmodels/login.viewmodel.dart';
+import 'package:free_lunch_app/features/login/viewmodels/user.viewmodel.dart';
+import 'package:free_lunch_app/utils/routing/utlils.dart';
 import 'package:provider/provider.dart';
 import '../features/main/view/bottom_nav_shell.dart';
 import '../features/main/navigation/providers/bottom_navigation.viewmodel.dart';
-import '../feature/lunches/presentation/lunches_view_model.dart';
 import '../feature/lunches/presentation/lunches_view.dart';
-import 'package:free_lunch_app/screens/new_screen/profile_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,8 +34,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => NavItemProvider()),
         ChangeNotifierProvider(create: (_) => HomeRepoVM()),
         ChangeNotifierProvider(create: (_) => SendLunchVM()),
+        ChangeNotifierProvider(create: (_) => LoginViewModel()),
+        ChangeNotifierProvider(create: (_) => UserViewModel()),
         ChangeNotifierProvider(create: (_) => LunchesViewModel()),
-        ChangeNotifierProvider(create: (_) => LunchesViewModel())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -52,6 +55,12 @@ class MyApp extends StatelessWidget {
           '/withdraw-account': (_) => const WithdrawalAccount(),
           '/change-password': (_) => const ChangePasswordScreen(),
           '/log-in': (_) => const LoginScreen(),
+          // '/': (context) => const SplashPage(),
+          '/signup': (context) => const CreateAccount(),
+          '/login': (context) => const AuthLoginScreen(),
+          // '/home': (context) => const BottomNavShell(),
+          '/withdrawal': (context) => const WithdrawalScreen(),
+          '/withdrawalAccount': (context) => const WithdrawalAccount(),
         },
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -64,8 +73,13 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.read<UserViewModel>();
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, '/home');
+      if (user.accessToken == null || user.accessToken!.isNotEmpty) {
+        Navigator.pushReplacementNamed(context, '/login');
+      } else {
+        Utils.mainAppNav.currentState?.pushReplacementNamed('/home');
+      }
     });
     return const Scaffold(
       body: Center(

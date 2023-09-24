@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../feature/utils/colors.dart';
+import '../../../utils/utils/colors.dart';
 
 class WButton extends StatelessWidget {
   final VoidCallback onTap;

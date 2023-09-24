@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../../feature/utils/colors.dart';
-import '../../../feature/utils/icons.dart';
+import '../../../utils/utils/colors.dart';
+import '../../../utils/utils/icons.dart';
 import '../widgets/acct_info.dart';
 import '../widgets/app_layout.dart';
 import '../widgets/available_lunches.dart';

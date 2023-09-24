@@ -1,13 +1,14 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/features/home/models/co_worker.model.dart';
 import 'package:free_lunch_app/features/home/repository/home.repo.dart';
 import 'package:free_lunch_app/features/home/repository/irepository.home.dart';
 import 'package:free_lunch_app/features/home/view_model/home_viewmodel.dart';
 // import 'package:free_lunch_app/features/sendLunches/view/send_lunch.dart';
 import '../../../feature/screens/lunch.screen.dart';
+import 'package:free_lunch_app/features/login/viewmodels/user.viewmodel.dart';
+// import 'package:free_lunch_app/features/sendLunches/view/send_lunch.dart';
 import 'package:free_lunch_app/utils/res/colors.dart';
 import 'package:free_lunch_app/utils/res/icons.dart';
-import 'package:free_lunch_app/feature/utils/routing/utlils.dart';
 import 'package:free_lunch_app/utils/res/svg_icons.dart';
 import 'package:free_lunch_app/utils/res/typography.dart';
 import 'package:free_lunch_app/widgets/action_buttons.dart';
@@ -18,6 +19,9 @@ import 'package:free_lunch_app/withdrawal/presentation/widgets/screen_styles.dar
 import 'package:free_lunch_app/withdrawal/presentation/widgets/w_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import '../../../widgets/action_buttons.dart';
+import 'package:free_lunch_app/utils/routing/utlils.dart';
+// import '../../sendLunches/view/send_lunch.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -36,7 +40,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<HomeRepoVM>(context, listen: false)
-          .filterCoworkers(searchController);
+          .filterCoworkers(context, searchController);
+      Provider.of<HomeRepoVM>(context, listen: false).fetchCredit(context);
     });
     searchController = TextEditingController();
     searchFocus = FocusNode();
@@ -54,6 +59,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final userProfile = Provider.of<UserViewModel>(context);
     final height = MediaQuery.sizeOf(context).height;
     final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
@@ -68,19 +74,32 @@ class _HomePageState extends State<HomePage> {
                   width: width * .13,
                   height: height * .055),
             ),
-            const Column(
+             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                WText(
+                const WText(
                   text: 'Welcome',
                   fontSize: 10,
                   fontWeight: FontWeight.w400,
                 ),
-                WText(
+                const WText(
                   text: 'Samuel I.',
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                 ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Welcome',
+                      style: AppTypography.subTitle3,
+                    ),
+                    Text(
+                      userProfile.fullName.toString(),
+                      style: AppTypography.bodyText2,
+                    ),
+                  ],
+                )
               ],
             )
           ],
@@ -185,8 +204,18 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-
-            SizedBox(height: height * 0.04),
+            const SizedBox(
+              height: 10,
+            ),
+            TotalCardThree(
+                text1: 'You’ve done well this month. Cheers 🥂',
+                text2: 'Free Lunches',
+                totalNum: context.read<HomeRepoVM>().lunchCredit.toString(),
+                width: width * .942,
+                height: height * .110),
+            const SizedBox(
+              height: 10,
+            ),
             CustomTextField(
                 textController: searchController,
                 textFocus: searchFocus,
@@ -204,7 +233,7 @@ class _HomePageState extends State<HomePage> {
                 onSubmitted: (value) {
                   searchFocus.unfocus();
                   Provider.of<HomeRepoVM>(context, listen: false)
-                      .filterCoworkers(searchController);
+                      .filterCoworkers(context, searchController);
                 }),
             SizedBox(height: height * 0.04),
             const WText(
@@ -215,12 +244,19 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: height * 0.04),
             Expanded(
-              child: FutureBuilder<List<CoWorker>>(
+              child: FutureBuilder<List<dynamic>>(
                   future: Provider.of<HomeRepoVM>(context).coworkersList,
                   builder: (BuildContext context,
-                      AsyncSnapshot<List<CoWorker>> snapshot) {
+                      AsyncSnapshot<List<dynamic>> snapshot) {
                     if (!snapshot.hasData) {
-                      return Column(
+                      Provider.of<HomeRepoVM>(context)
+                          .coworkersList
+                          ?.then((value) {
+                        if (kDebugMode) {
+                          print(value.length);
+                        }
+                      });
+                      return  Column(
                         children: [
                           SizedBox(height: height * 0.04),
                           const Text('Loading'),
@@ -260,6 +296,13 @@ class _HomePageState extends State<HomePage> {
                             title: 'Invite co-worker',
                             color: AppColors.backgroundColor,
                           ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          ActionBtn2(
+                              onTap: () {},
+                              widthM: MediaQuery.sizeOf(context).width * .8,
+                              text: 'Invite co-worker'),
                         ],
                       );
                     } else {
@@ -289,10 +332,9 @@ class _HomePageState extends State<HomePage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        AvatarComponent(
-                                            image: AssetImage(coWorkerItem!
-                                                .profilePath
-                                                .toString()),
+                                        const AvatarComponent(
+                                            image: AssetImage(
+                                                'assets/images/dp.png'),
                                             width: 40,
                                             height: 40),
                                         const SizedBox(
@@ -303,11 +345,12 @@ class _HomePageState extends State<HomePage> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              coWorkerItem.name.toString(),
+                                              '${coWorkerItem!['firstName'].toString()} ${coWorkerItem['lastName'].toString()}',
                                               style: AppTypography.bodyText3,
                                             ),
                                             Text(
-                                              coWorkerItem.designation
+                                              coWorkerItem['organizations']
+                                                      ['name']
                                                   .toString(),
                                               style: AppTypography.subTitle3,
                                             )
@@ -322,7 +365,8 @@ class _HomePageState extends State<HomePage> {
                                                   context,
                                                   MaterialPageRoute(
                                                     builder: (context) =>
-                                                        const SendLunches(
+                                                         SendLunches(
+                                                        worker: coWorkerItem,
                                                         totalLunches:'12',
                                                     ),
                                                   ),
@@ -350,6 +394,20 @@ class _HomePageState extends State<HomePage> {
                                   //   icon: AppSvgIcons.hamburgerLight,
                                   //   text: 'Send Lunch',
                                   // )
+                                    MiniActionBtn(
+                                      onTap: () {
+                                        Utils.mainAppNav.currentState?.push(
+                                            MaterialPageRoute(
+                                                builder: (_) => SendLunches(
+                                                    worker: coWorkerItem,
+                                                    totalLunches: context
+                                                        .read<HomeRepoVM>()
+                                                        .lunchCredit
+                                                        .toString())));
+                                      },
+                                      icon: AppSvgIcons.hamburgerLight,
+                                      text: 'Send Lunch',
+                                    )
                                   ],
                                 ),
                               ),

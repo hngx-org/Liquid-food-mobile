@@ -37,9 +37,14 @@ class CustomTextField extends StatelessWidget {
                 validator: validator,
                 obscureText: obscurePassword.value,
                 decoration: InputDecoration(
-                  hintText: 'Password',
+                  floatingLabelAlignment: FloatingLabelAlignment.start,
+                  isCollapsed: true,
+                  hintText: hintText,
+                  hintStyle:
+                      const TextStyle(fontSize: 12, color: Color(0xff8C8C8C)),
                   fillColor: Colors.grey[100],
                   filled: true,
+                  contentPadding: const EdgeInsets.all(10),
                   prefixIcon: const Icon(Icons.lock_outline),
                   suffixIcon: InkWell(
                       onTap: () {
@@ -49,7 +54,7 @@ class CustomTextField extends StatelessWidget {
                           ? Icons.visibility_off_outlined
                           : Icons.visibility_outlined)),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: AppColors.primaryColor),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   enabledBorder: OutlineInputBorder(
@@ -82,7 +87,7 @@ class CustomTextField extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Color(0xff8C8C8C)),
+                borderSide: const BorderSide(color: Color(0xffE4E7EB)),
                 borderRadius: BorderRadius.circular(10),
               ),
             ),

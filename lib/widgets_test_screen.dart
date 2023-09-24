@@ -12,9 +12,6 @@ import 'widgets/custom_badge.dart';
 import 'widgets/custom_card.dart';
 import 'widgets/select_image.dart';
 import 'widgets/total_card.dart';
-import 'utils/res/icons.dart';
-
-
 
 // This file contains a clear preview of all the reusuable widgets and how to use them
 
@@ -83,13 +80,26 @@ class _WidgetsTestScreenState extends State<WidgetsTestScreen> {
                     icon: AppSvgIcons.hamburgerDark,
                     iconHeight: 18,
                     iconWidth: 18,
+                    selected: false,
                   ),
                   SizedBox(width: width * .04),
-                  CustomCard(cardText: '2', icon: AppSvgIcons.hamburgerDark),
+                  CustomCard(
+                    cardText: '2',
+                    icon: AppSvgIcons.hamburgerDark,
+                    selected: false,
+                  ),
                   SizedBox(width: width * .04),
-                  CustomCard(cardText: '3', icon: AppSvgIcons.hamburgerDark),
+                  CustomCard(
+                    cardText: '3',
+                    icon: AppSvgIcons.hamburgerDark,
+                    selected: false,
+                  ),
                   SizedBox(width: width * .04),
-                  CustomCard(cardText: '4', icon: AppSvgIcons.hamburgerDark),
+                  CustomCard(
+                    cardText: '4',
+                    icon: AppSvgIcons.hamburgerDark,
+                    selected: true,
+                  ),
                 ],
               ),
               SizedBox(height: height * .02),
@@ -123,16 +133,18 @@ class _WidgetsTestScreenState extends State<WidgetsTestScreen> {
                 icon: AppSvgIcons.hamburgerLight,
               ),
               SizedBox(height: height * .02),
-              const MiniOutlinedActionBtn(
+              MiniOutlinedActionBtn(
                 text: 'Upload image',
                 btnColor: AppColors.tPrimaryColor,
                 textColor: AppColors.tPrimaryColor,
+                onTap: () {},
               ),
               const Text('Action Button 1'),
               ActionBtn(
                 text: 'Return Home',
                 widthM: width * .8,
                 btnColor: AppColors.tPrimaryColor,
+                onTap: () {},
               ),
               const Text('Action Button 2'),
               ActionBtn(
@@ -140,6 +152,7 @@ class _WidgetsTestScreenState extends State<WidgetsTestScreen> {
                 widthM: width * .8,
                 icon: AppSvgIcons.hamburgerLight,
                 btnColor: AppColors.tPrimaryColor,
+                onTap: () {},
               ),
               SizedBox(height: height * .02),
               ActionBtn(
@@ -147,17 +160,20 @@ class _WidgetsTestScreenState extends State<WidgetsTestScreen> {
                 widthM: width * .8,
                 icon: AppIcons.getIcon('upload', AppColors.tWhite),
                 btnColor: AppColors.tShadeColor,
+                onTap: () {},
               ),
               const Text('Withdraw'),
               MediumActionBtn(
                 text: 'Withdraw',
                 icon: AppIcons.getIcon('upload', AppColors.tWhite),
                 btnColor: AppColors.tPrimaryColor,
+                onTap: () {},
               ),
               SizedBox(height: height * .02),
-              const MediumActionBtn(
+              MediumActionBtn(
                 text: 'Add your account details',
                 btnColor: AppColors.tPrimaryColor,
+                onTap: () {},
               ),
               const Text('Total'),
               TotalCardOne(

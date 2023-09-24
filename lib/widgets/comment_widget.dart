@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../feature/utils/colors.dart';
+import '../utils/utils/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
-// This file is for the comment widget 
+// This file is for the comment widget
 // It's a simple and self explanatory widget
 
 class CommentWidget extends StatefulWidget {
@@ -51,7 +51,8 @@ class CommentWidgetState extends State<CommentWidget> {
         ),
         child: isEditing
             ? TextField(
-              onTapOutside: (event) => FocusScope.of(context).requestFocus(FocusNode()),
+                onTapOutside: (event) =>
+                    FocusScope.of(context).requestFocus(FocusNode()),
                 style: const TextStyle(
                   color: Colors.black,
                 ),

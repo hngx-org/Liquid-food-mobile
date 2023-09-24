@@ -126,37 +126,37 @@ class _AuthScreenAPIState extends State<AuthScreenAPI> {
                 //   color: AppColors.primaryColor,
                 // ),
                 // if (!isLogin) SizedBox(height: height * 0.029),             
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(15),
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color(0xFFD9D9D9),
-                      ),
-                      child: const Icon(
-                        IconlyLight.camera,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    SizedBox(width: width * 0.032),
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                          color: AppColors.primaryColor,
-                        ),
-                      ),
-                      child: const WText(
-                        text: 'Upload image',
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.primaryColor,
-                      ),
-                    ),
-                  ],
-                ),
+                // Row(
+                //   children: [
+                //     Container(
+                //       padding: const EdgeInsets.all(15),
+                //       decoration: const BoxDecoration(
+                //         shape: BoxShape.circle,
+                //         color: Color(0xFFD9D9D9),
+                //       ),
+                //       child: const Icon(
+                //         IconlyLight.camera,
+                //         color: Colors.grey,
+                //       ),
+                //     ),
+                //     SizedBox(width: width * 0.032),
+                //     Container(
+                //       padding: const EdgeInsets.all(8),
+                //       decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(8),
+                //         border: Border.all(
+                //           color: AppColors.primaryColor,
+                //         ),
+                //       ),
+                //       child: const WText(
+                //         text: 'Upload image',
+                //         fontSize: 12,
+                //         fontWeight: FontWeight.w500,
+                //         color: AppColors.primaryColor,
+                //       ),
+                //     ),
+                //   ],
+                // ),
                  SizedBox(height: height * 0.008),
                 if (!isLogin)   
                 //  if (userRole == UserRole.normalUser && !isLogin) // Display for normal users only

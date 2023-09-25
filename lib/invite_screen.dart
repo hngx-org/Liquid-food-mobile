@@ -1,92 +1,183 @@
 // lib/sign_up_model.dart
 
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/utils/colors.dart';
-import 'package:free_lunch_app/utils/typography.dart';
 
-class InvitedScreen extends StatefulWidget {
-  const InvitedScreen({super.key});
+import 'input_password.dart';
+import 'input_text_form.dart';
+
+class InvitedAccountScreen extends StatefulWidget {
+  const InvitedAccountScreen({super.key});
 
   @override
-  State<InvitedScreen> createState() => _InvitedScreenState();
+  State<InvitedAccountScreen> createState() => _InvitedAccountScreenState();
 }
 
-class _InvitedScreenState extends State<InvitedScreen> {
+class _InvitedAccountScreenState extends State<InvitedAccountScreen> {
+  final TextEditingController _fullNameController = TextEditingController();
+
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  @override
+  void dispose() {
+    super.dispose();
+    _fullNameController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const SizedBox(height: 30),
-            const CircleAvatar(
-              radius: 30.0,
-              backgroundImage: AssetImage(
-                  'assets/images/Company dp.jpg'), // Replace with your image path
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 24,
+              right: 24,
             ),
-            const SizedBox(height: 16.0),
-            Text(
-              'Samuel invites you to join HNGx', // Replace with the user's name
-              style: AppTypography.headline4,
-            ),
-            const SizedBox(height: 16.0),
-            const Row(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                CircleAvatar(
-                  backgroundColor: AppColors.tShadeColor,
-                  child: Icon(
-                    Icons.camera,
-                    size: 30.0,
-                    color: AppColors.tBlack4,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/Company dp.jpg',
+                      width: 100,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: height * 0.016,
+                ),
+                const Text(
+                  'Samuel invites you to join HNGx',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFF0085FF),
                   ),
                 ),
-                SizedBox(width: 8.0),
-                Text(
-                  'Upload Image',
-                  style: TextStyle(fontSize: 18.0, color: Colors.blue),
+                SizedBox(
+                  height: height * 0.051,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(15),
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color(0xFFD9D9D9),
+                      ),
+                      child: const Icon(
+                        Icons.camera_alt_outlined,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    SizedBox(
+                      width: width * 0.032,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: const Color(0xFF0085FF)),
+                      ),
+                      child: const Text(
+                        'Upload image',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF0085FF),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: height * 0.016,
+                ),
+                const Text(
+                  'Full name',
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
+                ),
+                SizedBox(
+                  height: height * 0.008,
+                ),
+                AuthInputTextFormContainer(
+                  controller: _fullNameController,
+                  height: height,
+                  hintText: 'Enter your full name',
+                ),
+                SizedBox(
+                  height: height * 0.016,
+                ),
+                const Text(
+                  'Password',
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
+                ),
+                SizedBox(
+                  height: height * 0.008,
+                ),
+                AuthInputPasswordContainer(
+                  controller: _passwordController,
+                  height: height,
+                  hintText: 'Enter your password',
+                  iconData: Icons.visibility_off_outlined,
+                ),
+                SizedBox(
+                  height: height * 0.016,
+                ),
+                const Text(
+                  'Confirm Password',
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
+                ),
+                SizedBox(
+                  height: height * 0.008,
+                ),
+                AuthInputPasswordContainer(
+                  controller: _confirmPasswordController,
+                  height: height,
+                  hintText: 'Enter your confirm password',
+                  iconData: Icons.visibility_off_outlined,
+                ),
+                SizedBox(
+                  height: height * 0.058,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {});
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.only(
+                      top: 16,
+                      left: 24,
+                      bottom: 16,
+                      right: 24,
+                    ),
+                    height: height * 0.080,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(32),
+                        color: const Color(0xFF0085FF)),
+                    child: const Text(
+                      'Create Account',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          color: Colors.white),
+                    ),
+                  ),
                 ),
               ],
             ),
-            const SizedBox(height: 16.0),
-            Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Full Name',
-                        prefixIcon: Icon(Icons.person),
-                      ),
-                    ),
-                    const SizedBox(height: 16.0),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Password',
-                      ),
-                      obscureText: true,
-                    ),
-                    const SizedBox(height: 16.0),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Confirm Password',
-                      ),
-                      obscureText: true,
-                    ),
-                  ],
-                )),
-                 const SizedBox(height: 16.0),
-                ElevatedButton(
-                  onPressed: () {
-                   
-                  },
-                  child: const Text('Create Account'),
-                  )
-          ],
+          ),
         ),
       ),
     );

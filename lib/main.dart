@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/feature/lunches/presentation/lunches_view_model.dart';
+import 'package:free_lunch_app/features/signUP/view/signup.dart';
 import 'package:free_lunch_app/screens/new_screen/auth_screen.dart';
 import 'package:free_lunch_app/screens/new_screen/auth_screen_api.dart';
 import 'package:free_lunch_app/screens/new_screen/change_password_screen.dart';
@@ -47,7 +48,8 @@ class MyApp extends StatelessWidget {
         navigatorKey: Utils.mainAppNav,
         routes: {
           // '/': (context) => const AuthScreen(),
-          '/': (context) => const AuthScreenAPI(),
+          // '/': (context) => const AuthScreenAPI(),
+          '/signup': (context) => const SignScreenAPI(),
           '/home': (context) => const BottomNavShell(),
           '/lunches': (context) => const LunchesView(),
           '/profile': (context) => const ProfileImagePage(),
@@ -55,10 +57,10 @@ class MyApp extends StatelessWidget {
           '/withdraw-account': (_) => const WithdrawalAccount(),
           '/change-password': (_) => const ChangePasswordScreen(),
           // '/log-in': (_) => const LoginScreen(),
-          '/log-in': (_)  => const AuthLoginScreen(),
-          // '/': (context) => const SplashPage(),
+          // '/log-in': (_)  => const AuthLoginScreen(),
+          '/': (context) => const SplashPage(),
           // '/signup': (context) => const CreateAccount(),
-          '/login': (context) => const AuthLoginScreen(),
+          '/log-in': (context) => const AuthLoginScreen(),
           // '/home': (context) => const BottomNavShell(),
           '/withdrawal': (context) => const WithdrawalScreen(),
           '/withdrawalAccount': (context) => const WithdrawalAccount(),
@@ -77,7 +79,7 @@ class SplashPage extends StatelessWidget {
     final user = context.read<UserViewModel>();
     Future.delayed(const Duration(seconds: 2), () {
       if (user.accessToken == null || user.accessToken!.isNotEmpty) {
-        Navigator.pushReplacementNamed(context, '/login');
+        Navigator.pushReplacementNamed(context, '/signup');
       } else {
         Utils.mainAppNav.currentState?.pushReplacementNamed('/home');
       }

@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
         routes: {
           // '/': (context) => const AuthScreen(),
           // '/': (context) => const AuthScreenAPI(),
+          '/': (context) => const SplashPage(),
           '/signup': (context) => const SignScreenAPI(),
           // '/signup': (context) => const AuthScreenAPI(),
           '/home': (context) => const BottomNavShell(),
@@ -59,7 +60,6 @@ class MyApp extends StatelessWidget {
           '/change-password': (_) => const ChangePasswordScreen(),
           // '/log-in': (_) => const LoginScreen(),
           // '/log-in': (_)  => const AuthLoginScreen(),
-          '/': (context) => const SplashPage(),
           // '/signup': (context) => const CreateAccount(),
           '/log-in': (context) => const AuthLoginScreen(),
           // '/home': (context) => const BottomNavShell(),
@@ -80,9 +80,9 @@ class SplashPage extends StatelessWidget {
     final user = context.read<UserViewModel>();
     Future.delayed(const Duration(seconds: 2), () {
       if (user.accessToken == null || user.accessToken!.isNotEmpty) {
-        Navigator.pushReplacementNamed(context, '/signup');
+        Navigator.pushReplacementNamed(context, '/home');
       } else {
-        Utils.mainAppNav.currentState?.pushReplacementNamed('/home');
+        Utils.mainAppNav.currentState?.pushReplacementNamed('/signup');
       }
     });
     return const Scaffold(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/withdrawal/models/withdraw_screen_model.dart';
 import 'package:free_lunch_app/withdrawal/repositories/mock_repo.dart';
-import '../../../feature/utils/colors.dart';
+import '../../../utils/utils/colors.dart';
 import 'screen_styles.dart';
 
 class WithdrawalSummary extends StatelessWidget {

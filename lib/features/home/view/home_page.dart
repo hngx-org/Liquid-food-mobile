@@ -1,17 +1,21 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/features/home/models/co_worker.model.dart';
 import 'package:free_lunch_app/features/home/repository/home.repo.dart';
 import 'package:free_lunch_app/features/home/repository/irepository.home.dart';
 import 'package:free_lunch_app/features/home/view_model/home_viewmodel.dart';
+import 'package:free_lunch_app/features/login/viewmodels/user.viewmodel.dart';
+import 'package:free_lunch_app/features/sendLunches/view/send_lunch.dart';
 import 'package:free_lunch_app/utils/res/colors.dart';
 import 'package:free_lunch_app/utils/res/icons.dart';
 import 'package:free_lunch_app/utils/res/svg_icons.dart';
+import 'package:free_lunch_app/widgets/action_buttons.dart';
 import 'package:free_lunch_app/widgets/avatar.dart';
 import 'package:free_lunch_app/widgets/custom_text_field.dart';
-import 'package:free_lunch_app/withdrawal/presentation/widgets/screen_styles.dart';
-import 'package:free_lunch_app/withdrawal/presentation/widgets/w_button.dart';
-
+import 'package:free_lunch_app/widgets/total_card.dart';
 import 'package:provider/provider.dart';
+import '../../../withdrawal/presentation/widgets/w_button.dart';
+import '../../../withdrawal/presentation/widgets/screen_styles.dart';
+import '../../../utils/routing/utlils.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,7 +34,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<HomeRepoVM>(context, listen: false)
-          .filterCoworkers(searchController);
+          .filterCoworkers(context, searchController);
+      Provider.of<HomeRepoVM>(context, listen: false).fetchCredit(context);
     });
     searchController = TextEditingController();
     searchFocus = FocusNode();
@@ -48,6 +53,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final userProfile = Provider.of<UserViewModel>(context);
     final height = MediaQuery.sizeOf(context).height;
     final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
@@ -62,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                   width: width * .13,
                   height: height * .055),
             ),
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 WText(
@@ -71,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                   fontWeight: FontWeight.w400,
                 ),
                 WText(
-                  text: 'Samuel I.',
+                  text: userProfile.fullName.toString(),
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                 ),
@@ -179,8 +185,18 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-
-            SizedBox(height: height * 0.04),
+            const SizedBox(
+              height: 10,
+            ),
+            TotalCardThree(
+                text1: 'You’ve done well this month. Cheers 🥂',
+                text2: 'Free Lunches',
+                totalNum: context.read<HomeRepoVM>().lunchCredit.toString(),
+                width: width * .942,
+                height: height * .110),
+            const SizedBox(
+              height: 10,
+            ),
             CustomTextField(
                 textController: searchController,
                 textFocus: searchFocus,
@@ -198,7 +214,7 @@ class _HomePageState extends State<HomePage> {
                 onSubmitted: (value) {
                   searchFocus.unfocus();
                   Provider.of<HomeRepoVM>(context, listen: false)
-                      .filterCoworkers(searchController);
+                      .filterCoworkers(context, searchController);
                 }),
             SizedBox(height: height * 0.04),
             const WText(
@@ -209,11 +225,18 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: height * 0.01),
             Expanded(
-              child: FutureBuilder<List<CoWorker>>(
+              child: FutureBuilder<List<dynamic>>(
                   future: Provider.of<HomeRepoVM>(context).coworkersList,
                   builder: (BuildContext context,
-                      AsyncSnapshot<List<CoWorker>> snapshot) {
+                      AsyncSnapshot<List<dynamic>> snapshot) {
                     if (!snapshot.hasData) {
+                      Provider.of<HomeRepoVM>(context)
+                          .coworkersList
+                          ?.then((value) {
+                        if (kDebugMode) {
+                          print(value.length);
+                        }
+                      });
                       return Column(
                         children: [
                           SizedBox(height: height * 0.04),
@@ -255,97 +278,77 @@ class _HomePageState extends State<HomePage> {
                             title: 'Invite co-worker',
                             color: AppColors.backgroundColor,
                           ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          ActionBtn(
+                              onTap: () {},
+                              widthM: MediaQuery.sizeOf(context).width * .8,
+                              text: 'Invite co-worker'),
                         ],
                       );
                     } else {
                       return ListView.builder(
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: snapshot.data?.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final coWorkerItem = snapshot.data?[index];
-                          // ignore: prefer_is_empty{
-                          return Card(
-                            margin: const EdgeInsets.all(10),
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(15),
-                              ),
-                            ),
-                            elevation: 0,
-                            color: AppColors.searchGray,
-                            child: ListTile(
-                              minVerticalPadding: 5,
-                              horizontalTitleGap: 8,
-                              contentPadding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              leading: AvatarComponent(
-                                  image: AssetImage(
-                                      coWorkerItem!.profilePath.toString()),
-                                  width: 45,
-                                  height: 45),
-                              title: WText(
-                                text: coWorkerItem.name.toString(),
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                              ),
-                              subtitle: WText(
-                                text: coWorkerItem.designation.toString(),
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xff737373),
-                              ),
-                              trailing: SizedBox(
-                                width: width * 0.38,
-                                height: height * 0.05,
-                                child: WButton(
-                                  leading: AppSvgIcons.hamburgerLightTotal,
-                                  title: 'Send Lunch',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColors.backgroundColor,
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: snapshot.data?.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final coWorkerItem = snapshot.data?[index];
+                            // ignore: prefer_is_empty{
+                            return Card(
+                              margin: const EdgeInsets.all(10),
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(15),
                                 ),
                               ),
-                            ),
-                            // Padding(
-                            //   padding: const EdgeInsets.all(12.0),
-                            //   child: Row(
-                            //       mainAxisAlignment:
-                            //           MainAxisAlignment.spaceBetween,
-                            //       children: [
-                            //         Row(
-                            //           mainAxisAlignment:
-                            //               MainAxisAlignment.spaceBetween,
-                            //           children: [
-
-                            //             const SizedBox(
-                            //               width: 10,
-                            //             ),
-
-                            //             SizedBox(width: width * 0.16),
-
-                            //           ],
-                            //         ),
-                            //       ]),
-                            //   //
-                            //   //       // MiniActionBtn(
-                            //   //       //   onTap: () {
-                            //   //       //     Utils.mainAppNav.currentState?.push(
-                            //   //       //         MaterialPageRoute(
-                            //   //       //             builder: (_) => SendLunches(
-                            //   //       //                 worker: coWorkerItem,
-                            //   //       //                 totalLunches: '12')));
-                            //   //       //   },
-                            //   //       //   icon: AppSvgIcons.hamburgerLight,
-                            //   //       //   text: 'Send Lunch',
-                            //   //       // )
-                            //   //     ],
-                            //   //   ),
-                            //   // ),
-                            // ),
-                          );
-                        },
-                      );
+                              elevation: 0,
+                              color: AppColors.searchGray,
+                              child: ListTile(
+                                minVerticalPadding: 5,
+                                horizontalTitleGap: 8,
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                leading: AvatarComponent(
+                                    image: AssetImage(
+                                        coWorkerItem!.profilePath.toString()),
+                                    width: 45,
+                                    height: 45),
+                                title: WText(
+                                  text: coWorkerItem.name.toString(),
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                subtitle: WText(
+                                  text: coWorkerItem.designation.toString(),
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color(0xff737373),
+                                ),
+                                trailing: SizedBox(
+                                  width: width * 0.38,
+                                  height: height * 0.05,
+                                  child: WButton(
+                                    onTap: () {
+                                      Utils.mainAppNav.currentState?.push(
+                                          MaterialPageRoute(
+                                              builder: (_) => SendLunches(
+                                                  worker: coWorkerItem,
+                                                  totalLunches: context
+                                                      .read<HomeRepoVM>()
+                                                      .lunchCredit
+                                                      .toString())));
+                                    },
+                                    leading: AppSvgIcons.hamburgerLightTotal,
+                                    title: 'Send Lunch',
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColors.backgroundColor,
+                                  ),
+                                ),
+                              ),
+                            );
+                          });
                     }
                   }),
             ),

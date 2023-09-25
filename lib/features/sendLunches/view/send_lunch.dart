@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/features/home/models/co_worker.model.dart';
 import 'package:free_lunch_app/features/sendLunches/viewmodel/sendlunch.viewmodel.dart';
 import 'package:free_lunch_app/utils/res/icons.dart';
 import 'package:free_lunch_app/utils/res/svg_icons.dart';
 import 'package:free_lunch_app/utils/res/typography.dart';
-import 'package:free_lunch_app/feature/utils/routing/utlils.dart';
+import 'package:free_lunch_app/utils/routing/utlils.dart';
 import 'package:free_lunch_app/widgets/action_buttons.dart';
 import 'package:free_lunch_app/widgets/avatar.dart';
 import 'package:free_lunch_app/widgets/comment_widget.dart';
-import 'package:free_lunch_app/widgets/custom_card.dart';
 import 'package:provider/provider.dart';
 
 class SendLunches extends StatelessWidget {
-  final CoWorker worker;
+  final dynamic worker;
   final String totalLunches;
   const SendLunches(
       {super.key, required this.worker, required this.totalLunches});
@@ -45,15 +43,15 @@ class SendLunches extends StatelessWidget {
               Column(
                 children: [
                   AvatarComponent(
-                      image: AssetImage(worker.profilePath!),
-                      width: MediaQuery.sizeOf(context).width * .4,
-                      height: MediaQuery.sizeOf(context).height * .25),
+                      image: const AssetImage('assets/images/dp.png'),
+                      width: MediaQuery.sizeOf(context).width * .25,
+                      height: MediaQuery.sizeOf(context).height * .15),
                   Text(
-                    worker.name!,
+                    '${worker.firstName.toString()} ${worker.lastName.toString()}',
                     style: AppTypography.subHeader1black,
                   ),
                   Text(
-                    worker.designation!,
+                    worker.organizationName.toString(),
                     style: AppTypography.bodyText3,
                   ),
                 ],
@@ -115,6 +113,7 @@ class SendLunches extends StatelessWidget {
                 height: height * .04,
               ),
               ActionBtn(
+                onTap: () {},
                 widthM: width * .9,
                 text: 'Send Lunch',
                 icon: AppSvgIcons.hamburgerLight,

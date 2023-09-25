@@ -1,5 +1,6 @@
-import 'package:free_lunch_app/features/home/models/co_worker.model.dart';
+import 'package:flutter/material.dart';
 
 abstract class IRepositoryHome {
-  Future<List<CoWorker>> defaultCoworkerItems();
+  Future<List<dynamic>> fetchCoworkerItems(
+      BuildContext context, TextEditingController searchController);
 }

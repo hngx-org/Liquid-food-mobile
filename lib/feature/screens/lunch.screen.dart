@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import '../../../utils/res/colors.dart';
 import '../../utils/res/icons.dart';
 import '../../utils/res/svg_icons.dart';
-// import '../../utils/res/typography.dart';
+import '../../utils/res/typography.dart';
 import '../../widgets/action_buttons.dart';
 import '../../widgets/avatar.dart';
 import '../../widgets/comment_widget.dart';
 import '../../widgets/custom_card.dart';
-import '../../feature/utils/typography.dart';
 
 class SendLunches extends StatelessWidget {
   final String totalLunches;
@@ -54,7 +53,7 @@ class SendLunches extends StatelessWidget {
                       children: [
                         Text(
                           'Send lunch',
-                          style: AppTypography.subHeader3,
+                          style: AppTypography.subHeader3Size12,
                         ),
                       ],
                     ),
@@ -111,21 +110,25 @@ class SendLunches extends StatelessWidget {
                         CustomCard(
                           cardText: '1',
                           icon: AppSvgIcons.hamburgerDark,
+                          selected: false,
                         ),
                         const SizedBox(width: 10),
                         CustomCard(
                           cardText: '2',
                           icon: AppSvgIcons.hamburgerDark,
+                          selected: false,
                         ),
                         const SizedBox(width: 10),
                         CustomCard(
                           cardText: '3',
                           icon: AppSvgIcons.hamburgerDark,
+                          selected: false,
                         ),
                         const SizedBox(width: 10),
                         CustomCard(
                           cardText: '4',
                           icon: AppSvgIcons.hamburgerDark,
+                          selected: false,
                         ),
                       ],
                     ),
@@ -140,7 +143,7 @@ class SendLunches extends StatelessWidget {
                         ),
                         Text(
                           totalLunches,
-                          style: AppTypography.subHeader3,
+                          style: AppTypography.subHeader3Size12,
                         ),
                       ],
                     ),
@@ -164,7 +167,8 @@ class SendLunches extends StatelessWidget {
                   top: 468,
                 ),
                 child: const CommentWidget(
-                  initialCommentText: 'Great Job! You are true mentor. Enjoy the lunch!',
+                  initialCommentText:
+                      'Great Job! You are true mentor. Enjoy the lunch!',
                 ),
               ),
               Container(
@@ -175,6 +179,7 @@ class SendLunches extends StatelessWidget {
                   widthM: width,
                   text: 'Send lunch',
                   icon: AppSvgIcons.hamburgerLight,
+                  onTap: () {},
                 ),
               ),
             ],

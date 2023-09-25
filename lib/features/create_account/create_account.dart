@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/screens/widgets/auth_input_password_container.dart';
-import 'package:free_lunch_app/screens/widgets/auth_input_textform_container.dart';
+import '../../widgets/auth_input_form.dart';
+import '../../widgets/password_input_form.dart';
 
 class CreateAccount extends StatefulWidget {
   const CreateAccount({

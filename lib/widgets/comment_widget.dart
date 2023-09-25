@@ -6,10 +6,12 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CommentWidget extends StatefulWidget {
   final String initialCommentText;
+  final TextEditingController? commentController;
 
   const CommentWidget({
     Key? key,
     required this.initialCommentText,
+    this.commentController,
   }) : super(key: key);
 
   @override

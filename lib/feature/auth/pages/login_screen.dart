@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/feature/utils/colors.dart';
+import '../../../utils/res/colors.dart';
 import 'package:free_lunch_app/feature/auth/widgets/widgets.dart';
 import 'package:free_lunch_app/withdrawal/presentation/widgets/w_button.dart';
 import 'package:iconly/iconly.dart';

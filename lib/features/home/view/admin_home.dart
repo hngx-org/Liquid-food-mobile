@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/feature/utils/colors.dart';
+
 import 'package:free_lunch_app/withdrawal/presentation/widgets/screen_styles.dart';
 import 'package:free_lunch_app/withdrawal/presentation/widgets/w_button.dart';
 import 'package:provider/provider.dart';
-
-import '../../../feature/utils/icons.dart';
 import '../../../utils/res/svg_icons.dart';
 import '../../../widgets/avatar.dart';
 import '../../../widgets/custom_text_field.dart';
 import '../repository/home.repo.dart';
 import '../repository/irepository.home.dart';
+import '../../../utils/res/colors.dart';
+import '../../../utils/res/icons.dart';
 import '../view_model/home_viewmodel.dart';
 
 class AdminHome extends StatefulWidget {
@@ -29,7 +29,7 @@ class _AdminHomeState extends State<AdminHome> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<HomeRepoVM>(context, listen: false)
-          .filterCoworkers(searchController);
+          .filterCoworkers(context, searchController);
     });
     searchController = TextEditingController();
     searchFocus = FocusNode();
@@ -146,7 +146,7 @@ class _AdminHomeState extends State<AdminHome> {
                                         blurRadius: 0.3,
                                         spreadRadius: 0.2,
                                         offset: Offset(0.2, 0.2),
-                                        color: AppColors.tBlack5)
+                                        color: AppColors.tShadeColor)
                                   ],
                                   color: AppColors.backgroundColor,
                                   shape: BoxShape.circle),
@@ -190,7 +190,7 @@ class _AdminHomeState extends State<AdminHome> {
                 onSubmitted: (value) {
                   searchFocus.unfocus();
                   Provider.of<HomeRepoVM>(context, listen: false)
-                      .filterCoworkers(searchController);
+                      .filterCoworkers(context, searchController);
                 }),
             SizedBox(height: height * 0.04),
             const WText(

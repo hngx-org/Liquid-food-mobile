@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/feature/lunches/presentation/lunches_view.dart';
 import 'package:free_lunch_app/features/home/view/home_page.dart';
+import '../../withdrawal/presentation/pages/withdraw_account.dart';
+import '../../withdrawal/presentation/pages/withdrawal_screen.dart';
+import '../../feature/auth/pages/invited_account_screen.dart';
+import '../../features/home/view/admin_home.dart';
+import '../../feature/auth/pages/profile_page.dart';
+import '../../feature/auth/pages/login_screen.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {

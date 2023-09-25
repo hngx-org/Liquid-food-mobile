@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/features/main/view/bottom_nav.dart';
-import 'package:free_lunch_app/feature/utils/routing/routes.dart';
 import 'package:free_lunch_app/feature/utils/routing/utlils.dart';
+import '../../../utils/routing/routes.dart';
 
 class BottomNavShell extends StatelessWidget {
   const BottomNavShell({super.key});

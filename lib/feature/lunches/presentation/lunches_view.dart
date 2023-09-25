@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 import 'package:free_lunch_app/utils/utils/svg_icons.dart';
 import 'package:free_lunch_app/utils/utils/typography.dart';
 import 'package:provider/provider.dart';

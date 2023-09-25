@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/feature/auth/viewmodels/create_acct_viewmodel.dart';
 import 'package:free_lunch_app/feature/lunches/presentation/lunches_view_model.dart';
 import 'package:free_lunch_app/features/create_account/create_account.dart';
 import 'package:free_lunch_app/features/home/view_model/home_viewmodel.dart';
 import 'package:free_lunch_app/features/login/view/login.dart';
+import 'package:free_lunch_app/features/login/viewmodels/login.viewmodel.dart';
 import 'package:free_lunch_app/features/login/viewmodels/user.viewmodel.dart';
 import 'package:free_lunch_app/features/sendLunches/viewmodel/sendlunch.viewmodel.dart';
 import 'package:free_lunch_app/utils/routing/utlils.dart';
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => LoginViewModel()),
         ChangeNotifierProvider(create: (_) => UserViewModel()),
         ChangeNotifierProvider(create: (_) => LunchesViewModel()),
+        ChangeNotifierProvider(create: (_) => CreatAcctViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -39,8 +42,12 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         navigatorKey: Utils.mainAppNav,
         routes: {
-          '/': (context) => const AuthScreen(),
+          '/': (context) => const SplashPage(),
+          '/signup': (context) => const CreateAccount(),
+          '/login': (context) => const AuthLoginScreen(),
           '/home': (context) => const BottomNavShell(),
+          '/withdrawal': (context) => const WithdrawalScreen(),
+          '/withdrawalAccount': (context) => const WithdrawalAccount(),
         },
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),

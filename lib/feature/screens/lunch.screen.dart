@@ -171,8 +171,9 @@ class SendLunches extends StatelessWidget {
                 margin: const EdgeInsets.only(
                   top: 468,
                 ),
-                child:  const CommentWidget(
-                  initialCommentText: 'Great Job! You are true mentor. Enjoy the lunch!', commentController:,
+                child: CommentWidget(
+                  commentController: TextEditingController(),
+                  initialCommentText: 'Great Job! You are a true mentor. Enjoy the lunch!',
                 ),
               ),
               Container(

@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         navigatorKey: Utils.mainAppNav,
         routes: {
-          '/': (context) => const SplashPage(),
+          '/': (context) => const AuthLoginScreen(),
           '/signup': (context) => const CreateAccount(),
           '/login': (context) => const AuthLoginScreen(),
           '/home': (context) => const BottomNavShell(),
@@ -63,7 +63,7 @@ class SplashPage extends StatelessWidget {
     final user = context.read<UserViewModel>();
     Future.delayed(const Duration(seconds: 2), () {
       if (user.accessToken == null || user.accessToken!.isNotEmpty) {
-        Navigator.pushReplacementNamed(context, '/login');
+        Utils.mainAppNav.currentState?.pushReplacementNamed('/login');
       } else {
         Utils.mainAppNav.currentState?.pushReplacementNamed('/home');
       }

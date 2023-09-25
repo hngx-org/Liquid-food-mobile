@@ -6,7 +6,6 @@ import '../../utils/utils/colors.dart';
 class AuthInputPasswordContainer extends StatefulWidget {
   const AuthInputPasswordContainer({
     Key? key,
-    required this.height,
     required this.hintText,
     this.suffixIcon,
     required this.controller,
@@ -14,7 +13,6 @@ class AuthInputPasswordContainer extends StatefulWidget {
     this.obscureText = true,
   }) : super(key: key);
 
-  final double height;
   final String hintText;
   final Widget? suffixIcon;
   final TextEditingController controller;
@@ -38,6 +36,8 @@ class _AuthInputPasswordContainerState
       controller: widget.controller,
       obscureText: widget.obscureText!,
       decoration: InputDecoration(
+        isCollapsed: true,
+        isDense: true,
         contentPadding: const EdgeInsets.all(13),
         hintText: widget.hintText,
         hintStyle: GoogleFonts.workSans(
@@ -47,7 +47,7 @@ class _AuthInputPasswordContainerState
         ),
         enabledBorder: roundBorder.copyWith(
           borderSide: const BorderSide(
-            color: Color(0xffBFBFBF),
+            color: AppColors.primaryColor,
           ),
           borderRadius: BorderRadius.circular(6),
         ),

@@ -10,6 +10,7 @@ class AppUrl {
   static String get sendLunch => '${baseUrl}api/lunch/send';
   static String get uploadImage => '${baseUrl}api/user/upload-image';
   static String get withdrawal => '${baseUrl}api/withdrawal/request';
+  static String get changePassword => '${baseUrl}api/user/change-password';
 
   //Get url
   static String get lunchById => '${baseUrl}api/lunch/';

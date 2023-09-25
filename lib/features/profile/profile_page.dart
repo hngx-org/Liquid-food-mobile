@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/screens/widgets/change_password_container.dart';
+import 'package:free_lunch_app/feature/invite_coworker/invite_coworker.dart';
+import 'package:free_lunch_app/features/changepassword/change_password.dart';
 import 'package:free_lunch_app/utils/routing/utlils.dart';
 import 'package:free_lunch_app/widgets/action_buttons.dart';
 import 'package:free_lunch_app/widgets/custom_text_field.dart';
@@ -15,7 +16,6 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final bool _isPasswordVisible = false;
   final FocusNode fNameFocus = FocusNode();
   final FocusNode emailFocus = FocusNode();
   final FocusNode passwordFocus = FocusNode();
@@ -46,8 +46,7 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
                 children: [
                   Container(
                     width: width,
-                    height: height * 0.3,
-                    // width: double.infinity,
+                    height: height * 0.15,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: NetworkImage(
@@ -176,40 +175,40 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
                           Utils.fieldFocusChange(
                               context, emailFocus, passwordFocus);
                         }),
-                    SizedBox(height: height * 0.02),
-                    const Text(
-                      'Password',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                    SizedBox(height: height * 0.04),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 15.0,
+                      ),
+                      child: SizedBox(
+                        height: 50,
+                        child: ActionBtn(
+                            text: 'Change Password',
+                            onTap: () {
+                              Utils.mainAppNav.currentState?.push(
+                                  MaterialPageRoute(
+                                      builder: (_) => const ChangePassword()));
+                            }),
                       ),
                     ),
-                    SizedBox(height: height * 0.01),
-                    ChangePasswordContainer(
-                      focus: passwordFocus,
-                      controller: _passwordController,
-                      height: height,
-                      hintText: 'Enter current password',
-                      iconData: _isPasswordVisible
-                          ? Icons.visibility_outlined
-                          : Icons.visibility_off_outlined,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter current password';
-                        }
-                        return null;
-                      },
+                    SizedBox(
+                      height: height * .02,
                     ),
-                    SizedBox(height: height * 0.02),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10.0),
-                          child:
-                              ActionBtn(text: 'Invite Co-worker', onTap: () {}),
-                        )
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: SizedBox(
+                        height: 50,
+                        child: ActionBtn(
+                            text: 'Invite Co-worker',
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return const InviteDialog();
+                                },
+                              );
+                            }),
+                      ),
                     ),
                   ],
                 ),

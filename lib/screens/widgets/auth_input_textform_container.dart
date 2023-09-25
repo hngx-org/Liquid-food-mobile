@@ -1,43 +1,48 @@
 import 'package:flutter/material.dart';
-
-
+import 'package:free_lunch_app/utils/res/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AuthInputTextFormContainer extends StatelessWidget {
   const AuthInputTextFormContainer({
     super.key,
-    required this.height,
     required this.hintText,
-    this.isObsure,
     required this.controller,
   });
 
-  final double height;
   final String hintText;
-  final bool? isObsure;
   final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: height * 0.060,
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          border: Border.all(color: const Color(0xFF0085FF)),
+    final roundBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(6),
+    );
+    return TextFormField(
+      controller: controller,
+      keyboardType: TextInputType.emailAddress,
+      decoration: InputDecoration(
+        isCollapsed: true,
+        isDense: true,
+        contentPadding: const EdgeInsets.all(13),
+        hintText: hintText,
+        hintStyle: GoogleFonts.workSans(
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+          color: const Color(0xFFA6A6A6),
         ),
-        child: TextFormField(
-         
-          controller: controller,
-          keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: hintText,
-              hintStyle: const TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                color: Color(0xFFA6A6A6),
-              )),
-        ));
+        enabledBorder: roundBorder.copyWith(
+          borderSide: const BorderSide(
+            color: AppColors.primaryColor,
+          ),
+          borderRadius: BorderRadius.circular(6),
+        ),
+        focusedBorder: roundBorder.copyWith(
+          borderSide: const BorderSide(
+            color: AppColors.primaryColor,
+          ),
+          borderRadius: BorderRadius.circular(6),
+        ),
+      ),
+    );
   }
 }

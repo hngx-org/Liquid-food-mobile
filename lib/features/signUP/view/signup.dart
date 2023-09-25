@@ -11,8 +11,6 @@ import 'package:free_lunch_app/withdrawal/presentation/widgets/w_button.dart';
 import 'package:iconly/iconly.dart';
 // import '../../widgets/avatar.dart';
 import '../../../withdrawal/presentation/widgets/screen_styles.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import '../../../utils/utils/colors.dart';
 import '../../signUP/model/signup_model.dart';
@@ -72,7 +70,8 @@ class _SignScreenAPIState extends State<SignScreenAPI> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+            padding: EdgeInsets.symmetric(
+                horizontal: width * 0.04, vertical: height * .04),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,56 +115,6 @@ class _SignScreenAPIState extends State<SignScreenAPI> {
                     fontWeight: FontWeight.w700,
                     color: AppColors.primaryColor,
                   ),
-                // if (!isLogin)
-                //   Align(
-                //     alignment: Alignment.center,
-                //     child: AvatarComponent(
-                //         image: const AssetImage('assets/images/dp.png'),
-                //         width: width * .2,
-                //         height: height * .11),
-                //   ),
-                // if (!isLogin) SizedBox(height: height * 0.019),
-                // WText(
-                //   softWrap: true,
-                //   height: 1,
-                //   textAlign: TextAlign.center,
-                //   text: isLogin ? '' : 'Samuel invites you to join HNGx',
-                //   fontSize: 32,
-                //   fontWeight: FontWeight.w700,
-                //   color: AppColors.primaryColor,
-                // ),
-                // if (!isLogin) SizedBox(height: height * 0.029),
-                // Row(
-                //   children: [
-                //     Container(
-                //       padding: const EdgeInsets.all(15),
-                //       decoration: const BoxDecoration(
-                //         shape: BoxShape.circle,
-                //         color: Color(0xFFD9D9D9),
-                //       ),
-                //       child: const Icon(
-                //         IconlyLight.camera,
-                //         color: Colors.grey,
-                //       ),
-                //     ),
-                //     SizedBox(width: width * 0.032),
-                //     Container(
-                //       padding: const EdgeInsets.all(8),
-                //       decoration: BoxDecoration(
-                //         borderRadius: BorderRadius.circular(8),
-                //         border: Border.all(
-                //           color: AppColors.primaryColor,
-                //         ),
-                //       ),
-                //       child: const WText(
-                //         text: 'Upload image',
-                //         fontSize: 12,
-                //         fontWeight: FontWeight.w500,
-                //         color: AppColors.primaryColor,
-                //       ),
-                //     ),
-                //   ],
-                // ),
                 SizedBox(height: height * 0.008),
                 if (!isLogin)
                   //  if (userRole == UserRole.normalUser && !isLogin) // Display for normal users only
@@ -181,7 +130,6 @@ class _SignScreenAPIState extends State<SignScreenAPI> {
                       SizedBox(height: height * 0.008),
                       AuthInputTextFormContainer(
                         controller: _userEmailController,
-                        height: height,
                         hintText: 'Enter your email address',
                       ),
                       SizedBox(height: height * 0.016),
@@ -193,7 +141,6 @@ class _SignScreenAPIState extends State<SignScreenAPI> {
                       SizedBox(height: height * 0.008),
                       AuthInputPasswordContainer(
                         controller: _passwordController,
-                        height: height,
                         obscureText: _isPasswordVisible,
                         hintText: 'Enter your password',
                         suffixIcon: GestureDetector(
@@ -218,7 +165,6 @@ class _SignScreenAPIState extends State<SignScreenAPI> {
                       SizedBox(height: height * 0.008),
                       AuthInputTextFormContainer(
                         controller: _otpTokenController,
-                        height: height,
                         hintText: 'Enter your OTP token',
                       ),
                       SizedBox(height: height * 0.016),
@@ -230,7 +176,6 @@ class _SignScreenAPIState extends State<SignScreenAPI> {
                       SizedBox(height: height * 0.008),
                       AuthInputTextFormContainer(
                         controller: _firstNameController,
-                        height: height,
                         hintText: 'Enter your first name',
                       ),
                       SizedBox(height: height * 0.016),
@@ -242,7 +187,6 @@ class _SignScreenAPIState extends State<SignScreenAPI> {
                       SizedBox(height: height * 0.008),
                       AuthInputTextFormContainer(
                         controller: _lastNameController,
-                        height: height,
                         hintText: 'Enter your last name',
                       ),
                       SizedBox(height: height * 0.016),
@@ -254,7 +198,6 @@ class _SignScreenAPIState extends State<SignScreenAPI> {
                       SizedBox(height: height * 0.008),
                       AuthInputTextFormContainer(
                         controller: _phoneNumberController,
-                        height: height,
                         hintText: 'Enter your phone number',
                       ),
                     ],
@@ -275,7 +218,6 @@ class _SignScreenAPIState extends State<SignScreenAPI> {
                       SizedBox(height: height * 0.008),
                       AuthInputTextFormContainer(
                         controller: _emailController,
-                        height: height,
                         hintText: 'Enter your email address',
                       ),
                       SizedBox(height: height * 0.016),
@@ -287,7 +229,6 @@ class _SignScreenAPIState extends State<SignScreenAPI> {
                       SizedBox(height: height * 0.008),
                       AuthInputPasswordContainer(
                         controller: _passwordController,
-                        height: height,
                         obscureText: _isPasswordVisible,
                         hintText: 'Enter your password',
                         suffixIcon: GestureDetector(
@@ -312,7 +253,6 @@ class _SignScreenAPIState extends State<SignScreenAPI> {
                       SizedBox(height: height * 0.008),
                       AuthInputTextFormContainer(
                         controller: _fullNameController,
-                        height: height,
                         hintText: 'Enter your full name',
                       ),
                       SizedBox(height: height * 0.016),
@@ -324,7 +264,6 @@ class _SignScreenAPIState extends State<SignScreenAPI> {
                       SizedBox(height: height * 0.008),
                       AuthInputTextFormContainer(
                         controller: _phoneNumberController,
-                        height: height,
                         hintText: 'Enter your phone number',
                       ),
                       SizedBox(height: height * 0.016),
@@ -336,7 +275,6 @@ class _SignScreenAPIState extends State<SignScreenAPI> {
                       SizedBox(height: height * 0.008),
                       AuthInputTextFormContainer(
                         controller: _organizationNameController,
-                        height: height,
                         hintText: 'Enter your organization name',
                       ),
                     ],

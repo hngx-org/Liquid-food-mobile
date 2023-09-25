@@ -68,8 +68,8 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
                 Align(
                   alignment: Alignment.center,
                   child: SizedBox(
-                    height: height * .3,
-                    width: width * .5,
+                    height: 200,
+                    width: 200,
                     child: Stack(
                       alignment: Alignment.topCenter,
                       fit: StackFit.passthrough,

@@ -50,6 +50,7 @@ class MyApp extends StatelessWidget {
           // '/': (context) => const AuthScreen(),
           // '/': (context) => const AuthScreenAPI(),
           '/signup': (context) => const SignScreenAPI(),
+          // '/signup': (context) => const AuthScreenAPI(),
           '/home': (context) => const BottomNavShell(),
           '/lunches': (context) => const LunchesView(),
           '/profile': (context) => const ProfileImagePage(),

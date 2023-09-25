@@ -20,8 +20,8 @@ class Routes {
     switch (settings.name) {
       case '/':
         // page = const AuthScreen();
-        // page = const AuthScreenAPI();
-        page = const SignScreenAPI();
+        page = const AuthScreenAPI();
+        // page = const SignScreenAPI();
         break;
       case '/home':
         page = const HomePage();

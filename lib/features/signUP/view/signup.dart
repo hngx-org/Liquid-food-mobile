@@ -1,6 +1,7 @@
 // I attempt to see how I can implement the API 
 // this file is a copy of auth_screen.dart but implemented differently
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/features/signUP/repositories/signup.repo.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:free_lunch_app/feature/utils/colors.dart';
 import 'package:free_lunch_app/screens/widgets/widgets.dart';
@@ -444,106 +445,176 @@ class _SignScreenAPIState extends State<SignScreenAPI> {
 //   color: AppColors.backgroundColor,
   
 // ),
-                  WButton(
-                    onTap: () async {
-                      if (isLogin) {
-                        // Code for creating an admin account
-                        final signupModel = SignupModel(
-                          email: _emailController.text,
-                          password: _passwordController.text,
-                          fullName: _fullNameController.text,
-                          phoneNumber: _phoneNumberController.text,
-                          organizationName: _organizationNameController.text,
-                          isAdmin: true,
-                        );
-                        final response = await http.post(
-                          Uri.parse('https://liquid-food-backend-production.up.railway.app/api/auth/admin/signup'),
-                          headers: {'Content-Type': 'application/json'},
-                          body: jsonEncode(signupModel.toJson()),
-                        );
-                        // Handle the response from the admin API
-                        if (response.statusCode == 201) {
-                          // User data saved successfully
-                          final responseData = jsonDecode(response.body)['data'];
-                          // Do something with the responseData
-                          logger.i('Response data: $responseData');
-                          setState(() {
-                            _emailController.clear();
-                            _passwordController.clear();
-                            _fullNameController.clear();
-                            _phoneNumberController.clear();
-                            _organizationNameController.clear();
-                            isLogin = false; // Update the isLogin variable to toggle to "Back to Create Admin"
-                          });
-                          showDialog(
-                            context: _key.currentContext!,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: const Text('Success'),
-                                content: Text(responseData['message']),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        } else {
-                          // Error saving user data
-                          final errorMessage = jsonDecode(response.body)['message'];
-                          logger.e('Error message: $errorMessage');
-                          // Do something with the errorMessage
-                        }
-                      } else {
-                        // Code for creating a staff account
-                        final signupModel = SignupModel(
-                          email: _emailController.text,
-                          password: _passwordController.text,
-                          otpToken: _otpTokenController.text,
-                          firstName: _firstNameController.text,
-                          lastName: _lastNameController.text,
-                          phoneNumber: _phoneNumberController.text,
-                          isAdmin: false,
-                        );
-                        final response = await http.post(
-                          Uri.parse('https://liquid-food-backend-production.up.railway.app/api/auth/staff/signup'),
-                          headers: {'Content-Type': 'application/json'},
-                          body: jsonEncode(signupModel.toJson()),
-                        );
-                        // Handle the response from the staff API
-                        if (response.statusCode == 201) {
-                          // User data saved successfully
-                          final responseData = jsonDecode(response.body)['data'];
-                          // Do something with the responseData
-                          logger.i('Response data: $responseData');
-                          setState(() {
-                            _emailController.clear();
-                            _passwordController.clear();
-                            _otpTokenController.clear();
-                            _firstNameController.clear();
-                            _lastNameController.clear();
-                            _phoneNumberController.clear();
-                            isLogin = true; // Update the isLogin variable to toggle to "Create Account"
-                          });
-                        } else {
-                          // Error saving user data
-                          final errorMessage = jsonDecode(response.body)['message'];
-                          logger.e('Error message: $errorMessage');
-                          // Do something with the errorMessage
-                        }
-                      }
-                      setState(() {
-                        isLogin = !isLogin;
-                      });
-                    },
-                    title: isLogin ? 'Create Account' : 'Back to Create Admin',
-                    color: AppColors.backgroundColor,
-                  ),
+                  // WButton(
+                  //   onTap: () async {
+                  //     if (isLogin) {
+                  //       // Code for creating an admin account
+                  //       final signupModel = SignupModel(
+                  //         email: _emailController.text,
+                  //         password: _passwordController.text,
+                  //         fullName: _fullNameController.text,
+                  //         phoneNumber: _phoneNumberController.text,
+                  //         organizationName: _organizationNameController.text,
+                  //         isAdmin: true,
+                  //       );
+                  //       final response = await http.post(
+                  //         Uri.parse('https://liquid-food-backend-production.up.railway.app/api/auth/admin/signup'),
+                  //         headers: {'Content-Type': 'application/json'},
+                  //         body: jsonEncode(signupModel.toJson()),
+                  //       );
+                  //       // Handle the response from the admin API
+                  //       if (response.statusCode == 201) {
+                  //         // User data saved successfully
+                  //         final responseData = jsonDecode(response.body)['data'];
+                  //         // Do something with the responseData
+                  //         logger.i('Response data: $responseData');
+                  //         setState(() {
+                  //           _emailController.clear();
+                  //           _passwordController.clear();
+                  //           _fullNameController.clear();
+                  //           _phoneNumberController.clear();
+                  //           _organizationNameController.clear();
+                  //           isLogin = false; // Update the isLogin variable to toggle to "Back to Create Admin"
+                  //         });
+                  //         showDialog(
+                  //           context: _key.currentContext!,
+                  //           builder: (BuildContext context) {
+                  //             return AlertDialog(
+                  //               title: const Text('Success'),
+                  //               content: Text(responseData['message']),
+                  //               actions: [
+                  //                 TextButton(
+                  //                   onPressed: () {
+                  //                     Navigator.of(context).pop();
+                  //                   },
+                  //                   child: const Text('OK'),
+                  //                 ),
+                  //               ],
+                  //             );
+                  //           },
+                  //         );
+                  //       } else {
+                  //         // Error saving user data
+                  //         final errorMessage = jsonDecode(response.body)['message'];
+                  //         logger.e('Error message: $errorMessage');
+                  //         // Do something with the errorMessage
+                  //       }
+                  //     } else {
+                  //       // Code for creating a staff account
+                  //       final signupModel = SignupModel(
+                  //         email: _emailController.text,
+                  //         password: _passwordController.text,
+                  //         otpToken: _otpTokenController.text,
+                  //         firstName: _firstNameController.text,
+                  //         lastName: _lastNameController.text,
+                  //         phoneNumber: _phoneNumberController.text,
+                  //         isAdmin: false,
+                  //       );
+                  //       final response = await http.post(
+                  //         Uri.parse('https://liquid-food-backend-production.up.railway.app/api/auth/staff/signup'),
+                  //         headers: {'Content-Type': 'application/json'},
+                  //         body: jsonEncode(signupModel.toJson()),
+                  //       );
+                  //       // Handle the response from the staff API
+                  //       if (response.statusCode == 201) {
+                  //         // User data saved successfully
+                  //         final responseData = jsonDecode(response.body)['data'];
+                  //         // Do something with the responseData
+                  //         logger.i('Response data: $responseData');
+                  //         setState(() {
+                  //           _emailController.clear();
+                  //           _passwordController.clear();
+                  //           _otpTokenController.clear();
+                  //           _firstNameController.clear();
+                  //           _lastNameController.clear();
+                  //           _phoneNumberController.clear();
+                  //           isLogin = true; // Update the isLogin variable to toggle to "Create Account"
+                  //         });
+                  //       } else {
+                  //         // Error saving user data
+                  //         final errorMessage = jsonDecode(response.body)['message'];
+                  //         logger.e('Error message: $errorMessage');
+                  //         // Do something with the errorMessage
+                  //       }
+                  //     }
+                  //     setState(() {
+                  //       isLogin = !isLogin;
+                  //     });
+                  //   },
+                  //   title: isLogin ? 'Create Account' : 'Back to Create Admin',
+                  //   color: AppColors.backgroundColor,
+                  // ),
 
+                WButton(
+  onTap: () async {
+    if (isLogin) {
+      // Code for creating an admin account
+      final signupModel = SignupModel(
+        email: _emailController.text,
+        password: _passwordController.text,
+        fullName: _fullNameController.text,
+        phoneNumber: _phoneNumberController.text,
+        organizationName: _organizationNameController.text,
+        isAdmin: true,
+      );
+      final userRepository = SignupRepository();
+      final user = await userRepository.signup(signupModel, context);
+      setState(() {
+        _emailController.clear();
+        _passwordController.clear();
+        _fullNameController.clear();
+        _phoneNumberController.clear();
+        _organizationNameController.clear();
+        isLogin = false; // Update the isLogin variable to toggle to "Back to Create Admin"
+      });
+      showDialog(
+        context: _key.currentContext!,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Success'),
+            // content: Text(user.message),
+            content: Text(user.message ?? ''),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      // Code for creating a staff account
+      final signupModel = SignupModel(
+        email: _emailController.text,
+        password: _passwordController.text,
+        otpToken: _otpTokenController.text,
+        firstName: _firstNameController.text,
+        lastName: _lastNameController.text,
+        phoneNumber: _phoneNumberController.text,
+        isAdmin: false,
+      );
+      final userRepository = SignupRepository();
+      final user = await userRepository.signup(signupModel, context);
+      setState(() {
+        _emailController.clear();
+        _passwordController.clear();
+        _otpTokenController.clear();
+        _firstNameController.clear();
+        _lastNameController.clear();
+        _phoneNumberController.clear();
+        isLogin = true; // Update the isLogin variable to toggle to "Create Account"
+      });
+    }
+    setState(() {
+      isLogin = !isLogin;
+    });
+  },
+  title: isLogin ? 'Create Account' : 'Back to Create Admin',
+  color: AppColors.backgroundColor,
+),
                 SizedBox(height: height * 0.020),
                 if (isLogin)
                   GestureDetector(
@@ -586,13 +657,17 @@ class _SignScreenAPIState extends State<SignScreenAPI> {
                   ),
                 if (!isLogin)
                 if (userRole == UserRole.admin)
-                  const Center(
-                    child: WText(
-                      text: 'Toggle the button to switch to admin user',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12,
-                    ),
-                  ),
+                   WButton(
+                  onTap: () => setState(() {
+                    if (userRole == UserRole.admin) {
+                      isLogin = !isLogin;
+                    } else {
+                      isLogin = true;
+                    }
+                  }),
+                  title: isLogin ? 'Create Account' : 'Back to Admin Login',
+                  color: AppColors.backgroundColor,
+                ),
               ],
             ),
           ),

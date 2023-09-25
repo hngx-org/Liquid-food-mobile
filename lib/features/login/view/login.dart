@@ -4,6 +4,7 @@ import 'package:free_lunch_app/features/login/model/login.model.dart';
 import 'package:free_lunch_app/features/login/viewmodels/login.viewmodel.dart';
 import 'package:free_lunch_app/features/login/viewmodels/user.viewmodel.dart';
 import 'package:free_lunch_app/utils/res/colors.dart';
+import 'package:free_lunch_app/utils/res/typography.dart';
 import 'package:free_lunch_app/utils/routing/utlils.dart';
 import 'package:free_lunch_app/widgets/custom_text_field.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -152,7 +153,7 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
                       passwordFocus.unfocus();
                     }),
                 SizedBox(
-                  height: height * 0.058,
+                  height: height * 0.068,
                 ),
                 GestureDetector(
                   onTap: () async {
@@ -198,11 +199,19 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: height * 0.020,
-                ),
-                SizedBox(
                   height: height * 0.040,
                 ),
+                TextButton(
+                    onPressed: () {
+                      Utils.mainAppNav.currentState?.pushNamed('/signup');
+                    },
+                    child: Center(
+                      child: Text(
+                        'Don\'t have an account, Sign Up!',
+                        textAlign: TextAlign.center,
+                        style: AppTypography.bodyText3,
+                      ),
+                    ))
               ],
             ),
           ),

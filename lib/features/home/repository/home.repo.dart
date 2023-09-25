@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/features/home/repository/irepository.home.dart';
-import 'package:free_lunch_app/features/home/user_profile/user_profile_repo.dart';
 import 'package:free_lunch_app/features/login/viewmodels/user.viewmodel.dart';
 import 'package:free_lunch_app/utils/appurls.dart';
 import 'package:free_lunch_app/utils/routing/utlils.dart';
@@ -10,12 +9,9 @@ import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
 class HomeRepository extends IRepositoryHome {
-  IUserProfileRepo userProfileRepo = UserProfileRepo();
-
   @override
   Future<List<dynamic>> fetchCoworkerItems(
       BuildContext context, searchController) async {
-    await userProfileRepo.fetchUserProfile(context);
     String url = AppUrl.userAll;
     if (searchController.text.toString().isNotEmpty) {
       url =
@@ -39,8 +35,10 @@ class HomeRepository extends IRepositoryHome {
         // print('${response.statusCode} ${responseData['data']}');
       }
       if (response.statusCode == 200 || response.statusCode == 201) {
-        print(
-            '${responseData['message']}${responseData['data'][0]['organizations']['profilePic']} ');
+        if (kDebugMode) {
+          print(
+              '${responseData['message']}${responseData['data'][0]['organizations']['profilePic']} ');
+        }
 
         final users = await responseData['data'];
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/feature/lunches/presentation/lunches_view_model.dart';
-import 'package:free_lunch_app/features/create_account/create_account.dart';
 import 'package:free_lunch_app/features/home/view_model/home_viewmodel.dart';
 import 'package:free_lunch_app/features/login/view/login.dart';
 import 'package:free_lunch_app/features/login/viewmodels/login.viewmodel.dart';
 import 'package:free_lunch_app/features/login/viewmodels/user.viewmodel.dart';
 import 'package:free_lunch_app/features/sendLunches/viewmodel/sendlunch.viewmodel.dart';
+import 'package:free_lunch_app/features/signUP/view/signup.dart';
 import 'package:free_lunch_app/utils/routing/utlils.dart';
 import 'package:free_lunch_app/withdrawal/presentation/pages/withdraw_account.dart';
 import 'package:free_lunch_app/withdrawal/presentation/pages/withdrawal_screen.dart';
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         navigatorKey: Utils.mainAppNav,
         routes: {
           '/': (context) => const SplashPage(),
-          '/signup': (context) => const CreateAccount(),
+          '/signup': (context) => const SignScreenAPI(),
           '/login': (context) => const AuthLoginScreen(),
           '/home': (context) => const BottomNavShell(),
           '/withdrawal': (context) => const WithdrawalScreen(),
@@ -68,7 +68,7 @@ class SplashPage extends StatelessWidget {
         if (!context.mounted) {
           return;
         }
-        Navigator.pushReplacementNamed(context, '/login');
+        Utils.mainAppNav.currentState?.pushReplacementNamed('/login');
       } else {
         Utils.mainAppNav.currentState?.pushReplacementNamed('/home');
       }

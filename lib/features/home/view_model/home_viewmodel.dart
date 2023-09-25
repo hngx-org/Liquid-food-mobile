@@ -11,9 +11,17 @@ class HomeRepoVM with ChangeNotifier {
   String? _lunchCredits;
   String? get lunchCredit => _lunchCredits;
 
-  void fetchCredit(BuildContext context) async {
+  String? _fullName;
+  String? get fullName => _fullName;
+
+  bool _isAdmin = false;
+  bool get isAdmin => _isAdmin;
+
+  Future<void> fetchUserProfile() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
-    _lunchCredits = sp.get('balance').toString();
+    _lunchCredits = sp.get('lunch_balance').toString();
+    _fullName = sp.getString('full_name').toString();
+    _isAdmin = sp.getBool('isAdmin')!;
     notifyListeners();
   }
 

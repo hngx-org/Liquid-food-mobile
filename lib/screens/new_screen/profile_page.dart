@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/screens/widgets/change_password_container.dart';
-import 'package:free_lunch_app/screens/widgets/widgets.dart';
+import 'package:free_lunch_app/utils/routing/utlils.dart';
+import 'package:free_lunch_app/widgets/action_buttons.dart';
+import 'package:free_lunch_app/widgets/custom_text_field.dart';
 
 class ProfileImagePage extends StatefulWidget {
   const ProfileImagePage({Key? key}) : super(key: key);
@@ -14,12 +16,18 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final bool _isPasswordVisible = false;
+  final FocusNode fNameFocus = FocusNode();
+  final FocusNode emailFocus = FocusNode();
+  final FocusNode passwordFocus = FocusNode();
 
   @override
   void dispose() {
     _fullNameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    fNameFocus.dispose();
+    emailFocus.dispose();
+    passwordFocus.dispose();
     super.dispose();
   }
 
@@ -47,29 +55,29 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            top: height * 0.1,
-                            right: width * 0.05,
-                            child: Container(
-                              width: width * 0.1,
-                              height: height * 0.05,
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                color: Colors.white.withOpacity(0.8),
-                              ),
-                              child: IconButton(
-                                icon: const Icon(Icons.camera_alt),
-                                onPressed: () {
-                                  // Handle camera icon press here
-                                },
-                              ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          top: height * 0.1,
+                          right: width * 0.05,
+                          child: Container(
+                            width: width * 0.1,
+                            height: height * 0.05,
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              color: Colors.white.withOpacity(0.8),
+                            ),
+                            child: IconButton(
+                              icon: const Icon(Icons.camera_alt),
+                              onPressed: () {
+                                // Handle camera icon press here
+                              },
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -131,11 +139,20 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
                       ),
                     ),
                     SizedBox(height: height * 0.01),
-                    AuthInputTextFormContainer(
-                      controller: _fullNameController,
-                      height: height,
-                      hintText: 'Enter your full name',
-                    ),
+                    CustomTextField(
+                        textController: _fullNameController,
+                        textFocus: fNameFocus,
+                        isPassword: false,
+                        leadingIcon: const Icon(Icons.person_2_outlined),
+                        hintText: 'Enter your full name',
+                        validator: (v) {
+                          return;
+                        },
+                        isMultiLine: false,
+                        onSubmitted: (v) {
+                          Utils.fieldFocusChange(
+                              context, fNameFocus, emailFocus);
+                        }),
                     SizedBox(height: height * 0.02),
                     const Text(
                       'Email Address',
@@ -145,11 +162,20 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
                       ),
                     ),
                     SizedBox(height: height * 0.01),
-                    AuthInputTextFormContainer(
-                      controller: _emailController,
-                      height: height,
-                      hintText: 'Enter your email address',
-                    ),
+                    CustomTextField(
+                        textController: _emailController,
+                        textFocus: emailFocus,
+                        isPassword: false,
+                        leadingIcon: const Icon(Icons.email_outlined),
+                        hintText: 'Enter your Email',
+                        validator: (v) {
+                          return;
+                        },
+                        isMultiLine: false,
+                        onSubmitted: (v) {
+                          Utils.fieldFocusChange(
+                              context, emailFocus, passwordFocus);
+                        }),
                     SizedBox(height: height * 0.02),
                     const Text(
                       'Password',
@@ -160,6 +186,7 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
                     ),
                     SizedBox(height: height * 0.01),
                     ChangePasswordContainer(
+                      focus: passwordFocus,
                       controller: _passwordController,
                       height: height,
                       hintText: 'Enter current password',
@@ -175,16 +202,13 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
                     ),
                     SizedBox(height: height * 0.02),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              // Handle invite co-worker press here
-                            },
-                            child: const Text('Invite Co-worker'),
-                          ),
-                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10.0),
+                          child:
+                              ActionBtn(text: 'Invite Co-worker', onTap: () {}),
+                        )
                       ],
                     ),
                   ],

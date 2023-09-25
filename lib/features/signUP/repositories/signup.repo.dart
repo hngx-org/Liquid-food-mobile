@@ -1,25 +1,25 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:free_lunch_app/features/login/model/login.model.dart';
-import 'package:free_lunch_app/features/login/model/user.login_model.dart';
+import '../../signUP/model/signup_model.dart';
+import '../../signUP/model/user.signup_model.dart';
 import 'package:free_lunch_app/utils/appurls.dart';
 import 'package:free_lunch_app/utils/routing/utlils.dart';
 import 'package:http/http.dart' as http;
 
-abstract class ILoginRepo {
-  Future<UserModel> login(LoginModel login, BuildContext context);
+abstract class ISignupRepo {
+  Future<UserModel> signup(SignupModel signup, BuildContext context);
 }
 
-class LoginRepository extends ILoginRepo {
+class SignupRepository extends ISignupRepo {
   @override
-  Future<UserModel> login(login, context) async {
-    final url = AppUrl.loginUrl;
-    final userData = login.toJson();
+  Future<UserModel> signup(signup, context) async {
+    final url = signup.isAdmin ? AppUrl.adminSignupUrl : AppUrl.staffsignupUrl;
+    final userData = signup.toJson();
     Map<String, String> headers = {"content-type": "application/json"};
     try {
       if (kDebugMode) {
-        print(AppUrl.loginUrl);
+        print(url);
       }
       http.Response response =
           await http.post(Uri.parse(url), body: userData, headers: headers);
@@ -28,9 +28,7 @@ class LoginRepository extends ILoginRepo {
       }
       if (response.statusCode == 200 || response.statusCode == 201) {
         final responseData = jsonDecode(response.body);
-        // if (context.mounted) {
-        //   await userProfileRepo.fetchUserProfile(context);
-        // }
+
         UserModel user = UserModel.fromJson(responseData);
 
         if (context.mounted) {
@@ -50,6 +48,6 @@ class LoginRepository extends ILoginRepo {
         Utils.handleException(e, context);
       }
     }
-    throw 'No User found';
+    throw 'Invalid Credentials';
   }
 }

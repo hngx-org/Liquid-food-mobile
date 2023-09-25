@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:free_lunch_app/features/home/view/admin_home.dart';
 import 'package:free_lunch_app/features/login/view/login.dart';
 import 'package:free_lunch_app/features/signUP/view/signup.dart';
+import 'package:free_lunch_app/main.dart';
 import 'package:free_lunch_app/screens/new_screen/auth_screen_api.dart';
 import 'package:free_lunch_app/screens/new_screen/change_password_screen.dart';
 
@@ -20,7 +21,8 @@ class Routes {
     switch (settings.name) {
       case '/':
         // page = const AuthScreen();
-        page = const AuthScreenAPI();
+        // page = const AuthScreenAPI();
+        page = const SplashPage();
         // page = const SignScreenAPI();
         break;
       case '/home':
@@ -31,6 +33,9 @@ class Routes {
         break;
       case '/profile':
         page = const ProfileImagePage();
+        break;
+      case '/signup':
+        page = const SignScreenAPI();
         break;
       case '/log-in':
         // page = const LoginScreen();

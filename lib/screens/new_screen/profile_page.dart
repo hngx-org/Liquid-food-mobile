@@ -26,7 +26,7 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
   final TextEditingController _passwordController = TextEditingController();
 
    void _handleInviteCoWorker() {
-     Navigator.pushNamed(context, '/');
+     Navigator.pushNamed(context, '/profile');
   }
 
   @override

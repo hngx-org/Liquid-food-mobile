@@ -6,6 +6,7 @@ import 'package:free_lunch_app/features/login/view/login.dart';
 import 'package:free_lunch_app/features/login/viewmodels/login.viewmodel.dart';
 import 'package:free_lunch_app/features/login/viewmodels/user.viewmodel.dart';
 import 'package:free_lunch_app/features/sendLunches/viewmodel/sendlunch.viewmodel.dart';
+import 'package:free_lunch_app/features/profile/profile_page.dart';
 import 'package:free_lunch_app/features/signUP/view/signup.dart';
 import 'package:free_lunch_app/utils/routing/utlils.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,6 @@ import '../features/main/view/bottom_nav_shell.dart';
 import '../features/main/navigation/providers/bottom_navigation.viewmodel.dart';
 // import 'feature/auth/pages/auth_screen.dart';
 // import 'feature/auth/pages/login_screen.dart';
-import 'feature/auth/pages/profile_page.dart';
 
 void main() {
   runApp(const MyApp());

@@ -49,11 +49,11 @@ class MyApp extends StatelessWidget {
           '/withdrawal-screen': (_) => const WithdrawalScreen(),
           '/profile': (_) => const ProfileImagePage(),
           '/withdraw-account': (_) => const WithdrawalAccount(),
-          '/log-in': (_) => const LoginScreen(),
+          '/log-in': (_) => const AuthLoginScreen(),
 
           // '/': (context) => const SplashPage(),
           // '/signup': (context) => const CreateAccount(),
-          '/login': (context) => const AuthLoginScreen(),
+          // '/login': (context) => const AuthLoginScreen(),
           // '/home': (context) => const BottomNavShell(),
           '/withdrawal': (context) => const WithdrawalScreen(),
           '/withdrawalAccount': (context) => const WithdrawalAccount(),

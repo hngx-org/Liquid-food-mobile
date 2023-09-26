@@ -12,7 +12,6 @@ import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
 import '../../../utils/utils/colors.dart';
-import '../../../widgets/password_input_form.dart';
 import '../../../withdrawal/presentation/widgets/screen_styles.dart';
 import '../widgets/auth_input_textform_container.dart';
 

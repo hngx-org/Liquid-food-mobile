@@ -8,6 +8,7 @@ import '../../../withdrawal/presentation/pages/withdraw_account.dart';
 import '../../../withdrawal/presentation/pages/withdrawal_screen.dart';
 import 'package:free_lunch_app/feature/lunches/presentation/lunches_view.dart';
 
+import '../../feature/auth/pages/auth_screen.dart';
 import '../../feature/auth/pages/change_password_screen.dart';
 import '../../feature/auth/pages/invited_account_screen.dart';
 import '../../feature/auth/pages/profile_page.dart';
@@ -17,7 +18,7 @@ class Routes {
     Widget page;
     switch (settings.name) {
       case '/':
-        // page = const AuthScreen();
+        page = const AuthScreen();
         // page = const AuthScreenAPI();
         page = const SplashPage();
         // page = const SignScreenAPI();

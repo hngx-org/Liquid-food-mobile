@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:free_lunch_app/utils/routing/utlils.dart';
 import 'package:iconly/iconly.dart';
 
 import '../../../utils/utils/colors.dart';
@@ -20,7 +21,9 @@ class WithdrawalScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Utils.mainAppNav.currentState?.pop();
+          },
           icon: const Icon(
             AppIcons.arrowLeft,
           ),
@@ -53,8 +56,9 @@ class WithdrawalScreen extends StatelessWidget {
               SizedBox(
                 width: width * 0.65,
                 child: WButton(
-                  onTap: () =>
-                      Navigator.pushNamed(context, '/withdraw-account'),
+                  onTap: () => Utils.mainAppNav.currentState?.push(
+                      MaterialPageRoute(
+                          builder: (_) => const WithdrawalAccount())),
                   title: 'Add your account detials',
                   color: AppColors.backgroundColor,
                 ),

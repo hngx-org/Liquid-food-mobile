@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class ChangePasswordContainer extends StatefulWidget {
   const ChangePasswordContainer({
     Key? key,
@@ -7,14 +8,15 @@ class ChangePasswordContainer extends StatefulWidget {
     required this.iconData,
     required this.controller,
     this.validator,
+    required this.focus,
   }) : super(key: key);
 
   final double height;
+  final FocusNode focus;
   final String hintText;
   final IconData iconData;
   final TextEditingController controller;
   final String? Function(String?)? validator;
-  
 
   @override
   _ChangePasswordContainerState createState() =>
@@ -35,6 +37,7 @@ class _ChangePasswordContainerState extends State<ChangePasswordContainer> {
         border: Border.all(color: const Color(0xFF0085FF)),
       ),
       child: TextFormField(
+        focusNode: widget.focus,
         controller: widget.controller,
         obscureText: !_isPasswordVisible,
         decoration: InputDecoration(
@@ -45,7 +48,7 @@ class _ChangePasswordContainerState extends State<ChangePasswordContainer> {
             fontWeight: FontWeight.w400,
             color: Color(0xFFA6A6A6),
           ),
-             suffixIcon: TextButton(
+          suffixIcon: TextButton(
             // onPressed: widget.onPressed,
             onPressed: () {},
             child: Text(

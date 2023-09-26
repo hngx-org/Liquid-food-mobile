@@ -1,0 +1,8 @@
+package_rename_config:
+  android:
+    app_name: Free Lunch App
+    package_name: online.liquid.freelunchapp
+    override_old_package: com.example.free_lunch_app
+    lang: kotlin
+
+  

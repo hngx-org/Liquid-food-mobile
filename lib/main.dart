@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/feature/auth/viewmodels/create_acct_viewmodel.dart';
 import 'package:free_lunch_app/feature/lunches/presentation/lunches_view_model.dart';
-import 'package:free_lunch_app/withdrawal/presentation/pages/withdraw_account.dart';
-import 'package:free_lunch_app/withdrawal/presentation/pages/withdrawal_screen.dart';
-import '../features/home/view_model/home_viewmodel.dart';
-import '../features/sendLunches/viewmodel/sendlunch.viewmodel.dart';
+import 'package:free_lunch_app/features/home/view_model/home_viewmodel.dart';
 import 'package:free_lunch_app/features/login/view/login.dart';
 import 'package:free_lunch_app/features/login/viewmodels/login.viewmodel.dart';
 import 'package:free_lunch_app/features/login/viewmodels/user.viewmodel.dart';
+import 'package:free_lunch_app/features/sendLunches/viewmodel/sendlunch.viewmodel.dart';
+import 'package:free_lunch_app/features/signUP/view/signup.dart';
 import 'package:free_lunch_app/utils/routing/utlils.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../features/main/view/bottom_nav_shell.dart';
 import '../features/main/navigation/providers/bottom_navigation.viewmodel.dart';
-import 'feature/auth/pages/auth_screen.dart';
-import 'feature/auth/pages/login_screen.dart';
+// import 'feature/auth/pages/auth_screen.dart';
+// import 'feature/auth/pages/login_screen.dart';
 import 'feature/auth/pages/profile_page.dart';
 
 void main() {
@@ -44,19 +44,21 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         navigatorKey: Utils.mainAppNav,
         routes: {
-          '/': (context) => const AuthScreen(),
+          '/': (context) => const SplashPage(),
+          '/signup': (context) => const SignScreenAPI(),
+          '/login': (context) => const AuthLoginScreen(),
           '/home': (context) => const BottomNavShell(),
-          '/withdrawal-screen': (_) => const WithdrawalScreen(),
+          // '/withdrawal-screen': (_) => const WithdrawalScreen(),
           '/profile': (_) => const ProfileImagePage(),
-          '/withdraw-account': (_) => const WithdrawalAccount(),
+          // '/withdraw-account': (_) => const WithdrawalAccount(),
           '/log-in': (_) => const AuthLoginScreen(),
 
           // '/': (context) => const SplashPage(),
           // '/signup': (context) => const CreateAccount(),
           // '/login': (context) => const AuthLoginScreen(),
           // '/home': (context) => const BottomNavShell(),
-          '/withdrawal': (context) => const WithdrawalScreen(),
-          '/withdrawalAccount': (context) => const WithdrawalAccount(),
+          // '/withdrawal': (context) => const WithdrawalScreen(),
+          // '/withdrawalAccount': (context) => const WithdrawalAccount(),
         },
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -70,9 +72,15 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = context.read<UserViewModel>();
-    Future.delayed(const Duration(seconds: 2), () {
-      if (user.accessToken == null || user.accessToken!.isNotEmpty) {
-        Navigator.pushReplacementNamed(context, '/home');
+    Future.delayed(const Duration(seconds: 2), () async {
+      SharedPreferences sp = await SharedPreferences.getInstance();
+      sp.clear();
+      if (user.accessToken == null || user.accessToken!.isEmpty) {
+        sp.clear();
+        if (!context.mounted) {
+          return;
+        }
+        Utils.mainAppNav.currentState?.pushReplacementNamed('/login');
       } else {
         Utils.mainAppNav.currentState?.pushReplacementNamed('/signup');
       }

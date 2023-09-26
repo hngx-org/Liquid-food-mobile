@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/features/home/user_profile/model/user_profile.model.dart';
@@ -8,17 +7,19 @@ import 'package:free_lunch_app/utils/appurls.dart';
 import 'package:free_lunch_app/utils/routing/utlils.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class IUserProfileRepo {
-  Future<void> fetchUserProfile(BuildContext context);
+  Future<dynamic> fetchUserProfile(BuildContext context);
 }
 
 class UserProfileRepo extends IUserProfileRepo {
   @override
-  Future<void> fetchUserProfile(BuildContext context) async {
-    String url = AppUrl.lunchBalance;
+  Future<dynamic> fetchUserProfile(BuildContext context) async {
+    String url = AppUrl.userProfile;
     final userData = context.read<UserViewModel>();
     final accessToken = userData.accessToken.toString();
+    SharedPreferences sp = await SharedPreferences.getInstance();
     Map<String, String> headers = {
       "content-type": "application/json",
       "Authorization": "Bearer $accessToken",
@@ -31,24 +32,26 @@ class UserProfileRepo extends IUserProfileRepo {
       if (kDebugMode) {
         print('${response.statusCode} $userData ${jsonDecode(response.body)}');
       }
+      final responseData = await jsonDecode(response.body);
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final responseData = jsonDecode(response.body);
-        UserProfileModel userProfile = UserProfileModel.fromJson(responseData);
-        if (!context.mounted) {
-          return;
+        if (kDebugMode) {
+          print('object ${responseData['data']['firstName']}');
         }
-        context.read<UserViewModel>().saveUserDetails(
-            accessToken: '',
-            refreshToken: '',
-            email: userProfile.data!.email.toString(),
-            userId: userProfile.data!.id.toString(),
-            fullName:
-                '${userProfile.data!.firstName.toString()} ${userProfile.data!.lastName.toString()}',
-            profilePath: userProfile.data!.profilePicture.toString(),
-            orgName: userProfile.data!.organizationName.toString());
+        final fullName =
+            '${responseData['data']['firstName']} ${responseData['data']['lastName']}';
+        final balance = '${responseData['data']['lunchCreditBalance']}';
+        final isAdmin = responseData['data']['isAdmin'];
+
+        await sp.setString('full_name', fullName);
+        await sp.setString('lunch_balance', balance);
+        await sp.setBool('isAdmin', isAdmin);
+        if (kDebugMode) {
+          print(fullName + isAdmin.toString());
+        }
+
+        return responseData;
       } else if (response.statusCode == 400) {
-        final responseData = jsonDecode(response.body);
-        UserProfileModel userProfile = UserProfileModel.fromJson(responseData);
+        UserProfile userProfile = UserProfile.fromJson(responseData);
         if (context.mounted) {
           Utils.snackBarMessage(userProfile.message.toString(), context);
         }

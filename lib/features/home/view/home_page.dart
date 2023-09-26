@@ -2,12 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/features/home/repository/home.repo.dart';
 import 'package:free_lunch_app/features/home/repository/irepository.home.dart';
+import 'package:free_lunch_app/features/home/user_profile/user_profile_repo.dart';
 import 'package:free_lunch_app/features/home/view_model/home_viewmodel.dart';
-// import 'package:free_lunch_app/features/sendLunches/view/send_lunch.dart';
-// import '../../../feature/screens/lunch.screen.dart';
-import 'package:free_lunch_app/features/login/viewmodels/user.viewmodel.dart';
-// import 'package:free_lunch_app/features/sendLunches/view/send_lunch.dart';
-import '../../sendLunches/view/send_lunch.dart';
+import 'package:free_lunch_app/features/sendLunches/view/send_lunch.dart';
 import 'package:free_lunch_app/utils/res/colors.dart';
 import 'package:free_lunch_app/utils/res/icons.dart';
 import 'package:free_lunch_app/utils/res/svg_icons.dart';
@@ -16,14 +13,11 @@ import 'package:free_lunch_app/widgets/avatar.dart';
 import 'package:free_lunch_app/widgets/custom_text_field.dart';
 import 'package:free_lunch_app/widgets/total_card.dart';
 import 'package:provider/provider.dart';
-import '../../../withdrawal/presentation/widgets/w_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:free_lunch_app/utils/res/typography.dart';
+import './/withdrawal/presentation/widgets/w_button.dart';
 import '../../../withdrawal/presentation/widgets/screen_styles.dart';
-import '../../../utils/routing/utlils.dart';
-// import '../../../features/login/viewmodels/user.viewmodel.dart';
-// import 'package:google_fonts/google_fonts.dart';
-
-// import '../../../widgets/action_buttons.dart';
-// import '../../sendLunches/view/send_lunch.dart';
+import 'package:free_lunch_app/utils/routing/utlils.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -38,16 +32,26 @@ class _HomePageState extends State<HomePage> {
 
   IRepositoryHome homeRepo = HomeRepository();
 
+  IUserProfileRepo userProfileRepo = UserProfileRepo();
+  // String? fullName;
+  // String? balance = '';
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<HomeRepoVM>(context, listen: false)
-          .filterCoworkers(context, searchController);
-      Provider.of<HomeRepoVM>(context, listen: false).fetchCredit(context);
+      final homeVM = Provider.of<HomeRepoVM>(context, listen: false);
+      homeVM.filterCoworkers(context, searchController);
+      userProfileRepo.fetchUserProfile(context);
+      homeVM.fetchUserProfile();
     });
     searchController = TextEditingController();
     searchFocus = FocusNode();
     super.initState();
+  }
+
+  Future<String?> fetchFName() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    final fullName = sp.getString('full_name');
+    return fullName;
   }
 
   @override
@@ -61,7 +65,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final userProfile = Provider.of<UserViewModel>(context);
+    // print('fName $fullName');
     final height = MediaQuery.sizeOf(context).height;
     final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
@@ -79,16 +83,20 @@ class _HomePageState extends State<HomePage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const WText(
-                  text: 'Welcome',
-                  fontSize: 10,
-                  fontWeight: FontWeight.w400,
-                ),
-                WText(
-                  text: userProfile.fullName.toString(),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Welcome',
+                      style: AppTypography.subTitle3,
+                    ),
+                    Text(
+                      Provider.of<HomeRepoVM>(context).fullName.toString() ??
+                          'user',
+                      style: AppTypography.bodyText2,
+                    ),
+                  ],
+                )
               ],
             ),
           ],
@@ -261,12 +269,22 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 10,
             ),
-            TotalCardThree(
-                text1: 'You’ve done well this month. Cheers 🥂',
-                text2: 'Free Lunches',
-                totalNum: context.read<HomeRepoVM>().lunchCredit.toString(),
-                width: width * .942,
-                height: height * .110),
+            Consumer<HomeRepoVM>(
+              builder: (context, user, child) {
+                if (user.lunchCredit == null) {
+                  return const CircularProgressIndicator(); // or any loading indicator
+                } else {
+                  return TotalCardThree(
+                      text1: context.read<HomeRepoVM>().isAdmin
+                          ? 'You\'ve'
+                          : 'You’ve done well this month. Cheers 🥂',
+                      text2: 'Free Lunches',
+                      totalNum: user.lunchCredit.toString(),
+                      width: width * .942,
+                      height: height * .110);
+                }
+              },
+            ),
             const SizedBox(
               height: 10,
             ),
@@ -325,41 +343,40 @@ class _HomePageState extends State<HomePage> {
                       return const Text('Error occurred');
                     }
                     if (snapshot.data!.isEmpty || snapshot.data == null) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(height: height * 0.04),
-                          const Center(
-                            child: WText(
-                              text: '🤔',
-                              fontSize: 40,
-                            ),
-                          ),
-                          SizedBox(height: height * 0.035),
-                          const Center(
-                            child: WText(
-                              text: 'You haven\'t invited\nany co-worker',
-                              textAlign: TextAlign.center,
-                              fontSize: 23,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.tShadeColor,
-                            ),
-                          ),
-                          SizedBox(height: height * 0.045),
-                          WButton(
-                            onTap: () {},
-                            title: 'Invite co-worker',
-                            color: AppColors.backgroundColor,
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          ActionBtn2(
-                              onTap: () {},
-                              widthM: MediaQuery.sizeOf(context).width * .8,
-                              text: 'Invite co-worker'),
-                        ],
-                      );
+                      return context.read<HomeRepoVM>().isAdmin
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      '🤔',
+                                      style: AppTypography.header3,
+                                    )),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                Text(
+                                  "You haven't invited any \nco-worker",
+                                  textAlign: TextAlign.center,
+                                  style: AppTypography.subHeader1,
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                ActionBtn(
+                                    onTap: () {},
+                                    widthM:
+                                        MediaQuery.sizeOf(context).width * .8,
+                                    text: 'Invite co-worker'),
+                              ],
+                            )
+                          : const Text(
+                              'No users Invited',
+                            );
                     } else {
                       return ListView.builder(
                           shrinkWrap: true,

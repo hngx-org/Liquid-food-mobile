@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:free_lunch_app/features/home/repository/home.repo.dart';
 import 'package:free_lunch_app/features/home/repository/irepository.home.dart';
-import 'package:free_lunch_app/features/home/user_balance/user_balance.repo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeRepoVM with ChangeNotifier {
   IRepositoryHome repositoryHome = HomeRepository();
-  IUserBalanceRepo userBalanceRepo = UserBalanceRepo();
   Future<List<dynamic>>? _coworkersList;
   Future<List<dynamic>>? get coworkersList => _coworkersList;
 
   String? _lunchCredits;
   String? get lunchCredit => _lunchCredits;
 
-  void fetchCredit(BuildContext context) async {
+  String? _fullName;
+  String? get fullName => _fullName;
+
+  bool _isAdmin = false;
+  bool get isAdmin => _isAdmin;
+
+  Future<void> fetchUserProfile() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
-    _lunchCredits = sp.get('balance').toString();
+    _lunchCredits = sp.get('lunch_balance').toString();
+    _fullName = sp.getString('full_name').toString();
+    _isAdmin = sp.getBool('isAdmin')!;
     notifyListeners();
   }
 

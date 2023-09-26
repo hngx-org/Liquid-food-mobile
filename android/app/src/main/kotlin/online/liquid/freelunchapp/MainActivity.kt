@@ -1,4 +1,4 @@
-package com.example.free_lunch_app
+package online.liquid.freelunchapp
 
 import io.flutter.embedding.android.FlutterActivity
 

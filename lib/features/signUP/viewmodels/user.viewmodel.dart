@@ -1,5 +1,3 @@
-import 'dart:js_interop_unsafe';
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -37,7 +35,6 @@ class UsersViewModel extends ChangeNotifier {
   String? get fullName => _fullName;
   String? get orgName => _orgName;
   String? get profilePath => _profilePath;
- 
 
   Future<void> saveUserDetails(
       {required String accessToken,

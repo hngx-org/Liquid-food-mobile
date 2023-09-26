@@ -9,6 +9,7 @@ import '../widgets/available_lunches.dart';
 import '../widgets/withdraw_summary.dart';
 import './/withdrawal/presentation/widgets/w_button.dart';
 import '../widgets/screen_styles.dart';
+import 'withdrawal_screen.dart';
 
 class WithdrawalAccount extends StatefulWidget {
   const WithdrawalAccount({super.key});
@@ -88,9 +89,15 @@ class _WithdrawalAccountState extends State<WithdrawalAccount> {
                     ],
                   ),
                 ),
-                SizedBox(height: height * 0.07),
-                const WButton(
-                  leading: Icon(
+                SizedBox(height: height * 0.05),
+                 WButton(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const WithdrawalScreen()),
+                    );
+                  },
+                  leading: const Icon(
                     IconlyLight.upload,
                     color: AppColors.backgroundColor,
                   ),

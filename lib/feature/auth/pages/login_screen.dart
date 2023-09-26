@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import '../../../utils/res/colors.dart';
-import 'package:free_lunch_app/feature/auth/widgets/widgets.dart';
+// import 'package:free_lunch_app/feature/utils/colors.dart';
+
 import 'package:free_lunch_app/withdrawal/presentation/widgets/w_button.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
+import '../../../utils/res/colors.dart';
 import '../../../withdrawal/presentation/widgets/screen_styles.dart';
 import '../model/login.model.dart';
 import '../viewmodels/login.viewmodel.dart';
+import '../widgets/auth_input_textform_container.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -100,10 +102,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: height * 0.008,
                 ),
-                AuthInputPasswordContainer(
+                AuthInputTextFormContainer(
                   controller: _passwordController,
                   height: height,
-                  obscureText: obscure,
+                  isObsure: obscure,
                   hintText: 'Enter your password',
                   suffixIcon: GestureDetector(
                     child: Icon(

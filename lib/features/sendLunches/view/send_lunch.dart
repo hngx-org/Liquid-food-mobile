@@ -128,7 +128,7 @@ class _SendLunchesState extends State<SendLunches> {
                 Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Say something nice (optional)',
+                      '  Say something nice (optional)',
                       style: AppTypography.bodyText3,
                     )),
                 const SizedBox(

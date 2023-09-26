@@ -3,10 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
+// import '../../feature/utils/colors.dart';
+
 import '../../../utils/res/colors.dart';
+import '../../../widgets/action_buttons.dart';
 import '../../../widgets/avatar.dart';
 import '../../../withdrawal/presentation/widgets/screen_styles.dart';
-import '../../../withdrawal/presentation/widgets/w_button.dart';
 import '../widgets/auth_input_password_container.dart';
 import '../widgets/auth_input_textform_container.dart';
 
@@ -21,6 +23,10 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  void _handleInviteCoWorker() {
+    Navigator.pushNamed(context, '/profile');
+  }
 
   @override
   void dispose() {
@@ -149,7 +155,7 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
                 ),
                 SizedBox(height: height * 0.008),
                 AuthInputTextFormContainer(
-                  controller: _emailController,
+                  controller: _fullNameController,
                   height: height,
                   hintText: 'Samuel Iboji',
                 ),
@@ -182,7 +188,10 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
                     padding: const EdgeInsets.all(13),
                     child: GestureDetector(
                       onTap: () {},
-                      child: const WText(
+                      child: WTextButton(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/change-password');
+                        },
                         text: 'Change password',
                         color: AppColors.primaryColor,
                         fontSize: 12,
@@ -191,10 +200,16 @@ class _ProfileImagePageState extends State<ProfileImagePage> {
                   ),
                 ),
                 SizedBox(height: height * 0.09),
-                const WButton(
-                  title: 'Invite co-worker',
-                  color: AppColors.backgroundColor,
-                )
+                ActionBtn3(
+                  text: 'Invite co-worker',
+                  btnColor: AppColors.tPrimaryColor,
+                  widthM: width * .9,
+                  onTap: _handleInviteCoWorker,
+                ),
+                // const WButton(
+                //   title: 'Invite co-worker',
+                //   color: AppColors.backgroundColor,
+                // )
               ],
             ),
           ),

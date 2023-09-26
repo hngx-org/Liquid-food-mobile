@@ -53,6 +53,7 @@ class CommentWidgetState extends State<CommentWidget> {
         ),
         child: isEditing
             ? TextField(
+                controller: widget.commentController,
                 onTapOutside: (event) =>
                     FocusScope.of(context).requestFocus(FocusNode()),
                 style: const TextStyle(

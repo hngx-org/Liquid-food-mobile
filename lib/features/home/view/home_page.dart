@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:free_lunch_app/features/home/repository/home.repo.dart';
 import 'package:free_lunch_app/features/home/repository/irepository.home.dart';
 import 'package:free_lunch_app/features/home/view_model/home_viewmodel.dart';
+// import 'package:free_lunch_app/features/sendLunches/view/send_lunch.dart';
+// import '../../../feature/screens/lunch.screen.dart';
 import 'package:free_lunch_app/features/login/viewmodels/user.viewmodel.dart';
-import 'package:free_lunch_app/features/sendLunches/view/send_lunch.dart';
+// import 'package:free_lunch_app/features/sendLunches/view/send_lunch.dart';
+import '../../sendLunches/view/send_lunch.dart';
 import 'package:free_lunch_app/utils/res/colors.dart';
 import 'package:free_lunch_app/utils/res/icons.dart';
 import 'package:free_lunch_app/utils/res/svg_icons.dart';
@@ -16,6 +19,11 @@ import 'package:provider/provider.dart';
 import '../../../withdrawal/presentation/widgets/w_button.dart';
 import '../../../withdrawal/presentation/widgets/screen_styles.dart';
 import '../../../utils/routing/utlils.dart';
+// import '../../../features/login/viewmodels/user.viewmodel.dart';
+// import 'package:google_fonts/google_fonts.dart';
+
+// import '../../../widgets/action_buttons.dart';
+// import '../../sendLunches/view/send_lunch.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -71,7 +79,7 @@ class _HomePageState extends State<HomePage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                WText(
+                const WText(
                   text: 'Welcome',
                   fontSize: 10,
                   fontWeight: FontWeight.w400,
@@ -82,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                   fontWeight: FontWeight.w400,
                 ),
               ],
-            )
+            ),
           ],
         ),
         elevation: 0,
@@ -93,7 +101,7 @@ class _HomePageState extends State<HomePage> {
         padding: EdgeInsets.symmetric(horizontal: width * 0.03),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: <Widget>[
             // Row(
             //   mainAxisAlignment: MainAxisAlignment.start,
             //   children: [
@@ -185,6 +193,71 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
+            // Container(
+            //   width: double.infinity,
+            //   height: height * 0.16,
+            //   padding: const EdgeInsets.all(10.0),
+            //   decoration: BoxDecoration(
+            //       border: Border.all(color: AppColors.primaryColor),
+            //       color: const Color(0xffCCE7FF),
+            //       borderRadius: BorderRadius.circular(12)),
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.center,
+            //     children: [
+            //       const WText(
+            //         text: 'You’ve',
+            //         fontSize: 12,
+            //         fontWeight: FontWeight.w400,
+            //         color: AppColors.primaryColor,
+            //       ),
+            //       SizedBox(
+            //         height: height * 0.01,
+            //       ),
+            //       Container(
+            //         width: width * 0.4,
+            //         height: height * 0.07,
+            //         padding: const EdgeInsets.all(3),
+            //         decoration: BoxDecoration(
+            //             color: AppColors.backgroundColor,
+            //             borderRadius: BorderRadius.circular(30)),
+            //         child: Expanded(
+            //           child: Row(
+            //             mainAxisAlignment: MainAxisAlignment.center,
+            //             children: [
+            //               Container(
+            //                   padding: const EdgeInsets.all(3),
+            //                   decoration: const BoxDecoration(
+            //                       boxShadow: [
+            //                         BoxShadow(
+            //                             blurRadius: 0.3,
+            //                             spreadRadius: 0.2,
+            //                             offset: Offset(0.2, 0.2),
+            //                             color: AppColors.tBlack4),
+            //                       ],
+            //                       color: AppColors.backgroundColor,
+            //                       shape: BoxShape.circle),
+            //                   child: AppSvgIcons.hamburgerPrimary2),
+            //               SizedBox(width: width * 0.02),
+            //               const WText(
+            //                 text: '500',
+            //                 color: AppColors.tAmberAccent,
+            //                 fontSize: 40,
+            //                 fontWeight: FontWeight.w600,
+            //               ),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       SizedBox(height: height * 0.009),
+            //       const WText(
+            //         text: 'Freee Lunches',
+            //         fontSize: 12,
+            //         fontWeight: FontWeight.w400,
+            //         color: AppColors.primaryColor,
+            //       ),
+            //     ],
+            //   ),
+            // ),
             const SizedBox(
               height: 10,
             ),
@@ -281,7 +354,7 @@ class _HomePageState extends State<HomePage> {
                           const SizedBox(
                             height: 20,
                           ),
-                          ActionBtn(
+                          ActionBtn2(
                               onTap: () {},
                               widthM: MediaQuery.sizeOf(context).width * .8,
                               text: 'Invite co-worker'),
@@ -315,12 +388,14 @@ class _HomePageState extends State<HomePage> {
                                     width: 45,
                                     height: 45),
                                 title: WText(
-                                  text: coWorkerItem.name.toString(),
+                                  text:
+                                      '${coWorkerItem!['firstName'].toString()} ${coWorkerItem['lastName'].toString()}',
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
                                 ),
                                 subtitle: WText(
-                                  text: coWorkerItem.designation.toString(),
+                                  text: coWorkerItem['organizations']['name']
+                                      .toString(),
                                   fontSize: 10,
                                   fontWeight: FontWeight.w400,
                                   color: const Color(0xff737373),
@@ -333,6 +408,7 @@ class _HomePageState extends State<HomePage> {
                                       Utils.mainAppNav.currentState?.push(
                                           MaterialPageRoute(
                                               builder: (_) => SendLunches(
+                                                  // change here
                                                   worker: coWorkerItem,
                                                   totalLunches: context
                                                       .read<HomeRepoVM>()

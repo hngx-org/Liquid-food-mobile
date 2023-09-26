@@ -35,6 +35,7 @@ dependencies:
   http: ^1.1.0
   iconly: ^1.0.1
   provider: ^6.0.5
+  logger: ^2.0.2+1
   shared_preferences: ^2.2.1
   modal_progress_hud_nsn: ^0.4.0
 

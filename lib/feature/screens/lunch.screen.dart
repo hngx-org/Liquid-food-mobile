@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
-import '../../../utils/res/colors.dart';
+import 'package:free_lunch_app/feature/screens/send.request.screen.dart';
+// import '../../../utils/res/colors.dart';
 import '../../utils/res/icons.dart';
 import '../../utils/res/svg_icons.dart';
-import '../../utils/res/typography.dart';
+// import '../../utils/res/typography.dart';
 import '../../widgets/action_buttons.dart';
 import '../../widgets/avatar.dart';
 import '../../widgets/comment_widget.dart';
 import '../../widgets/custom_card.dart';
+// import '../../feature/utils/typography.dart';
+// import '../../utils/res/typography.dart';
+import '../../utils/utils/colors.dart';
+import '../../utils/utils/typography.dart';
 
 class SendLunches extends StatelessWidget {
   final String totalLunches;
-  const SendLunches({super.key, required this.totalLunches});
+  const SendLunches({super.key, required this.totalLunches, required worker});
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;
@@ -108,24 +113,28 @@ class SendLunches extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CustomCard(
+                          selected: true,
                           cardText: '1',
                           icon: AppSvgIcons.hamburgerDark,
                           selected: false,
                         ),
                         const SizedBox(width: 10),
                         CustomCard(
+                          selected: true,
                           cardText: '2',
                           icon: AppSvgIcons.hamburgerDark,
                           selected: false,
                         ),
                         const SizedBox(width: 10),
                         CustomCard(
+                          selected: true,
                           cardText: '3',
                           icon: AppSvgIcons.hamburgerDark,
                           selected: false,
                         ),
                         const SizedBox(width: 10),
                         CustomCard(
+                          selected: true,
                           cardText: '4',
                           icon: AppSvgIcons.hamburgerDark,
                           selected: false,
@@ -166,20 +175,27 @@ class SendLunches extends StatelessWidget {
                 margin: const EdgeInsets.only(
                   top: 468,
                 ),
-                child: const CommentWidget(
+                child: CommentWidget(
+                  commentController: TextEditingController(),
                   initialCommentText:
-                      'Great Job! You are true mentor. Enjoy the lunch!',
+                      'Great Job! You are a true mentor. Enjoy the lunch!',
                 ),
               ),
               Container(
                 margin: const EdgeInsets.only(
-                  top: 740,
+                  top: 640,
                 ),
-                child: ActionBtn(
+                child: ActionBtn2(
                   widthM: width,
                   text: 'Send lunch',
                   icon: AppSvgIcons.hamburgerLight,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SendRequestPage()),
+                    );
+                  },
                 ),
               ),
             ],
